@@ -105,8 +105,7 @@
 </template>
 
 <script>
-import getAllEquipos from "@/communication/getAllEquipos";
-import putEquipos from "@/communication/putEquipos";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "ModificarEquipo",
@@ -116,9 +115,6 @@ export default {
     errorPuntos: false,
     showSuccessAlert: false,
 
-    equipos: [],
-
-    nombresEquipos: [],
     dropwdownGrupos: ["A", "B", "C", "D", "E", "F", "G", "H"],
 
     selectedEquipo: null,
@@ -133,8 +129,9 @@ export default {
   }),
 
   methods: {
+    ...mapActions(["MODIFICAR_EQUIPO"]),
     handleSeleccionarEquipo() {
-      const equipoAux = this.equipos.find(
+      const equipoAux = this.EQUIPOS.find(
         (e) => e.nombre === this.selectedEquipo
       );
 
@@ -156,44 +153,39 @@ export default {
         };
       }
     },
-
     handleGuardarCambios() {
       if (!this.verificarNombre(this.datosEquipo.nombre)) {
         this.errorNombre = true;
       } else if (!this.verificarPuntos(this.datosEquipo.puntos)) {
         this.errorPuntos = true;
       } else {
-        putEquipos(this.datosEquipo.id, {
-          nombre: this.datosEquipo.nombre,
-          puntos: this.datosEquipo.puntos,
-          grupo: this.datosEquipo.grupo,
+        this.MODIFICAR_EQUIPO({
+          id: this.datosEquipo.id,
+          data: {
+            nombre: this.datosEquipo.nombre,
+            puntos: this.datosEquipo.puntos,
+            grupo: this.datosEquipo.grupo,
+          },
         }).then(() => {
           this.showSuccessAlert = true;
         });
       }
     },
-
     verificarNombre(nombre) {
       if (nombre === "") return false;
       else return true;
     },
-
     verificarPuntos(pts) {
       if (isNaN(pts)) return false;
       else return true;
     },
   },
 
-  mounted() {
-    getAllEquipos()
-      .then((res) => {
-        this.equipos = res;
-
-        res.forEach((eq) => {
-          this.nombresEquipos.push(eq.nombre);
-        });
-      })
-      .catch((e) => console.log(e));
+  computed: {
+    ...mapGetters(["EQUIPOS"]),
+    nombresEquipos() {
+      return this.EQUIPOS.map((e) => e.nombre);
+    },
   },
 };
 </script>

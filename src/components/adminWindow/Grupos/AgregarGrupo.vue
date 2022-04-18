@@ -126,7 +126,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["crearGrupo"]),
+    ...mapActions(["CREAR_GRUPO"]),
     async handleGuardar() {
       this.isLoading = true;
 
@@ -148,7 +148,7 @@ export default {
         let nombresEquipos = [];
         this.groupData.equipos.forEach((e) => nombresEquipos.push(e.nombre));
 
-        await this.crearGrupo({
+        await this.CREAR_GRUPO({
           nombre: this.groupData.nombre,
           equipos: nombresEquipos,
         }).catch((e) => {

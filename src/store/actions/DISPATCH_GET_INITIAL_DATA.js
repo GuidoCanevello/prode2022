@@ -1,12 +1,11 @@
 export default async function ({ commit }) {
-    // TODO usar is loading
     // const response = await axios.get(
     //   'https://jsonplaceholder.typicode.com/todos'
     // );
 
     // commit('setTodos', response.data);
 
-    commit('setIsLoading', true);
+    commit('SET_IS_LOADING_FUTBOL_DATA', true);
     setTimeout(() => {
         //* Partidos
         let partidos = [];
@@ -122,9 +121,9 @@ export default async function ({ commit }) {
             }
         ];
 
-        commit('setPartidos', partidos);
-        commit('setPredicciones', predicciones);
-        commit('setEquipos', equipos);
-        commit('setIsLoading', false);
+        commit('SET_PARTIDOS', partidos);
+        commit('SET_PREDICCIONES', predicciones);
+        commit('SET_EQUIPOS', equipos);
+        commit('SET_IS_LOADING_FUTBOL_DATA', false);
     }, 500);
 }

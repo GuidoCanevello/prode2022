@@ -20,11 +20,11 @@ export default {
   },
 
   methods: {
-    ...mapActions(["dispatchGetInitialData"]),
+    ...mapActions(["DISPATCH_GET_INITIAL_DATA"]),
   },
 
   created() {
-    this.dispatchGetInitialData();
+    this.DISPATCH_GET_INITIAL_DATA();
   },
 };
 </script>

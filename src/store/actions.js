@@ -1,13 +1,13 @@
-import dispatchGetInitialData from './actions/dispatchGetInitialData';
-import crearGrupo from './actions/crearGrupo';
-import crearEquipo from './actions/crearEquipo';
-import modificarEquipo from './actions/modificarEquipo';
-import crearPartidoGrupo from './actions/crearPartidoGrupo';
+import DISPATCH_GET_INITIAL_DATA from './actions/DISPATCH_GET_INITIAL_DATA';
+import CREAR_GRUPO from './actions/CREAR_GRUPO';
+import CREAR_EQUIPO from './actions/CREAR_EQUIPO';
+import MODIFICAR_EQUIPO from './actions/MODIFICAR_EQUIPO';
+import CREAR_PARTIDO_GRUPO from './actions/CREAR_PARTIDO_GRUPO';
 
 export default {
-  dispatchGetInitialData,
-  crearGrupo,
-  crearEquipo,
-  modificarEquipo,
-  crearPartidoGrupo,
+  DISPATCH_GET_INITIAL_DATA,
+  CREAR_GRUPO,
+  CREAR_EQUIPO,
+  MODIFICAR_EQUIPO,
+  CREAR_PARTIDO_GRUPO,
 }

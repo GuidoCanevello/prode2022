@@ -1,6 +1,8 @@
 export default function (state) {
     let dataGrupos = [];
 
+    console.log("se getea data fase Grupos")
+
     const dataEquipos = state.equipos;
     const dataPartidos = state.partidos;
     const dataPredicciones = state.predicciones;

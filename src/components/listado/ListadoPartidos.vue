@@ -3,12 +3,12 @@
     <v-container grid-list-xs>
       <v-data-table
         :headers="headers"
-        :items="dataListado"
+        :items="DATA_LISTADO"
         item-key="id"
-        :items-per-page="10"
+        :items-per-page="20"
         :search="busqueda"
         :custom-filter="filtrarEquipo"
-        :loading="isLoading"
+        :loading="IS_LOADING_FUTBOL_DATA"
         loading-text="Cargando Partidos..."
         dense
         class="table-partidos"
@@ -114,7 +114,7 @@ export default {
     },
   },
 
-  computed: mapGetters(["isLoading", "dataListado"]),
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
 };
 </script>
 

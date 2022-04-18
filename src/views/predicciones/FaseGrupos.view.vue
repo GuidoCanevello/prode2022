@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="isLoading">
+    <template v-if="IS_LOADING_FUTBOL_DATA">
       <v-row>
         <v-col>
           <loading-bar />
@@ -8,7 +8,7 @@
       </v-row>
     </template>
 
-    <template v-else v-for="grupo in dataFaseGrupos">
+    <template v-else v-for="grupo in DATA_FASE_GRUPOS">
       <fila-grupo
         v-bind:key="grupo.nombre"
         v-bind:grupo="grupo"
@@ -36,31 +36,6 @@ export default {
     },
   },
 
-  computed: mapGetters(["isLoading", "dataFaseGrupos"]),
-
-  // created() {
-  //   this.isLoading = true;
-
-  //   setTimeout(() => {
-  //     this.grupos = getDataFaseGrupos()
-  //       .then((res) => {
-  //         this.grupos = res;
-  //         this.isLoading = false;
-  //       })
-  //       .catch((e) => console.log(e));
-  //   }, 200);
-  // },
-  // created() {
-  //   this.isLoading = true;
-
-  //   setTimeout(() => {
-  //     this.grupos = getDataFaseGrupos()
-  //       .then((res) => {
-  //         this.grupos = res;
-  //         this.isLoading = false;
-  //       })
-  //       .catch((e) => console.log(e));
-  //   }, 200);
-  // },
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_FASE_GRUPOS"]),
 };
 </script>
