@@ -45,25 +45,29 @@ export default function (state) {
             }
         }
 
-        const nombreDia = obtenerNombreDia(partido.fecha.getDay()),
-            dia = partido.fecha.getDate(),
-            mes = partido.fecha.getMonth(),
-            hora = partido.fecha.getHours(),
-            minutos = partido.fecha.getMinutes();
+        let fecha = "";
+        if (fecha) {
+            const nombreDia = obtenerNombreDia(partido.fecha.getDay()),
+                dia = partido.fecha.getDate(),
+                mes = partido.fecha.getMonth(),
+                hora = partido.fecha.getHours(),
+                minutos = partido.fecha.getMinutes();
+            fecha = `${nombreDia} ${dia}-${mes} / ${hora}:${minutos}`;
+        }
 
         let newPartido = {
             idPartido: partido._id,
             equipo1: objEquipo1.nombre,
             equipo2: objEquipo2.nombre,
             grupo: partido.grupo,
-            fecha: `${nombreDia} ${dia}-${mes} / ${hora}:${minutos}`,
+            fecha,
             tienePrediccion: false,
             descripcionPartido: `${objEquipo1.nombre} vs. ${objEquipo2.nombre}`,
             descripcionPrediccion: "Sin Predicción",
         }
 
         const prediccion = dataPredicciones.find(prediccion => prediccion.idPartido == partido._id);
-        if (prediccion != undefined) {    
+        if (prediccion != undefined) {
             newPartido.tienePrediccion = true;
             newPartido.prediccion = {
                 golesEquipo1: prediccion.golesEquipo1,

@@ -5,7 +5,7 @@
         :headers="headers"
         :items="DATA_LISTADO"
         item-key="id"
-        :items-per-page="20"
+        :items-per-page="15"
         :search="busqueda"
         :custom-filter="filtrarEquipo"
         :loading="IS_LOADING_FUTBOL_DATA"

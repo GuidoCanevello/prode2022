@@ -7,7 +7,7 @@ export default function (state) {
     const dataPartidos = state.partidos;
     const dataPredicciones = state.predicciones;
 
-    const nombresGrupos = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+    const nombresGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
     nombresGrupos.forEach(nombre => {
         dataGrupos.push({ nombre, equipos: [], partidos: [] });
     });
