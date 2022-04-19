@@ -59,6 +59,15 @@
             "
           />
         </v-col>
+
+        <v-col sm="3">
+          <v-text-field
+            v-model="datosEquipo.code"
+            label="Codigo"
+            outlined
+            clearable
+          />
+        </v-col>
       </v-row>
 
       <v-row class="mt-0">
@@ -123,6 +132,7 @@ export default {
       selected: false,
       id: null,
       nombre: null,
+      code: null,
       puntos: null,
       grupo: null,
     },
@@ -140,6 +150,7 @@ export default {
           selected: true,
           id: equipoAux._id,
           nombre: equipoAux.nombre,
+          code: equipoAux.code,
           puntos: equipoAux.puntos,
           grupo: equipoAux.grupo,
         };
@@ -148,6 +159,7 @@ export default {
           selected: false,
           id: null,
           nombre: null,
+          code: null,
           puntos: null,
           grupo: null,
         };
@@ -163,6 +175,7 @@ export default {
           id: this.datosEquipo.id,
           data: {
             nombre: this.datosEquipo.nombre,
+            code: this.datosEquipo.code,
             puntos: this.datosEquipo.puntos,
             grupo: this.datosEquipo.grupo,
           },
