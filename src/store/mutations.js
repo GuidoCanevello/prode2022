@@ -18,4 +18,7 @@ export default {
             state.predicciones.splice(index, 1, updPrediccion);
         }
     },
+
+    SET_SHOW_ERROR: (state, value) => (state.showError = value),
+    SET_MSJ_ERROR: (state, mensaje) => (state.msjError = mensaje),
 }

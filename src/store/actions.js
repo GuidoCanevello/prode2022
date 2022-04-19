@@ -10,4 +10,10 @@ export default {
   CREAR_EQUIPO,
   MODIFICAR_EQUIPO,
   CREAR_PARTIDO_GRUPO,
+
+  ABRIR_ERROR: ({ commit }, mensaje) => {
+    commit('SET_SHOW_ERROR', true);
+    commit('SET_MSJ_ERROR', mensaje);
+  },
+  CERRAR_ERROR: ({ commit }) => (commit('SET_SHOW_ERROR', false)),
 }
