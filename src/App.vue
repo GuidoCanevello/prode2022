@@ -23,11 +23,10 @@ export default {
   components: { BarraDeNavegacion, DialogoError },
   name: "App",
   methods: {
-    ...mapActions(["DISPATCH_GET_INITIAL_DATA", "ABRIR_ERROR"]),
+    ...mapActions(["DISPATCH_GET_INITIAL_DATA"]),
   },
   created() {
     this.DISPATCH_GET_INITIAL_DATA();
-    this.ABRIR_ERROR("test error");
   },
   computed: mapGetters(["SHOW_ERROR"]),
 };

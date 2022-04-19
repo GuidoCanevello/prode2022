@@ -110,6 +110,12 @@ export default {
           icon: "mdi-book-open-page-variant-outline",
           route: "/reglamento",
         },
+        // REVIEW sacar backend
+        {
+          title: "Backend",
+          icon: "",
+          route: "/backend",
+        },
       ],
     };
   },
