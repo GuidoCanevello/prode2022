@@ -50,6 +50,8 @@ export default {
     currentPartido: {},
   }),
 
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
+
   methods: {
     ...mapActions([]),
 
@@ -91,7 +93,5 @@ export default {
       };
     },
   },
-
-  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
 };
 </script>

@@ -1,5 +1,4 @@
 export default {
-    SET_IS_LOADING_FUTBOL_DATA: (state, value) => (state.isLoadingFurbolData = value),
     SET_USUARIO_ID: (state, id) => (state.usuarioId = id),
     SET_USUARIO_NAME: (state, nombre) => (state.usuarioName = nombre),
     SET_PREDICCIONES: (state, predicciones) => (state.predicciones = predicciones),
@@ -24,6 +23,12 @@ export default {
 
     SET_USUARIOS: (state, usuarios) => (state.usuarios = usuarios),
 
+    SET_IS_LOADING_FUTBOL_DATA: (state, value) => (state.isLoadingFurbolData = value),
+    SET_IS_LOADING_LOGIN: (state, value) => (state.isLoadingLogin = value),
+
     SET_SHOW_ERROR: (state, value) => (state.showError = value),
     SET_MSJ_ERROR: (state, mensaje) => (state.msjError = mensaje),
+
+    SET_IS_LOGGED: (state, value) => (state.isLogged = value),
+    SET_HAS_INITIAL_DATA: (state, value) => (state.hasInitialData = value),
 }

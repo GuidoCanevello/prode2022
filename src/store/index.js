@@ -8,8 +8,6 @@ Vue.use(Vuex);
 // };
 
 const state = {
-  isLoadingFurbolData: false,
-
   usuarioId: "",
   usuarioName: "",
   usuarioPuntos: 0,
@@ -36,8 +34,14 @@ const state = {
     }
   ],
 
+  isLoadingFurbolData: false,
+  isLoadingLogin: false,
+  
   showError: false,
   msjError: "",
+
+  isLogged: false,
+  hasInitialData: false,
 };
 
 import getters from './getters';

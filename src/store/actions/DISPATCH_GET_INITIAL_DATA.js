@@ -1,12 +1,14 @@
 import axios from "axios";
 
-export default async function ({ commit, dispatch }) {
+export default async function ({ state, commit, dispatch }) {
+    if (state.hasInitialData) return;
+
     commit('SET_IS_LOADING_FUTBOL_DATA', true);
 
     try {
-        //* Partidos    
-        const resPartidos = (await axios.get('partidos'));
-        const partidos = resPartidos.data;
+
+        //* Partidos
+        const partidos = await dispatch('DISPATCH_AXIOS_REQUEST', { axiosRequest: async () => await axios.get('partidos') });
 
         //* Predicciones
         // const predicciones = [
@@ -39,15 +41,16 @@ export default async function ({ commit, dispatch }) {
         // ];
 
         //* Equipos
-        const resEquipos = (await axios.get('equipos'));
-        const equipos = resEquipos.data;
+        const equipos = await dispatch('DISPATCH_AXIOS_REQUEST', { axiosRequest: async () => await axios.get('equipos') });
 
         //* Guardar Data
         commit('SET_PARTIDOS', partidos);
         // commit('SET_PREDICCIONES', predicciones);
         commit('SET_EQUIPOS', equipos);
+        commit('SET_HAS_INITIAL_DATA', true);
+    } catch (error) {
+        dispatch('ABRIR_ERROR', error.response.data.message);
+    } finally {
         commit('SET_IS_LOADING_FUTBOL_DATA', false);
-    } catch (e) {
-        dispatch('ABRIR_ERROR', e.response.data.message);
     }
 }

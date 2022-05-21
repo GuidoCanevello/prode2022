@@ -93,6 +93,8 @@ export default {
     ],
   }),
 
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
+
   methods: {
     fondoItem(item) {
       return item.tienePrediccion ? "fila-con-prediccion" : "";
@@ -113,8 +115,6 @@ export default {
       this.$emit("ver-prediccion", item.idPartido);
     },
   },
-
-  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
 };
 </script>
 

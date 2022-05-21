@@ -8,17 +8,18 @@ import axios from "axios";
  */
 export default async function ({ commit, dispatch }, { nombre, grupo }) {
     try {
-        const res = (await axios.post('equipos',
-            {
-                nombre,
-                grupo
-            }
-        ));
-        const newEquipo = res.data;
+        const newEquipo = await dispatch('DISPATCH_AXIOS_REQUEST', {
+            axiosRequest: async () => await axios.post('equipos',
+                {
+                    nombre,
+                    grupo
+                }
+            )
+        });
 
         commit('ADD_EQUIPOS', newEquipo);
         return newEquipo;
-    } catch (e) {
-        dispatch('ABRIR_ERROR', e.response.data.message);
+    } catch (error) {
+        dispatch('ABRIR_ERROR', error.response.data.message);
     }
 }

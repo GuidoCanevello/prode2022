@@ -22,12 +22,12 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "DialogoError",
+  computed: mapGetters(["MSJ_ERROR"]),
   methods: {
     ...mapActions(["CERRAR_ERROR"]),
     handleCerrar() {
       this.CERRAR_ERROR();
     },
   },
-  computed: mapGetters(["MSJ_ERROR"]),
 };
 </script>

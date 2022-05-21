@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <barra-de-navegacion />
+    <template v-if="!['login'].includes($root._route.path.substring(1))">
+      <barra-de-navegacion />
+    </template>
 
     <template v-if="SHOW_ERROR">
       <v-dialog v-model="SHOW_ERROR" width="500">
@@ -22,13 +24,18 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   components: { BarraDeNavegacion, DialogoError },
   name: "App",
-  methods: {
-    ...mapActions(["DISPATCH_GET_INITIAL_DATA"]),
-  },
-  created() {
-    this.DISPATCH_GET_INITIAL_DATA();
-  },
   computed: mapGetters(["SHOW_ERROR"]),
+  methods: {
+    ...mapActions(["CHECK_LOGIN_STATUS"]),
+  },
+  updated() {
+    if (
+      !this.CHECK_LOGIN_STATUS() &&
+      !["login"].includes(this.$root._route.path.substring(1))
+    ) {
+      this.$router.push("/login");
+    }
+  },
 };
 </script>
 

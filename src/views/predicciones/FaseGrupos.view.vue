@@ -29,13 +29,13 @@ export default {
 
   data: () => ({}),
 
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_FASE_GRUPOS"]),
+  
   methods: {
     ...mapActions([]),
     handleActualizar(idPartido, golesEquipo1, golesEquipo2) {
       console.log("hola", idPartido, golesEquipo1, golesEquipo2);
     },
   },
-
-  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_FASE_GRUPOS"]),
 };
 </script>

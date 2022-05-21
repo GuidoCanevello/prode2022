@@ -8,12 +8,13 @@ import axios from "axios";
  */
 export default async function ({ commit, dispatch }, { id, data }) {
     try {
-        const res = (await axios.put(`equipos/${id}`, data));
-        const updEquipo = res.data;
+        const updEquipo = await dispatch('DISPATCH_AXIOS_REQUEST', {
+            axiosRequest: async () => await axios.put(`equipos/${id}`, data)
+        });
 
         commit('UPDATE_EQUIPO', updEquipo);
         return updEquipo;
-    } catch (e) {
-        dispatch('ABRIR_ERROR', e.response.data.message);
+    } catch (error) {
+        dispatch('ABRIR_ERROR', error.response.data.message);
     }
 }

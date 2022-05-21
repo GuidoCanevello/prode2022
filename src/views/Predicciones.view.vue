@@ -15,11 +15,19 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Predicciones",
   data() {
-    return {
-    };
+    return {};
+  },
+  computed: mapGetters(["IS_LOGGED"]),
+  methods: {
+    ...mapActions(["DISPATCH_GET_INITIAL_DATA", "CHECK_LOGIN_STATUS"]),
+  },
+  created() {
+    if (this.CHECK_LOGIN_STATUS()) this.DISPATCH_GET_INITIAL_DATA();
   },
 };
 </script>
