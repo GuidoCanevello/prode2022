@@ -1,8 +1,10 @@
+import GET_DEFAULT_STATE from "./GET_DEFAULT_STATE";
+
 export default {
     SET_USUARIO_ID: (state, id) => (state.usuarioId = id),
     SET_USUARIO_NAME: (state, nombre) => (state.usuarioName = nombre),
     SET_PREDICCIONES: (state, predicciones) => (state.predicciones = predicciones),
-    
+
     SET_EQUIPOS: (state, equipos) => (state.equipos = equipos),
     ADD_EQUIPOS: (state, newEquipo) => (state.equipos.push(newEquipo)),
     UPDATE_EQUIPO: (state, updEquipo) => {
@@ -31,4 +33,8 @@ export default {
 
     SET_IS_LOGGED: (state, value) => (state.isLogged = value),
     SET_HAS_INITIAL_DATA: (state, value) => (state.hasInitialData = value),
+
+    RESET_STATE: (state) => {
+        Object.assign(state, GET_DEFAULT_STATE())
+    },
 }

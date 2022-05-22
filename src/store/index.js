@@ -3,50 +3,12 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-// const state = {
-//   usuarios: [],
-// };
-
-const state = {
-  usuarioId: "",
-  usuarioName: "",
-  usuarioPuntos: 0,
-  predicciones: [],
-  equipos: [],
-  partidos: [],
-  usuarios: [
-    {
-      id: "4",
-      nombre: "Rock Lee",
-      puntos: 3,
-    }, {
-      id: "5",
-      nombre: "Naruto",
-      puntos: 2,
-    }, {
-      id: "6",
-      nombre: "Sakura",
-      puntos: 7,
-    }, {
-      id: "1",
-      nombre: "ADMIN",
-      puntos: 8,
-    }
-  ],
-
-  isLoadingFurbolData: false,
-  isLoadingLogin: false,
-  
-  showError: false,
-  msjError: "",
-
-  isLogged: false,
-  hasInitialData: false,
-};
+const state = GET_DEFAULT_STATE();
 
 import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
+import GET_DEFAULT_STATE from './GET_DEFAULT_STATE';
 
 export default new Vuex.Store({
   state,

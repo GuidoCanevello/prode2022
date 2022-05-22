@@ -26,8 +26,9 @@ export default {
   methods: {
     ...mapActions(["DISPATCH_GET_INITIAL_DATA", "CHECK_LOGIN_STATUS"]),
   },
-  created() {
-    if (this.CHECK_LOGIN_STATUS()) this.DISPATCH_GET_INITIAL_DATA();
+  async created() {
+    let response = await this.CHECK_LOGIN_STATUS();
+    if (response) this.DISPATCH_GET_INITIAL_DATA();
   },
 };
 </script>

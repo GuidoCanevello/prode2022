@@ -1,14 +1,19 @@
+
+import GET_DEFAULT_STATE from './GET_DEFAULT_STATE';
 import DISPATCH_GET_INITIAL_DATA from './actions/DISPATCH_GET_INITIAL_DATA';
 import CREAR_GRUPO from './actions/CREAR_GRUPO';
 import CREAR_EQUIPO from './actions/CREAR_EQUIPO';
 import MODIFICAR_EQUIPO from './actions/MODIFICAR_EQUIPO';
 import CREAR_PARTIDO_GRUPO from './actions/CREAR_PARTIDO_GRUPO';
 import DISPATCH_LOGIN from './actions/DISPATCH_LOGIN';
+import DISPATCH_LOGOUT from './actions/DISPATCH_LOGOUT';
 import DISPATCH_AXIOS_REQUEST from './actions/DISPATCH_AXIOS_REQUEST';
 import DISPATCH_REFRESH_TOKEN from './actions/DISPATCH_REFRESH_TOKEN';
 import axios from 'axios';
 
 export default {
+  RESET_STATE: ({ commit }) => commit('RESET_STATE'),
+
   DISPATCH_GET_INITIAL_DATA,
   CREAR_GRUPO,
   CREAR_EQUIPO,
@@ -16,6 +21,7 @@ export default {
   CREAR_PARTIDO_GRUPO,
 
   DISPATCH_LOGIN,
+  DISPATCH_LOGOUT,
   DISPATCH_AXIOS_REQUEST,
   DISPATCH_REFRESH_TOKEN,
 

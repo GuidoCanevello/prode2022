@@ -28,9 +28,10 @@ export default {
   methods: {
     ...mapActions(["CHECK_LOGIN_STATUS"]),
   },
-  updated() {
+  async updated() {
+    let response = await this.CHECK_LOGIN_STATUS();
     if (
-      !this.CHECK_LOGIN_STATUS() &&
+      !response &&
       !["login"].includes(this.$root._route.path.substring(1))
     ) {
       this.$router.push("/login");
