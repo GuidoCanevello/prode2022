@@ -150,7 +150,6 @@ export default {
       this.logoutLoading = true;
       this.DISPATCH_LOGOUT().then(() => {
         this.logoutLoading = false;
-        this.$router.push("/login");
       });
     },
   },

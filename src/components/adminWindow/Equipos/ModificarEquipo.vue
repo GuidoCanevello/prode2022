@@ -29,9 +29,9 @@
         </v-col>
 
         <v-col md="3" style="text-align: end">
-          <v-btn color="success" @click="handleGuardarCambios"
-            >Guardar Cambios</v-btn
-          >
+          <v-btn color="success" @click="handleGuardarCambios">
+            Guardar Cambios
+          </v-btn>
         </v-col>
       </v-row>
 

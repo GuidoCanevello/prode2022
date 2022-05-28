@@ -85,7 +85,7 @@ export default {
   },
   computed: mapGetters(["IS_LOADING_LOGIN", "IS_LOGGED"]),
   methods: {
-    ...mapActions(["DISPATCH_LOGIN"]),
+    ...mapActions(["DISPATCH_LOGIN", "DISPATCH_GET_INITIAL_DATA"]),
 
     resetValidacion() {
       this.nombreError = false;
@@ -102,6 +102,7 @@ export default {
           password: this.password,
         })
           .then((e) => {
+            this.DISPATCH_GET_INITIAL_DATA();
             this.$router.push("/");
           })
           .catch((e) => {

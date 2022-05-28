@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function ({ commit, dispatch }) {
+export default async function ({ commit }) {
     try {
         const response = await axios.post("token", { token: localStorage.getItem('prodeRefreshToken') });
 

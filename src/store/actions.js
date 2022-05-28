@@ -31,16 +31,26 @@ export default {
   },
   CERRAR_ERROR: ({ commit }) => (commit('SET_SHOW_ERROR', false)),
 
-  CHECK_LOGIN_STATUS: ({ state, commit }) => {
+  CHECK_LOGIN_STATUS: async ({ state, commit, dispatch }) => {
     let response = true;
 
     if (!state.isLogged) {
+
       let refreshToken = localStorage.getItem('prodeRefreshToken');
       if (refreshToken) {
-        commit('SET_IS_LOGGED', true);
+        try {
+          commit('SET_IS_LOADING_LOGIN', true);
+          
+          await dispatch('DISPATCH_REFRESH_TOKEN');
+        } catch (error) {
+          dispatch('ABRIR_ERROR', error.response.data.message);
+        } finally {
+          commit('SET_IS_LOADING_LOGIN', false);
+        }
       } else {
         response = false;
       }
+
     }
 
     return response;

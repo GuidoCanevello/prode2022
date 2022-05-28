@@ -32,6 +32,7 @@ export default () => {
 
         isLoadingFurbolData: false,
         isLoadingLogin: false,
+        isCheckingLogin: false,
 
         showError: false,
         msjError: "",

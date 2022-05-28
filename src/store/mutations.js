@@ -27,6 +27,7 @@ export default {
 
     SET_IS_LOADING_FUTBOL_DATA: (state, value) => (state.isLoadingFurbolData = value),
     SET_IS_LOADING_LOGIN: (state, value) => (state.isLoadingLogin = value),
+    SET_IS_CHECKING_LOGIN: (state, value) => (state.isCheckingLogin = value),
 
     SET_SHOW_ERROR: (state, value) => (state.showError = value),
     SET_MSJ_ERROR: (state, mensaje) => (state.msjError = mensaje),

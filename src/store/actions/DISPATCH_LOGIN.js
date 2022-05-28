@@ -3,6 +3,9 @@ import axios from "axios";
 export default async function ({ commit, dispatch }, { username, password }) {
     commit('SET_IS_LOADING_LOGIN', true);
 
+    let oldRefreshToken = localStorage.getItem('prodeRefreshToken');
+    if (oldRefreshToken) await axios.delete("logout", { data: { token: localStorage.getItem('prodeRefreshToken') } });
+
     try {
         const response = await axios.post("login", { username, password });
 
