@@ -10,9 +10,11 @@ export default async function ({ commit, dispatch }, { username, password }) {
         const response = await axios.post("login", { username, password });
 
         localStorage.setItem('prodeAccessToken', response.data.accessToken);
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('prodeAccessToken');
+        // FIXME revertir master token
+        // axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('prodeAccessToken');
 
         localStorage.setItem('prodeRefreshToken', response.data.refreshToken);
+        localStorage.setItem('prodeLoggedUserId', response.data.userId);
 
         commit('SET_IS_LOGGED', true);
     } catch (error) {

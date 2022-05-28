@@ -1,16 +1,20 @@
 <template>
   <v-card outlined>
-      <v-container grid-list-xs>
-          Usuario
-      </v-container>
+    <v-card-title primary-title>
+      {{ USUARIO_NOMBRE_JUGADOR }}
+    </v-card-title>
+    <v-card-subtitle>
+      Puntos: {{ USUARIO_PUNTOS }}
+    </v-card-subtitle>
   </v-card>
 </template>
 
 <script>
-  export default {
-    name: 'UserBox',
+import { mapGetters } from "vuex";
+export default {
+  name: "UserBox",
 
-    data: () => ({
-    }),
-  }
+  data: () => ({}),
+  computed: mapGetters(["USUARIO_NOMBRE_JUGADOR", "USUARIO_PUNTOS"]),
+};
 </script>

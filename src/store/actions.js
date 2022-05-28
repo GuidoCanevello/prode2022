@@ -1,5 +1,3 @@
-
-import GET_DEFAULT_STATE from './GET_DEFAULT_STATE';
 import DISPATCH_GET_INITIAL_DATA from './actions/DISPATCH_GET_INITIAL_DATA';
 import CREAR_GRUPO from './actions/CREAR_GRUPO';
 import CREAR_EQUIPO from './actions/CREAR_EQUIPO';
@@ -36,21 +34,22 @@ export default {
 
     if (!state.isLogged) {
 
-      let refreshToken = localStorage.getItem('prodeRefreshToken');
-      if (refreshToken) {
-        try {
-          commit('SET_IS_LOADING_LOGIN', true);
-          
-          await dispatch('DISPATCH_REFRESH_TOKEN');
-        } catch (error) {
-          dispatch('ABRIR_ERROR', error.response.data.message);
-        } finally {
-          commit('SET_IS_LOADING_LOGIN', false);
-        }
-      } else {
-        response = false;
-      }
+      // FIXME revertir usuario admin
+      await dispatch('DISPATCH_LOGIN', { username: 'ADMIN', password: 'diego' })
+      // let refreshToken = localStorage.getItem('prodeRefreshToken');
+      // if (refreshToken) {
+      //   try {
+      //     commit('SET_IS_LOADING_LOGIN', true);
 
+      //     await dispatch('DISPATCH_REFRESH_TOKEN');
+      //   } catch (error) {
+      //     dispatch('ABRIR_ERROR', error.response.data.message);
+      //   } finally {
+      //     commit('SET_IS_LOADING_LOGIN', false);
+      //   }
+      // } else {
+      //   response = false;
+      // }
     }
 
     return response;

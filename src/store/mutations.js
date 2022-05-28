@@ -1,8 +1,10 @@
-import GET_DEFAULT_STATE from "./GET_DEFAULT_STATE";
+import GET_DEFAULT_STATE from "./getters/GET_DEFAULT_STATE";
 
 export default {
-    SET_USUARIO_ID: (state, id) => (state.usuarioId = id),
-    SET_USUARIO_NAME: (state, nombre) => (state.usuarioName = nombre),
+    SET_USUARIO_NOMBRE_CUENTA: (state, nombre) => (state.usuarioNombreCuenta = nombre),
+    SET_USUARIO_NOMBRE_JUGADOR: (state, nombre) => (state.usuarioNombreJugador = nombre),
+    SET_USUARIO_PUNTOS: (state, puntos) => (state.usuarioPuntos = puntos),
+
     SET_PREDICCIONES: (state, predicciones) => (state.predicciones = predicciones),
 
     SET_EQUIPOS: (state, equipos) => (state.equipos = equipos),
