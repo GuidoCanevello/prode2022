@@ -23,6 +23,8 @@ export default {
         const index = state.predicciones.findIndex(prediccion => prediccion._id === updPrediccion._id);
         if (index !== -1) {
             state.predicciones.splice(index, 1, updPrediccion);
+        } else {
+            state.predicciones.push(updPrediccion);
         }
     },
 

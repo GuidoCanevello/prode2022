@@ -12,35 +12,6 @@ export default async function ({ state, commit, dispatch }) {
                 await axios.get(`usuarios/${localStorage.getItem('prodeLoggedUserId')}`)
         });
 
-        // const predicciones = [
-        //     {
-        //         _id: 1,
-        //         golesEquipo1: 2,
-        //         golesEquipo2: 0,
-        //         partidoId: 1,
-        //     }, {
-        //         _id: 2,
-        //         golesEquipo1: 1,
-        //         golesEquipo2: 1,
-        //         partidoId: 3,
-        //     }, {
-        //         _id: 3,
-        //         golesEquipo1: 1,
-        //         golesEquipo2: 3,
-        //         partidoId: 5,
-        //     }, {
-        //         _id: 4,
-        //         golesEquipo1: 2,
-        //         golesEquipo2: 0,
-        //         partidoId: 8,
-        //     }, {
-        //         _id: 5,
-        //         golesEquipo1: 1,
-        //         golesEquipo2: 7,
-        //         partidoId: 9,
-        //     }
-        // ];
-
         //* Partidos
         const partidos = await dispatch('DISPATCH_AXIOS_REQUEST', { axiosRequest: async () => await axios.get('partidos') });
 

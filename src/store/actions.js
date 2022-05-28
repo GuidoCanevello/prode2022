@@ -1,4 +1,5 @@
 import DISPATCH_GET_INITIAL_DATA from './actions/DISPATCH_GET_INITIAL_DATA';
+import UPDATE_PREDICCION from './actions/UPDATE_PREDICCION';
 import CREAR_GRUPO from './actions/CREAR_GRUPO';
 import CREAR_EQUIPO from './actions/CREAR_EQUIPO';
 import MODIFICAR_EQUIPO from './actions/MODIFICAR_EQUIPO';
@@ -13,6 +14,7 @@ export default {
   RESET_STATE: ({ commit }) => commit('RESET_STATE'),
 
   DISPATCH_GET_INITIAL_DATA,
+  UPDATE_PREDICCION,
   CREAR_GRUPO,
   CREAR_EQUIPO,
   MODIFICAR_EQUIPO,

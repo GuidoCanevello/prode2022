@@ -53,22 +53,27 @@ export default {
   computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
 
   methods: {
-    ...mapActions([]),
+    ...mapActions(["UPDATE_PREDICCION"]),
 
     handleRealizarPrediccion(itemId) {
       this.isRealizarPredActivo = true;
-      this.currentPartido = this.DATA_LISTADO.find((p) => p.partidoId === itemId);
+      this.currentPartido = this.DATA_LISTADO.find(
+        (p) => p.partidoId === itemId
+      );
     },
 
     handleVerPrediccion(itemId) {
       this.isVerPredActivo = true;
-      this.currentPartido = this.DATA_LISTADO.find((p) => p.partidoId === itemId);
+      this.currentPartido = this.DATA_LISTADO.find(
+        (p) => p.partidoId === itemId
+      );
     },
 
     handleConfirmarPrediccion(partidoId, golesEquipo1, golesEquipo2) {
       this.isRealizarPredActivo = false;
       this.currentPartido = {};
-      this.realizarPrediccion(partidoId, golesEquipo1, golesEquipo2);
+      // this.realizarPrediccion(partidoId, golesEquipo1, golesEquipo2);
+      this.UPDATE_PREDICCION({ partidoId, golesEquipo1, golesEquipo2 });
     },
 
     handleCancelarPrediccion() {
