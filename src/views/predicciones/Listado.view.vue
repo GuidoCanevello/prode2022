@@ -57,18 +57,18 @@ export default {
 
     handleRealizarPrediccion(itemId) {
       this.isRealizarPredActivo = true;
-      this.currentPartido = this.DATA_LISTADO.find((p) => p.idPartido === itemId);
+      this.currentPartido = this.DATA_LISTADO.find((p) => p.partidoId === itemId);
     },
 
     handleVerPrediccion(itemId) {
       this.isVerPredActivo = true;
-      this.currentPartido = this.DATA_LISTADO.find((p) => p.idPartido === itemId);
+      this.currentPartido = this.DATA_LISTADO.find((p) => p.partidoId === itemId);
     },
 
-    handleConfirmarPrediccion(idPartido, golesEquipo1, golesEquipo2) {
+    handleConfirmarPrediccion(partidoId, golesEquipo1, golesEquipo2) {
       this.isRealizarPredActivo = false;
       this.currentPartido = {};
-      this.realizarPrediccion(idPartido, golesEquipo1, golesEquipo2);
+      this.realizarPrediccion(partidoId, golesEquipo1, golesEquipo2);
     },
 
     handleCancelarPrediccion() {
@@ -81,9 +81,9 @@ export default {
       this.currentPartido = {};
     },
 
-    realizarPrediccion(idPartido, golesEquipo1, golesEquipo2) {
+    realizarPrediccion(partidoId, golesEquipo1, golesEquipo2) {
       const partidoIndex = this.DATA_LISTADO.findIndex(
-        (p) => p.idPartido === idPartido
+        (p) => p.partidoId === partidoId
       );
       const partido = this.DATA_LISTADO[partidoIndex];
       partido.tienePrediccion = true;

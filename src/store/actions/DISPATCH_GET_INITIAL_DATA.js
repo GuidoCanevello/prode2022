@@ -17,27 +17,27 @@ export default async function ({ state, commit, dispatch }) {
         //         _id: 1,
         //         golesEquipo1: 2,
         //         golesEquipo2: 0,
-        //         idPartido: 1,
+        //         partidoId: 1,
         //     }, {
         //         _id: 2,
         //         golesEquipo1: 1,
         //         golesEquipo2: 1,
-        //         idPartido: 3,
+        //         partidoId: 3,
         //     }, {
         //         _id: 3,
         //         golesEquipo1: 1,
         //         golesEquipo2: 3,
-        //         idPartido: 5,
+        //         partidoId: 5,
         //     }, {
         //         _id: 4,
         //         golesEquipo1: 2,
         //         golesEquipo2: 0,
-        //         idPartido: 8,
+        //         partidoId: 8,
         //     }, {
         //         _id: 5,
         //         golesEquipo1: 1,
         //         golesEquipo2: 7,
-        //         idPartido: 9,
+        //         partidoId: 9,
         //     }
         // ];
 
@@ -48,6 +48,7 @@ export default async function ({ state, commit, dispatch }) {
         const equipos = await dispatch('DISPATCH_AXIOS_REQUEST', { axiosRequest: async () => await axios.get('equipos') });
 
         //* Guardar Data
+        commit('SET_USUARIO_ID', usuario._id);
         commit('SET_USUARIO_NOMBRE_CUENTA', usuario.nombreCuenta);
         commit('SET_USUARIO_NOMBRE_JUGADOR', usuario.nombreJugador);
         commit('SET_USUARIO_PUNTOS', usuario.puntos);

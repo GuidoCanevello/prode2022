@@ -54,10 +54,4 @@ export default {
 
     return response;
   },
-
-  // TODO remove
-  DISPATCH_TEST: async ({ dispatch }) => {
-    await dispatch('DISPATCH_AXIOS_REQUEST', { axiosRequest: async () => await axios.get('test') });
-    console.log("test realizado")
-  }
 }

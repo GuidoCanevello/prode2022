@@ -9,11 +9,10 @@
       </v-row>
     </v-card-title>
 
-    <v-spacer></v-spacer>
+    <v-spacer />
 
     <v-card-text>
       <v-data-table
-        hide-default-header
         :headers="headers"
         :items="dataPartidos"
         item-key="id"
@@ -31,7 +30,6 @@
         <template v-slot:[`item.golesEquipo1`]="{ item }">
           <td style="width: 120px">
             <v-text-field
-              placeholder="Goles"
               outlined
               dense
               hide-details="auto"
@@ -43,7 +41,6 @@
         <template v-slot:[`item.golesEquipo2`]="{ item }">
           <td style="width: 120px">
             <v-text-field
-              placeholder="Goles"
               outlined
               dense
               hide-details="auto"
@@ -81,6 +78,7 @@ export default {
         cellClass: "cell-equipo",
       },
       {
+        text: "Equipo 1",
         align: "start",
         value: "equipo1",
         cellClass: "cell-equipo",
@@ -91,6 +89,7 @@ export default {
         value: "golesEquipo1",
       },
       {
+        text: "Goles",
         align: "center",
         sortable: false,
         value: "guion",
@@ -101,6 +100,7 @@ export default {
         value: "golesEquipo2",
       },
       {
+        text: "Equipo 2",
         sortable: false,
         align: "end",
         value: "equipo2",
@@ -129,12 +129,11 @@ export default {
       );
 
       if (!hayError) {
-        // TODO ver con el 0, creo que como es string anda bien
         this.dataPartidos.forEach((p) => {
           if (!p.tienePrediccion && p.golesEquipo1 && p.golesEquipo2) {
             this.$emit(
               "actualizar-prediccion",
-              p.idPartido,
+              p.partidoId,
               p.golesEquipo1,
               p.golesEquipo2
             );
@@ -154,7 +153,7 @@ export default {
 
     this.partidos.forEach((partido) => {
       let newPartido = {
-        idPartido: partido.idPartido,
+        partidoId: partido.partidoId,
         equipo1: partido.equipo1,
         code1: partido.code1,
         equipo2: partido.equipo2,

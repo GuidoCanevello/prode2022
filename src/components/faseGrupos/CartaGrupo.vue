@@ -4,7 +4,7 @@
       <v-container class="title-grupo"> Grupo {{ nombre }} </v-container>
     </v-card-title>
 
-    <v-spacer></v-spacer>
+    <v-spacer />
 
     <v-card-text>
       <v-data-table

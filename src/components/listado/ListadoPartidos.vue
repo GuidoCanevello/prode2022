@@ -108,11 +108,11 @@ export default {
     },
     handlePredecir(item) {
       // TODO reemplazar por uso de vuex actions
-      this.$emit("realizar-prediccion", item.idPartido);
+      this.$emit("realizar-prediccion", item.partidoId);
     },
 
     handleView(item) {
-      this.$emit("ver-prediccion", item.idPartido);
+      this.$emit("ver-prediccion", item.partidoId);
     },
   },
 };

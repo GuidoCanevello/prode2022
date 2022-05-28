@@ -33,8 +33,8 @@ export default {
   
   methods: {
     ...mapActions([]),
-    handleActualizar(idPartido, golesEquipo1, golesEquipo2) {
-      console.log("hola", idPartido, golesEquipo1, golesEquipo2);
+    handleActualizar(partidoId, golesEquipo1, golesEquipo2) {
+      console.log("hola", partidoId, golesEquipo1, golesEquipo2);
     },
   },
 };

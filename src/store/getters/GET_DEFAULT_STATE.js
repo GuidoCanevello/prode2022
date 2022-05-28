@@ -4,6 +4,7 @@
 
 export default () => {
     return {
+        usuarioId: "",
         usuarioNombreCuenta: "",
         usuarioNombreJugador: "",
         usuarioPuntos: 0,

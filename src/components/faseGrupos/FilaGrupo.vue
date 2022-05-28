@@ -24,10 +24,10 @@ export default {
   props: ["grupo"],
   data: () => ({}),
   methods: {
-    handleActualizar(idPartido, golesEquipo1, golesEquipo2) {
+    handleActualizar(partidoId, golesEquipo1, golesEquipo2) {
       this.$emit(
         "actualizar-prediccion",
-        idPartido,
+        partidoId,
         golesEquipo1,
         golesEquipo2
       );
