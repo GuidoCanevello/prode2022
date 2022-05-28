@@ -12,20 +12,31 @@
         :items="equipos"
         item-key="id"
         hide-default-footer
-      />
+      >
+        <template v-slot:[`item.bandera`]="{ item }">
+          <bandera :code="item.code" />
+        </template>
+      </v-data-table>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import Bandera from "../Bandera.vue";
+
 export default {
   name: "CartaGrupo",
+  components: { Bandera },
   props: ["nombre", "equipos"],
   data: () => ({
     headers: [
       {
-        text: "Nombre",
         align: "start",
+        sortable: false,
+        value: "bandera",
+      },
+      {
+        text: "Nombre",
         sortable: false,
         value: "nombre",
       },

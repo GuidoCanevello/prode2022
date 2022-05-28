@@ -18,8 +18,7 @@
 export default {
   name: "Predicciones",
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>

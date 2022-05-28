@@ -1,8 +1,19 @@
 <template>
   <v-app>
-    <barra-de-navegacion />
+    <template v-if="!['login'].includes($root._route.path.substring(1))">
+      <barra-de-navegacion />
+    </template>
 
-    <v-main class="main-app">
+    <template v-if="SHOW_ERROR">
+      <v-dialog v-model="SHOW_ERROR" width="500">
+        <dialogo-error />
+      </v-dialog>
+    </template>
+
+    <v-main
+      v-if="IS_LOGGED || ['login'].includes($root._route.path.substring(1))"
+      class="main-app"
+    >
       <router-view />
     </v-main>
   </v-app>
@@ -10,21 +21,37 @@
 
 <script>
 import BarraDeNavegacion from "./components/BarraDeNavegacion.vue";
-import { mapActions } from "vuex";
+import DialogoError from "./components/DialogoError.vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  components: { BarraDeNavegacion },
+  components: { BarraDeNavegacion, DialogoError },
   name: "App",
-  data() {
-    return {};
-  },
-
+  computed: mapGetters(["IS_LOGGED", "IS_LOADING_LOGIN", "SHOW_ERROR"]),
   methods: {
-    ...mapActions(["dispatchGetInitialData"]),
+    ...mapActions(["CHECK_LOGIN_STATUS", "DISPATCH_GET_INITIAL_DATA"]),
   },
 
-  created() {
-    this.dispatchGetInitialData();
+  beforeUpdate() {
+    if (
+      !this.IS_LOGGED &&
+      !this.IS_LOADING_LOGIN &&
+      !["login"].includes(this.$root._route.path.substring(1))
+    ) {
+      this.$router.push("/login");
+    }
+  },
+
+  async created() {
+    await this.CHECK_LOGIN_STATUS();
+    if (
+      !this.IS_LOGGED &&
+      !["login"].includes(this.$root._route.path.substring(1))
+    ) {
+      this.$router.push("/login");
+    } else if (this.IS_LOGGED) {
+      this.DISPATCH_GET_INITIAL_DATA();
+    }
   },
 };
 </script>

@@ -22,6 +22,12 @@
         class="table-partidos"
         :item-class="fondoItem"
       >
+        <template v-slot:[`item.bandera1`]="{ item }">
+          <td style="width: 16px">
+            <bandera :code="item.code1" />
+          </td>
+        </template>
+
         <template v-slot:[`item.golesEquipo1`]="{ item }">
           <td style="width: 120px">
             <v-text-field
@@ -46,14 +52,23 @@
             />
           </td>
         </template>
+
+        <template v-slot:[`item.bandera2`]="{ item }">
+          <td style="width: 16px">
+            <bandera :code="item.code2" />
+          </td>
+        </template>
       </v-data-table>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import Bandera from "../Bandera.vue";
+
 export default {
   name: "CartaPartidos",
+  components: { Bandera },
   props: ["nombre", "partidos"],
   data: () => ({
     dataPartidos: [],
@@ -62,6 +77,11 @@ export default {
       {
         align: "start",
         sortable: false,
+        value: "bandera1",
+        cellClass: "cell-equipo",
+      },
+      {
+        align: "start",
         value: "equipo1",
         cellClass: "cell-equipo",
       },
@@ -84,6 +104,12 @@ export default {
         sortable: false,
         align: "end",
         value: "equipo2",
+        cellClass: "cell-equipo",
+      },
+      {
+        sortable: false,
+        align: "end",
+        value: "bandera2",
         cellClass: "cell-equipo",
       },
     ],
@@ -130,7 +156,9 @@ export default {
       let newPartido = {
         idPartido: partido.idPartido,
         equipo1: partido.equipo1,
+        code1: partido.code1,
         equipo2: partido.equipo2,
+        code2: partido.code2,
         guion: "-",
         golesEquipo1: partido.tienePrediccion
           ? partido.prediccion.golesEquipo1

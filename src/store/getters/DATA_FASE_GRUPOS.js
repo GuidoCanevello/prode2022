@@ -1,11 +1,11 @@
 export default function (state) {
     let dataGrupos = [];
-
+    
     const dataEquipos = state.equipos;
     const dataPartidos = state.partidos;
     const dataPredicciones = state.predicciones;
 
-    const nombresGrupos = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+    const nombresGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
     nombresGrupos.forEach(nombre => {
         dataGrupos.push({ nombre, equipos: [], partidos: [] });
     });
@@ -15,6 +15,7 @@ export default function (state) {
             id: equipo._id,
             nombre: equipo.nombre,
             puntos: equipo.puntos,
+            code: equipo.code,
         }
 
         const grupoIndex = dataGrupos.findIndex(g => g.nombre === equipo.grupo);
@@ -34,7 +35,9 @@ export default function (state) {
         let newPartido = {
             idPartido: partido._id,
             equipo1: objEquipo1.nombre,
+            code1: objEquipo1.code,
             equipo2: objEquipo2.nombre,
+            code2: objEquipo2.code,
             tienePrediccion: false,
         }
 

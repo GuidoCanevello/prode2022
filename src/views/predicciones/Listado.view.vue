@@ -50,17 +50,19 @@ export default {
     currentPartido: {},
   }),
 
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
+
   methods: {
     ...mapActions([]),
 
     handleRealizarPrediccion(itemId) {
       this.isRealizarPredActivo = true;
-      this.currentPartido = this.dataListado.find((p) => p.idPartido === itemId);
+      this.currentPartido = this.DATA_LISTADO.find((p) => p.idPartido === itemId);
     },
 
     handleVerPrediccion(itemId) {
       this.isVerPredActivo = true;
-      this.currentPartido = this.dataListado.find((p) => p.idPartido === itemId);
+      this.currentPartido = this.DATA_LISTADO.find((p) => p.idPartido === itemId);
     },
 
     handleConfirmarPrediccion(idPartido, golesEquipo1, golesEquipo2) {
@@ -80,11 +82,10 @@ export default {
     },
 
     realizarPrediccion(idPartido, golesEquipo1, golesEquipo2) {
-      this.isLoading = true;
-      const partidoIndex = this.dataListado.findIndex(
+      const partidoIndex = this.DATA_LISTADO.findIndex(
         (p) => p.idPartido === idPartido
       );
-      const partido = this.dataListado[partidoIndex];
+      const partido = this.DATA_LISTADO[partidoIndex];
       partido.tienePrediccion = true;
       partido.prediccion = {
         golesEquipo1,
@@ -92,20 +93,5 @@ export default {
       };
     },
   },
-
-  computed: mapGetters(["isLoading", "dataListado"]),
-
-  // created() {
-  //   this.isLoading = true;
-
-  //   setTimeout(() => {
-  //     getDataListado()
-  //       .then((res) => {
-  //         this.partidos = res;
-  //         this.isLoading = false;
-  //       })
-  //       .catch((e) => console.log(e));
-  //   }, 200);
-  // },
 };
 </script>
