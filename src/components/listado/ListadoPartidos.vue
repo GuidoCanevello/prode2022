@@ -23,22 +23,6 @@
         </template>
 
         <template v-slot:[`item.actions`]="{ item }">
-          <!-- REALIZAR PREDICCION -->
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon
-                small
-                class="mr-2"
-                @click="handlePredecir(item)"
-                v-bind="attrs"
-                v-on="on"
-              >
-                mdi-head-snowflake
-              </v-icon>
-            </template>
-            <span>Realizar Predicción</span>
-          </v-tooltip>
-
           <!-- VER PREDICCION -->
           <v-tooltip v-if="item.tienePrediccion" bottom>
             <template v-slot:activator="{ on, attrs }">
@@ -53,6 +37,22 @@
               </v-icon>
             </template>
             <span>Ver Predicción</span>
+          </v-tooltip>
+
+          <!-- REALIZAR PREDICCION -->
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                small
+                class="mr-2"
+                @click="handlePredecir(item)"
+                v-bind="attrs"
+                v-on="on"
+              >
+                mdi-head-snowflake
+              </v-icon>
+            </template>
+            <span>Actualizar Predicción</span>
           </v-tooltip>
         </template>
       </v-data-table>
@@ -107,12 +107,11 @@ export default {
       );
     },
     handlePredecir(item) {
-      // TODO reemplazar por uso de vuex actions
-      this.$emit("realizar-prediccion", item.idPartido);
+      this.$emit("realizar-prediccion", item.partidoId);
     },
 
     handleView(item) {
-      this.$emit("ver-prediccion", item.idPartido);
+      this.$emit("ver-prediccion", item.partidoId);
     },
   },
 };

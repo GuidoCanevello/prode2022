@@ -13,6 +13,7 @@ export default async function ({ commit, dispatch }) {
     axios.defaults.headers.common['Authorization'] = "";
 
     localStorage.removeItem('prodeRefreshToken');
+    localStorage.removeItem('prodeLoggedUserId');
 
     dispatch('RESET_STATE');
 }

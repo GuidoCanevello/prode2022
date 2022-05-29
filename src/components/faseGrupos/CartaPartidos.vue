@@ -4,16 +4,21 @@
       <v-row>
         <v-col> Partidos de Grupo {{ nombre }}</v-col>
         <v-col style="text-align: end">
-          <v-btn color="success" @click="saveChanges">Guardar Cambios</v-btn>
+          <v-btn
+            color="success"
+            :loading="loadingUpdatePredicciones"
+            :disabled="loadingUpdatePredicciones"
+            @click="saveChanges"
+            >Guardar Cambios</v-btn
+          >
         </v-col>
       </v-row>
     </v-card-title>
 
-    <v-spacer></v-spacer>
+    <v-spacer />
 
     <v-card-text>
       <v-data-table
-        hide-default-header
         :headers="headers"
         :items="dataPartidos"
         item-key="id"
@@ -31,7 +36,6 @@
         <template v-slot:[`item.golesEquipo1`]="{ item }">
           <td style="width: 120px">
             <v-text-field
-              placeholder="Goles"
               outlined
               dense
               hide-details="auto"
@@ -43,7 +47,6 @@
         <template v-slot:[`item.golesEquipo2`]="{ item }">
           <td style="width: 120px">
             <v-text-field
-              placeholder="Goles"
               outlined
               dense
               hide-details="auto"
@@ -64,14 +67,18 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Bandera from "../Bandera.vue";
 
 export default {
   name: "CartaPartidos",
   components: { Bandera },
   props: ["nombre", "partidos"],
+
   data: () => ({
     dataPartidos: [],
+
+    loadingUpdatePredicciones: false,
 
     headers: [
       {
@@ -81,6 +88,7 @@ export default {
         cellClass: "cell-equipo",
       },
       {
+        text: "Equipo 1",
         align: "start",
         value: "equipo1",
         cellClass: "cell-equipo",
@@ -91,6 +99,7 @@ export default {
         value: "golesEquipo1",
       },
       {
+        text: "Goles",
         align: "center",
         sortable: false,
         value: "guion",
@@ -101,6 +110,7 @@ export default {
         value: "golesEquipo2",
       },
       {
+        text: "Equipo 2",
         sortable: false,
         align: "end",
         value: "equipo2",
@@ -114,14 +124,17 @@ export default {
       },
     ],
   }),
+
   methods: {
+    ...mapActions(["UPDATE_PREDICCION"]),
+
     fondoItem(item) {
       return item.tienePrediccion ? "fila-con-prediccion" : "";
     },
 
-    saveChanges() {
+    async saveChanges() {
+      let isActualizado = false;
       let hayError = false;
-
       hayError = this.dataPartidos.some(
         (p) =>
           !p.tienePrediccion &&
@@ -129,17 +142,36 @@ export default {
       );
 
       if (!hayError) {
-        // TODO ver con el 0, creo que como es string anda bien
-        this.dataPartidos.forEach((p) => {
+        this.loadingUpdatePredicciones = true;
+
+        for (const p of this.dataPartidos) {
           if (!p.tienePrediccion && p.golesEquipo1 && p.golesEquipo2) {
-            this.$emit(
-              "actualizar-prediccion",
-              p.idPartido,
-              p.golesEquipo1,
-              p.golesEquipo2
-            );
+            await this.UPDATE_PREDICCION({
+              partidoId: p.partidoId,
+              golesEquipo1: p.golesEquipo1,
+              golesEquipo2: p.golesEquipo2,
+            });
+            p.tienePrediccion = true;
+            isActualizado = true;
+          } else if (
+            p.tienePrediccion &&
+            (this.PREDICCIONES.find((p2) => p2.partidoId === p.partidoId)
+              .golesEquipo1 != p.golesEquipo1 ||
+              this.PREDICCIONES.find((p2) => p2.partidoId === p.partidoId)
+                .golesEquipo2 != p.golesEquipo2)
+          ) {
+            await this.UPDATE_PREDICCION({
+              partidoId: p.partidoId,
+              golesEquipo1: p.golesEquipo1,
+              golesEquipo2: p.golesEquipo2,
+            });
+            isActualizado = true;
           }
-        });
+        }
+
+        if(isActualizado) this.$emit('prediccion-actualizada')
+
+        this.loadingUpdatePredicciones = false;
       }
     },
 
@@ -149,12 +181,14 @@ export default {
     },
   },
 
+  computed: mapGetters(["PREDICCIONES"]),
+
   beforeMount() {
     this.dataPartidos = [];
 
     this.partidos.forEach((partido) => {
       let newPartido = {
-        idPartido: partido.idPartido,
+        partidoId: partido.partidoId,
         equipo1: partido.equipo1,
         code1: partido.code1,
         equipo2: partido.equipo2,

@@ -56,7 +56,7 @@ export default function (state) {
         }
 
         let newPartido = {
-            idPartido: partido._id,
+            partidoId: partido._id,
             equipo1: objEquipo1.nombre,
             equipo2: objEquipo2.nombre,
             grupo: partido.grupo,
@@ -66,7 +66,7 @@ export default function (state) {
             descripcionPrediccion: "Sin Predicción",
         }
 
-        const prediccion = dataPredicciones.find(prediccion => prediccion.idPartido == partido._id);
+        const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido._id);
         if (prediccion != undefined) {
             newPartido.tienePrediccion = true;
             newPartido.prediccion = {

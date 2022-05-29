@@ -27,6 +27,20 @@
         />
       </v-col>
     </v-row>
+    
+    <v-snackbar v-model="showSnackbar" :timeout="timeoutSnackbar">
+      Predicciones Actualizadas Correctamente
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="showSnackbar = false"
+        >
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -48,27 +62,35 @@ export default {
     isVerPredActivo: false,
 
     currentPartido: {},
+    
+    showSnackbar: false,
+    timeoutSnackbar: 1500,
   }),
 
   computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
 
   methods: {
-    ...mapActions([]),
+    ...mapActions(["UPDATE_PREDICCION"]),
 
     handleRealizarPrediccion(itemId) {
       this.isRealizarPredActivo = true;
-      this.currentPartido = this.DATA_LISTADO.find((p) => p.idPartido === itemId);
+      this.currentPartido = this.DATA_LISTADO.find(
+        (p) => p.partidoId === itemId
+      );
     },
 
     handleVerPrediccion(itemId) {
       this.isVerPredActivo = true;
-      this.currentPartido = this.DATA_LISTADO.find((p) => p.idPartido === itemId);
+      this.currentPartido = this.DATA_LISTADO.find(
+        (p) => p.partidoId === itemId
+      );
     },
 
-    handleConfirmarPrediccion(idPartido, golesEquipo1, golesEquipo2) {
+    async handleConfirmarPrediccion(partidoId, golesEquipo1, golesEquipo2) {
       this.isRealizarPredActivo = false;
       this.currentPartido = {};
-      this.realizarPrediccion(idPartido, golesEquipo1, golesEquipo2);
+      await this.UPDATE_PREDICCION({ partidoId, golesEquipo1, golesEquipo2 });
+      this.showSnackbar = true;
     },
 
     handleCancelarPrediccion() {
@@ -79,18 +101,6 @@ export default {
     handleSalirVisualizador() {
       this.isVerPredActivo = false;
       this.currentPartido = {};
-    },
-
-    realizarPrediccion(idPartido, golesEquipo1, golesEquipo2) {
-      const partidoIndex = this.DATA_LISTADO.findIndex(
-        (p) => p.idPartido === idPartido
-      );
-      const partido = this.DATA_LISTADO[partidoIndex];
-      partido.tienePrediccion = true;
-      partido.prediccion = {
-        golesEquipo1,
-        golesEquipo2,
-      };
     },
   },
 };

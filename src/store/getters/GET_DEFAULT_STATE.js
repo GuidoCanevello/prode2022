@@ -5,7 +5,8 @@
 export default () => {
     return {
         usuarioId: "",
-        usuarioName: "",
+        usuarioNombreCuenta: "",
+        usuarioNombreJugador: "",
         usuarioPuntos: 0,
         predicciones: [],
         equipos: [],

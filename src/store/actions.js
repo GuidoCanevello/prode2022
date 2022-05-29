@@ -1,6 +1,5 @@
-
-import GET_DEFAULT_STATE from './GET_DEFAULT_STATE';
 import DISPATCH_GET_INITIAL_DATA from './actions/DISPATCH_GET_INITIAL_DATA';
+import UPDATE_PREDICCION from './actions/UPDATE_PREDICCION';
 import CREAR_GRUPO from './actions/CREAR_GRUPO';
 import CREAR_EQUIPO from './actions/CREAR_EQUIPO';
 import MODIFICAR_EQUIPO from './actions/MODIFICAR_EQUIPO';
@@ -15,6 +14,7 @@ export default {
   RESET_STATE: ({ commit }) => commit('RESET_STATE'),
 
   DISPATCH_GET_INITIAL_DATA,
+  UPDATE_PREDICCION,
   CREAR_GRUPO,
   CREAR_EQUIPO,
   MODIFICAR_EQUIPO,
@@ -36,29 +36,24 @@ export default {
 
     if (!state.isLogged) {
 
-      let refreshToken = localStorage.getItem('prodeRefreshToken');
-      if (refreshToken) {
-        try {
-          commit('SET_IS_LOADING_LOGIN', true);
-          
-          await dispatch('DISPATCH_REFRESH_TOKEN');
-        } catch (error) {
-          dispatch('ABRIR_ERROR', error.response.data.message);
-        } finally {
-          commit('SET_IS_LOADING_LOGIN', false);
-        }
-      } else {
-        response = false;
-      }
+      // FIXME revertir usuario admin
+      await dispatch('DISPATCH_LOGIN', { username: 'ADMIN', password: 'diego' })
+      // let refreshToken = localStorage.getItem('prodeRefreshToken');
+      // if (refreshToken) {
+      //   try {
+      //     commit('SET_IS_LOADING_LOGIN', true);
 
+      //     await dispatch('DISPATCH_REFRESH_TOKEN');
+      //   } catch (error) {
+      //     dispatch('ABRIR_ERROR', error.response.data.message);
+      //   } finally {
+      //     commit('SET_IS_LOADING_LOGIN', false);
+      //   }
+      // } else {
+      //   response = false;
+      // }
     }
 
     return response;
   },
-
-  // TODO remove
-  DISPATCH_TEST: async ({ dispatch }) => {
-    await dispatch('DISPATCH_AXIOS_REQUEST', { axiosRequest: async () => await axios.get('test') });
-    console.log("test realizado")
-  }
 }

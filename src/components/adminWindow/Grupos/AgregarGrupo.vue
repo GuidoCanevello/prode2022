@@ -147,8 +147,6 @@ export default {
         await this.CREAR_GRUPO({
           nombre: this.groupData.nombre,
           equipos: nombresEquipos,
-        }).catch((e) => {
-          console.log(e);
         });
       }
 

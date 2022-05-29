@@ -85,7 +85,7 @@ export default {
     handleConfirmar() {
       this.$emit(
         "confirmar",
-        this.partido.idPartido,
+        this.partido.partidoId,
         this.golesEquipo1,
         this.golesEquipo2
       );

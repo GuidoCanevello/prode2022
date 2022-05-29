@@ -52,27 +52,27 @@ export default async function ({ commit }) {
             _id: 1,
             golesEquipo1: 2,
             golesEquipo2: 0,
-            idPartido: 1,
+            partidoId: 1,
         }, {
             _id: 2,
             golesEquipo1: 1,
             golesEquipo2: 1,
-            idPartido: 3,
+            partidoId: 3,
         }, {
             _id: 3,
             golesEquipo1: 1,
             golesEquipo2: 3,
-            idPartido: 5,
+            partidoId: 5,
         }, {
             _id: 4,
             golesEquipo1: 2,
             golesEquipo2: 0,
-            idPartido: 8,
+            partidoId: 8,
         }, {
             _id: 5,
             golesEquipo1: 1,
             golesEquipo2: 7,
-            idPartido: 9,
+            partidoId: 9,
         }
     ];
 

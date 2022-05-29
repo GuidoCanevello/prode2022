@@ -2,9 +2,13 @@ import DATA_FASE_GRUPOS from './getters/DATA_FASE_GRUPOS';
 import DATA_LISTADO from './getters/DATA_LISTADO';
 
 export default {
-    USUARIO_NAME: (state) => state.usuarioName,
+    USUARIO_NOMBRE_CUENTA: (state) => state.usuarioNombreCuenta,
+    USUARIO_NOMBRE_JUGADOR: (state) => state.usuarioNombreJugador,
+    USUARIO_PUNTOS: (state) => state.usuarioPuntos,
+
     EQUIPOS: (state) => state.equipos,
     PARTIDOS: (state) => state.partidos,
+    PREDICCIONES: (state) => state.predicciones,
     DATA_FASE_GRUPOS,
     DATA_LISTADO,
 
