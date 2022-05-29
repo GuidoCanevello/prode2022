@@ -8,6 +8,7 @@ export default {
 
     EQUIPOS: (state) => state.equipos,
     PARTIDOS: (state) => state.partidos,
+    PREDICCIONES: (state) => state.predicciones,
     DATA_FASE_GRUPOS,
     DATA_LISTADO,
 

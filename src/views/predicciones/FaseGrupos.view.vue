@@ -12,30 +12,35 @@
       <fila-grupo
         v-bind:key="grupo.nombre"
         v-bind:grupo="grupo"
-        @actualizar-prediccion="handleActualizar"
+        @prediccion-actualizada="showSnackbar = true"
       />
     </template>
+
+    <v-snackbar v-model="showSnackbar" :timeout="timeoutSnackbar">
+      Predicciones Actualizadas Correctamente
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="showSnackbar = false">
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
 import FilaGrupo from "../../components/faseGrupos/FilaGrupo.vue";
 import LoadingBar from "../../components/LoadingBar.vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
-  components: { LoadingBar, FilaGrupo },
   name: "FaseGrupos",
+  components: { LoadingBar, FilaGrupo },
 
-  data: () => ({}),
+  data: () => ({
+    showSnackbar: false,
+    timeoutSnackbar: 1500,
+  }),
 
   computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_FASE_GRUPOS"]),
-  
-  methods: {
-    ...mapActions([]),
-    handleActualizar(partidoId, golesEquipo1, golesEquipo2) {
-      console.log("hola", partidoId, golesEquipo1, golesEquipo2);
-    },
-  },
 };
 </script>

@@ -52,7 +52,7 @@
                 mdi-head-snowflake
               </v-icon>
             </template>
-            <span>Realizar Predicción</span>
+            <span>Actualizar Predicción</span>
           </v-tooltip>
         </template>
       </v-data-table>

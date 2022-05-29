@@ -4,7 +4,13 @@
       <v-row>
         <v-col> Partidos de Grupo {{ nombre }}</v-col>
         <v-col style="text-align: end">
-          <v-btn color="success" @click="saveChanges">Guardar Cambios</v-btn>
+          <v-btn
+            color="success"
+            :loading="loadingUpdatePredicciones"
+            :disabled="loadingUpdatePredicciones"
+            @click="saveChanges"
+            >Guardar Cambios</v-btn
+          >
         </v-col>
       </v-row>
     </v-card-title>
@@ -61,14 +67,18 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Bandera from "../Bandera.vue";
 
 export default {
   name: "CartaPartidos",
   components: { Bandera },
   props: ["nombre", "partidos"],
+
   data: () => ({
     dataPartidos: [],
+
+    loadingUpdatePredicciones: false,
 
     headers: [
       {
@@ -114,14 +124,17 @@ export default {
       },
     ],
   }),
+
   methods: {
+    ...mapActions(["UPDATE_PREDICCION"]),
+
     fondoItem(item) {
       return item.tienePrediccion ? "fila-con-prediccion" : "";
     },
 
-    saveChanges() {
+    async saveChanges() {
+      let isActualizado = false;
       let hayError = false;
-
       hayError = this.dataPartidos.some(
         (p) =>
           !p.tienePrediccion &&
@@ -129,16 +142,36 @@ export default {
       );
 
       if (!hayError) {
-        this.dataPartidos.forEach((p) => {
+        this.loadingUpdatePredicciones = true;
+
+        for (const p of this.dataPartidos) {
           if (!p.tienePrediccion && p.golesEquipo1 && p.golesEquipo2) {
-            this.$emit(
-              "actualizar-prediccion",
-              p.partidoId,
-              p.golesEquipo1,
-              p.golesEquipo2
-            );
+            await this.UPDATE_PREDICCION({
+              partidoId: p.partidoId,
+              golesEquipo1: p.golesEquipo1,
+              golesEquipo2: p.golesEquipo2,
+            });
+            p.tienePrediccion = true;
+            isActualizado = true;
+          } else if (
+            p.tienePrediccion &&
+            (this.PREDICCIONES.find((p2) => p2.partidoId === p.partidoId)
+              .golesEquipo1 != p.golesEquipo1 ||
+              this.PREDICCIONES.find((p2) => p2.partidoId === p.partidoId)
+                .golesEquipo2 != p.golesEquipo2)
+          ) {
+            await this.UPDATE_PREDICCION({
+              partidoId: p.partidoId,
+              golesEquipo1: p.golesEquipo1,
+              golesEquipo2: p.golesEquipo2,
+            });
+            isActualizado = true;
           }
-        });
+        }
+
+        if(isActualizado) this.$emit('prediccion-actualizada')
+
+        this.loadingUpdatePredicciones = false;
       }
     },
 
@@ -147,6 +180,8 @@ export default {
       else return !isNaN(gol1) && !isNaN(gol2);
     },
   },
+
+  computed: mapGetters(["PREDICCIONES"]),
 
   beforeMount() {
     this.dataPartidos = [];
