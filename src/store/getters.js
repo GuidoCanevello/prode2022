@@ -4,6 +4,7 @@ import DATA_LISTADO from './getters/DATA_LISTADO';
 export default {
     USUARIO_NOMBRE_CUENTA: (state) => state.usuarioNombreCuenta,
     USUARIO_NOMBRE_JUGADOR: (state) => state.usuarioNombreJugador,
+    USUARIO_IMAGEN_SRC: (state) => state.usuarioImagenSrc,
     USUARIO_PUNTOS: (state) => state.usuarioPuntos,
 
     EQUIPOS: (state) => state.equipos,

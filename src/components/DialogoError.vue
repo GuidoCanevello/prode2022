@@ -3,13 +3,9 @@
     <v-card-title primary-title> ERROR </v-card-title>
 
     <v-card-text>
-      <v-row class="row-prediccion">
-        <v-col>
-          <h3>
-            {{ MSJ_ERROR }}
-          </h3>
-        </v-col>
-      </v-row>
+      <h3>
+        {{ MSJ_ERROR }}
+      </h3>
     </v-card-text>
 
     <v-card-actions>

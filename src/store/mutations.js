@@ -4,6 +4,7 @@ export default {
     SET_USUARIO_ID: (state, id) => (state.usuarioId = id),
     SET_USUARIO_NOMBRE_CUENTA: (state, nombre) => (state.usuarioNombreCuenta = nombre),
     SET_USUARIO_NOMBRE_JUGADOR: (state, nombre) => (state.usuarioNombreJugador = nombre),
+    SET_USUARIO_IMAGEN_SRC: (state, src) => (state.usuarioImagenSrc = src),
     SET_USUARIO_PUNTOS: (state, puntos) => (state.usuarioPuntos = puntos),
 
     SET_PREDICCIONES: (state, predicciones) => (state.predicciones = predicciones),
@@ -19,7 +20,7 @@ export default {
 
     SET_PARTIDOS: (state, partidos) => (state.partidos = partidos),
     ADD_PARTIDOS: (state, newPartido) => (state.partidos.push(newPartido)),
-    UPDATE_PREDICCION: (state, updPrediccion) => {
+    MODIFICAR_PREDICCION: (state, updPrediccion) => {
         const index = state.predicciones.findIndex(prediccion => prediccion._id === updPrediccion._id);
         if (index !== -1) {
             state.predicciones.splice(index, 1, updPrediccion);

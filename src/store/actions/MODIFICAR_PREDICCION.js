@@ -35,7 +35,7 @@ export default async function ({ state, commit, dispatch }, { partidoId, golesEq
             });
         }
 
-        commit('UPDATE_PREDICCION', newPrediccion);
+        commit('MODIFICAR_PREDICCION', newPrediccion);
         return newPrediccion;
     } catch (error) {
         dispatch('ABRIR_ERROR', error.response.data.message);
