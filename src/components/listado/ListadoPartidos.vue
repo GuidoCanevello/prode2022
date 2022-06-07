@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-container grid-list-xs>
+    <v-container>
       <v-data-table
         :headers="headers"
         :items="DATA_LISTADO"
