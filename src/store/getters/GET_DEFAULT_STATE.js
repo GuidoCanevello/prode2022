@@ -7,6 +7,7 @@ export default () => {
         usuarioId: "",
         usuarioNombreCuenta: "",
         usuarioNombreJugador: "",
+        usuarioImagenSrc: "",
         usuarioPuntos: 0,
         predicciones: [],
         equipos: [],

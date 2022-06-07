@@ -126,7 +126,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["UPDATE_PREDICCION"]),
+    ...mapActions(["MODIFICAR_PREDICCION"]),
 
     fondoItem(item) {
       return item.tienePrediccion ? "fila-con-prediccion" : "";
@@ -146,7 +146,7 @@ export default {
 
         for (const p of this.dataPartidos) {
           if (!p.tienePrediccion && p.golesEquipo1 && p.golesEquipo2) {
-            await this.UPDATE_PREDICCION({
+            await this.MODIFICAR_PREDICCION({
               partidoId: p.partidoId,
               golesEquipo1: p.golesEquipo1,
               golesEquipo2: p.golesEquipo2,
@@ -160,7 +160,7 @@ export default {
               this.PREDICCIONES.find((p2) => p2.partidoId === p.partidoId)
                 .golesEquipo2 != p.golesEquipo2)
           ) {
-            await this.UPDATE_PREDICCION({
+            await this.MODIFICAR_PREDICCION({
               partidoId: p.partidoId,
               golesEquipo1: p.golesEquipo1,
               golesEquipo2: p.golesEquipo2,

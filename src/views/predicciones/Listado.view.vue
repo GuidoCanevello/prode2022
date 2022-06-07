@@ -70,7 +70,7 @@ export default {
   computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
 
   methods: {
-    ...mapActions(["UPDATE_PREDICCION"]),
+    ...mapActions(["MODIFICAR_PREDICCION"]),
 
     handleRealizarPrediccion(itemId) {
       this.isRealizarPredActivo = true;
@@ -89,7 +89,7 @@ export default {
     async handleConfirmarPrediccion(partidoId, golesEquipo1, golesEquipo2) {
       this.isRealizarPredActivo = false;
       this.currentPartido = {};
-      await this.UPDATE_PREDICCION({ partidoId, golesEquipo1, golesEquipo2 });
+      await this.MODIFICAR_PREDICCION({ partidoId, golesEquipo1, golesEquipo2 });
       this.showSnackbar = true;
     },
 
