@@ -14,8 +14,6 @@ function addSorted(list, element) {
 export default function (state) {
     let dataRanking = [];
 
-    // REVIEW ver porque no actualiza bien
-
     const usuarios = state.usuarios;
 
     usuarios.forEach(user => {
