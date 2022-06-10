@@ -31,7 +31,8 @@ export default {
 
     SET_USUARIOS: (state, usuarios) => (state.usuarios = usuarios),
 
-    SET_IS_LOADING_FUTBOL_DATA: (state, value) => (state.isLoadingFurbolData = value),
+    SET_IS_LOADING_FUTBOL_DATA: (state, value) => (state.isLoadingFutbolData = value),
+    SET_IS_LOADING_USERS_DATA: (state, value) => (state.isLoadingUserData = value),
     SET_IS_LOADING_LOGIN: (state, value) => (state.isLoadingLogin = value),
     SET_IS_CHECKING_LOGIN: (state, value) => (state.isCheckingLogin = value),
 
@@ -40,6 +41,7 @@ export default {
 
     SET_IS_LOGGED: (state, value) => (state.isLogged = value),
     SET_HAS_INITIAL_DATA: (state, value) => (state.hasInitialData = value),
+    SET_HAS_USER_DATA: (state, value) => (state.hasUserData = value),
 
     RESET_STATE: (state) => {
         Object.assign(state, GET_DEFAULT_STATE())
