@@ -2,7 +2,13 @@
   <v-container grid-list-xs>
     <v-row>
       <v-col style="text-align: right">
-        <v-btn color="success" :loading="isLoading" :disabled="isLoading" @click="handleGuardarCambios">Guardar Cambios</v-btn>
+        <v-btn
+          color="success"
+          :loading="isLoading"
+          :disabled="isLoading"
+          @click="handleGuardarCambios"
+          >Guardar Cambios</v-btn
+        >
       </v-col>
     </v-row>
     <template v-for="grupo in nombresGrupos">
@@ -112,7 +118,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import obtenerNombreDia from "@/utils/obtenerNombreDia";
+import addCero from "@/utils/addCero";
+
 export default {
   name: "ModificarPartido",
 
@@ -123,26 +132,50 @@ export default {
 
     isLoading: false,
 
-    minDate: "2022-01-01",
-    maxDate: "2023-01-01",
+    minDate: "2022-11-01",
+    maxDate: "2022-12-30",
   }),
 
   computed: mapGetters(["PARTIDOS", "EQUIPOS"]),
 
   methods: {
-    handleGuardarCambios() {
-      console.log("guardar")
-    }
+    ...mapActions(["MODIFICAR_PARTIDO"]),
+
+    async handleGuardarCambios() {
+      this.isLoading = true;
+
+      for (const partido of this.partidosAux) {
+        let fecha = new Date();
+        fecha.setFullYear(partido.fecha.substring(0, 4));
+        fecha.setMonth(partido.fecha.substring(5, 7) - 1);
+        fecha.setDate(partido.fecha.substring(8));
+        fecha.setHours(partido.hora.substring(0, 2));
+        fecha.setMinutes(partido.hora.substring(3));
+
+        await this.MODIFICAR_PARTIDO({
+          id: partido.id,
+          data: {
+            golesEquipo1: partido.golesEquipo1,
+            golesEquipo2: partido.golesEquipo2,
+            fecha,
+          },
+        });
+      }
+
+      this.isLoading = false;
+    },
   },
 
   mounted() {
     this.PARTIDOS.forEach((p) => {
-      const fechaAux = p.fecha ? p.fecha : new Date();
+      const fechaAux = p.fecha ? new Date(p.fecha) : new Date();
 
-      const hora = `${fechaAux.getHours()}:${fechaAux.getMinutes()}`,
-        mes = `${fechaAux.getMonth() > 8 ? "" : "0"}${fechaAux.getMonth() + 1}`,
-        dia = `${fechaAux.getDate() > 8 ? "" : "0"}${fechaAux.getDate()}`,
-        fecha = `${fechaAux.getFullYear()}-${mes}-${dia}`;
+      const hora = `${addCero(fechaAux.getHours())}:${addCero(
+          fechaAux.getMinutes()
+        )}`,
+        fecha = `${fechaAux.getFullYear()}-${addCero(
+          fechaAux.getMonth() + 1
+        )}-${addCero(fechaAux.getDate())}`;
 
       const newPartido = {
         id: p._id,

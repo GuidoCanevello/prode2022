@@ -20,7 +20,13 @@ export default {
 
     SET_PARTIDOS: (state, partidos) => (state.partidos = partidos),
     ADD_PARTIDOS: (state, newPartido) => (state.partidos.push(newPartido)),
-    MODIFICAR_PREDICCION: (state, updPrediccion) => {
+    UPDATE_PARTIDO: (state, updPartido) => {
+        const index = state.partidos.findIndex(partido => partido._id === updPartido._id);
+        if (index !== -1) {
+            state.partidos.splice(index, 1, updPartido);
+        }
+    },
+    UPDATE_PREDICCION: (state, updPrediccion) => {
         const index = state.predicciones.findIndex(prediccion => prediccion._id === updPrediccion._id);
         if (index !== -1) {
             state.predicciones.splice(index, 1, updPrediccion);
