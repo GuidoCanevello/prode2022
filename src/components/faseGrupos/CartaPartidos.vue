@@ -26,6 +26,7 @@
         dense
         class="table-partidos"
         :item-class="fondoItem"
+        sort-by="fecha"
       >
         <template v-slot:[`item.bandera1`]="{ item }">
           <td style="width: 16px">
@@ -201,6 +202,7 @@ export default {
           ? partido.prediccion.golesEquipo2
           : undefined,
         tienePrediccion: partido.tienePrediccion,
+        fecha: partido.fecha
       };
 
       this.dataPartidos.push(newPartido);
