@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-container grid-list-xs>
+    <v-container>
       <v-data-table
         :headers="headers"
         :items="DATA_LISTADO"
@@ -20,6 +20,10 @@
             label="Buscar por Equipo"
             class="mx-4"
           ></v-text-field>
+        </template>
+
+        <template v-slot:[`item.fecha`]="{ item }">
+          <span>{{ formatFecha(item.fecha) }}</span>
         </template>
 
         <template v-slot:[`item.actions`]="{ item }">
@@ -62,6 +66,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import obtenerNombreDia from '@/utils/obtenerNombreDia';
+import addCero from '@/utils/addCero';
 
 export default {
   name: "ListadoPartidos",
@@ -96,6 +102,16 @@ export default {
   computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
 
   methods: {
+    formatFecha(fecha) {
+      const nombreDia = obtenerNombreDia(fecha.getDay()),
+        dia = addCero(fecha.getDate()),
+        mes = addCero(fecha.getMonth() + 1),
+        hora = addCero(fecha.getHours()),
+        minutos = addCero(fecha.getMinutes());
+
+      return `${nombreDia} ${dia}/${mes} - ${hora}:${minutos}`;
+    },
+
     fondoItem(item) {
       return item.tienePrediccion ? "fila-con-prediccion" : "";
     },

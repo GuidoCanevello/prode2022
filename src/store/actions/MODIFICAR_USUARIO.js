@@ -1,7 +1,7 @@
 import axios from "axios";
 
 /**
- * Crea o actualiza una prediccion para el partido recibido
+ * Crea o actualiza una prediccion para el jugador recibido
  * 
  * @param {String} nombreJugador Nombre del Jugador
  * @param {String} puntos Puntos del Jugador

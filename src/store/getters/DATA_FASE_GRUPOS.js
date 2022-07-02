@@ -1,6 +1,6 @@
 export default function (state) {
     let dataGrupos = [];
-    
+
     const dataEquipos = state.equipos;
     const dataPartidos = state.partidos;
     const dataPredicciones = state.predicciones;
@@ -32,6 +32,8 @@ export default function (state) {
             }
         }
 
+        const fecha = new Date(partido.fecha);
+
         let newPartido = {
             partidoId: partido._id,
             equipo1: objEquipo1.nombre,
@@ -39,6 +41,7 @@ export default function (state) {
             equipo2: objEquipo2.nombre,
             code2: objEquipo2.code,
             tienePrediccion: false,
+            fecha,
         }
 
         const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido._id);

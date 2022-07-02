@@ -20,7 +20,13 @@ export default {
 
     SET_PARTIDOS: (state, partidos) => (state.partidos = partidos),
     ADD_PARTIDOS: (state, newPartido) => (state.partidos.push(newPartido)),
-    MODIFICAR_PREDICCION: (state, updPrediccion) => {
+    UPDATE_PARTIDO: (state, updPartido) => {
+        const index = state.partidos.findIndex(partido => partido._id === updPartido._id);
+        if (index !== -1) {
+            state.partidos.splice(index, 1, updPartido);
+        }
+    },
+    UPDATE_PREDICCION: (state, updPrediccion) => {
         const index = state.predicciones.findIndex(prediccion => prediccion._id === updPrediccion._id);
         if (index !== -1) {
             state.predicciones.splice(index, 1, updPrediccion);
@@ -31,7 +37,8 @@ export default {
 
     SET_USUARIOS: (state, usuarios) => (state.usuarios = usuarios),
 
-    SET_IS_LOADING_FUTBOL_DATA: (state, value) => (state.isLoadingFurbolData = value),
+    SET_IS_LOADING_FUTBOL_DATA: (state, value) => (state.isLoadingFutbolData = value),
+    SET_IS_LOADING_USERS_DATA: (state, value) => (state.isLoadingUserData = value),
     SET_IS_LOADING_LOGIN: (state, value) => (state.isLoadingLogin = value),
     SET_IS_CHECKING_LOGIN: (state, value) => (state.isCheckingLogin = value),
 
@@ -40,6 +47,7 @@ export default {
 
     SET_IS_LOGGED: (state, value) => (state.isLogged = value),
     SET_HAS_INITIAL_DATA: (state, value) => (state.hasInitialData = value),
+    SET_HAS_USER_DATA: (state, value) => (state.hasUserData = value),
 
     RESET_STATE: (state) => {
         Object.assign(state, GET_DEFAULT_STATE())

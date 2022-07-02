@@ -1,33 +1,3 @@
-function obtenerNombreDia(dia) {
-    let nombre;
-
-    switch (dia) {
-        case 0:
-            nombre = 'Domingo';
-            break;
-        case 1:
-            nombre = 'Lunes';
-            break;
-        case 2:
-            nombre = 'Martes';
-            break;
-        case 3:
-            nombre = 'Miercoles';
-            break;
-        case 4:
-            nombre = 'Jueves';
-            break;
-        case 5:
-            nombre = 'Viernes';
-            break;
-        case 6:
-            nombre = 'Sabado';
-            break;
-    }
-
-    return nombre
-}
-
 export default function (state) {
     let dataListado = [];
 
@@ -45,15 +15,7 @@ export default function (state) {
             }
         }
 
-        let fecha = "";
-        if (fecha) {
-            const nombreDia = obtenerNombreDia(partido.fecha.getDay()),
-                dia = partido.fecha.getDate(),
-                mes = partido.fecha.getMonth(),
-                hora = partido.fecha.getHours(),
-                minutos = partido.fecha.getMinutes();
-            fecha = `${nombreDia} ${dia}-${mes} / ${hora}:${minutos}`;
-        }
+        const fecha = new Date(partido.fecha);
 
         let newPartido = {
             partidoId: partido._id,
