@@ -10,8 +10,7 @@ export default async function ({ commit, dispatch }, { username, password }) {
         const response = await axios.post("login", { username, password });
 
         localStorage.setItem('prodeAccessToken', response.data.accessToken);
-        // FIXME revertir master token
-        // axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('prodeAccessToken');
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('prodeAccessToken');
 
         localStorage.setItem('prodeRefreshToken', response.data.refreshToken);
         localStorage.setItem('prodeLoggedUserId', response.data.userId);

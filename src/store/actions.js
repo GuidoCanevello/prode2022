@@ -43,23 +43,20 @@ export default {
     let response = true;
 
     if (!state.isLogged) {
+      let refreshToken = localStorage.getItem('prodeRefreshToken');
+      if (refreshToken) {
+        try {
+          commit('SET_IS_LOADING_LOGIN', true);
 
-      // FIXME revertir usuario admin
-      await dispatch('DISPATCH_LOGIN', { username: 'ADMIN', password: 'diego' })
-      // let refreshToken = localStorage.getItem('prodeRefreshToken');
-      // if (refreshToken) {
-      //   try {
-      //     commit('SET_IS_LOADING_LOGIN', true);
-
-      //     await dispatch('DISPATCH_REFRESH_TOKEN');
-      //   } catch (error) {
-      //     dispatch('ABRIR_ERROR', error.response.data.message);
-      //   } finally {
-      //     commit('SET_IS_LOADING_LOGIN', false);
-      //   }
-      // } else {
-      //   response = false;
-      // }
+          await dispatch('DISPATCH_REFRESH_TOKEN');
+        } catch (error) {
+          dispatch('ABRIR_ERROR', error.response.data.message);
+        } finally {
+          commit('SET_IS_LOADING_LOGIN', false);
+        }
+      } else {
+        response = false;
+      }
     }
 
     return response;
