@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "AgregarUsuario",
 
@@ -62,13 +63,24 @@ export default {
   }),
 
   methods: {
+    ...mapActions(["CREAR_USUARIO"]),
+
     async handleGuardarCambios() {
       this.isLoading = true;
 
-      console.log("se agrega al user", this.nombre, this.password);
-
-      this.msg = "Exito";
-      this.isLoading = false;
+      this.CREAR_USUARIO({
+        nombreCuenta: this.nombre,
+        password: this.password,
+      })
+        .then(() => {
+          this.msg = "Exito";
+        })
+        .catch(() => {
+          this.msg = "Error";
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     },
   },
 };
