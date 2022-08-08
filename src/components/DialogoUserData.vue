@@ -126,7 +126,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["MODIFICAR_USUARIO"]),
+    ...mapActions(["MODIFICAR_USUARIO", "DISPATCH_GET_ALL_USERS"]),
     handleCerrar() {
       this.$emit("cerrar");
     },
@@ -139,7 +139,11 @@ export default {
         this.MODIFICAR_USUARIO({
           nombreJugador: this.initialPlayerName,
           imagenSrc: this.initialImagenSrc,
-        }).finally(() => {
+        })
+        .then(() => {
+          this.DISPATCH_GET_ALL_USERS();
+        })
+        .finally(() => {
           this.isLoadingChanges = false;
           this.$emit("cerrar");
         });

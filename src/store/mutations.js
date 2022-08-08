@@ -47,7 +47,6 @@ export default {
 
     SET_IS_LOGGED: (state, value) => (state.isLogged = value),
     SET_HAS_INITIAL_DATA: (state, value) => (state.hasInitialData = value),
-    SET_HAS_USER_DATA: (state, value) => (state.hasUserData = value),
 
     RESET_STATE: (state) => {
         Object.assign(state, GET_DEFAULT_STATE())
