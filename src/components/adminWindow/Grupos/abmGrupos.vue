@@ -1,6 +1,7 @@
 <template>
   <v-container grid-list-xs>
-    <v-tabs vertical>
+    <agregar-grupo />
+    <!-- <v-tabs vertical>
       <v-tab> Agregar </v-tab>
       <v-tab-item>
         <agregar-grupo />
@@ -15,7 +16,7 @@
       <v-tab-item>
         <eliminar-grupo />
       </v-tab-item>
-    </v-tabs>
+    </v-tabs> -->
   </v-container>
 </template>
 

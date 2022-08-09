@@ -1,8 +1,6 @@
 import axios from "axios";
 
-export default async function ({ state, commit, dispatch }) {
-    if (state.hasUserData) return;
-
+export default async function ({ commit, dispatch }) {
     commit('SET_IS_LOADING_USERS_DATA', true);
 
     try {
@@ -13,7 +11,6 @@ export default async function ({ state, commit, dispatch }) {
         });
 
         commit('SET_USUARIOS', usuarios);
-        commit('SET_HAS_USER_DATA', true);
     } catch (error) {
         dispatch('ABRIR_ERROR', error.response.data.message);
     } finally {

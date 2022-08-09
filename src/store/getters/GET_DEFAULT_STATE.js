@@ -21,6 +21,5 @@ export default () => {
 
         isLogged: false,
         hasInitialData: false,
-        hasUserData: false,
     }
 } 

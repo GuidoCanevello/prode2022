@@ -15,15 +15,26 @@
         <main-window />
       </v-col>
     </v-row>
-  </v-container>  
+  </v-container>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import MainWindow from "../components/adminWindow/MainWindow.vue";
+
 export default {
   name: "AdminWindow",
   components: {
     MainWindow,
   },
+
+  created() {
+    // Check whether the user has permissions to enter the site
+    if (this.USUARIO_NOMBRE_CUENTA != "ADMIN") {
+      this.$router.push("/");
+    }
+  },
+
+  computed: mapGetters(["USUARIO_NOMBRE_CUENTA"]),
 };
 </script>

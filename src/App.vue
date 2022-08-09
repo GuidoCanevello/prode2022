@@ -33,6 +33,7 @@ export default {
   },
 
   beforeUpdate() {
+    // Check Login status before every update
     if (
       !this.IS_LOGGED &&
       !this.IS_LOADING_LOGIN &&
@@ -43,6 +44,7 @@ export default {
   },
 
   async created() {
+    // Check Login status before starting the page
     await this.CHECK_LOGIN_STATUS();
     if (
       !this.IS_LOGGED &&

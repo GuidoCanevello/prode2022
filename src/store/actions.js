@@ -4,6 +4,7 @@ import MODIFICAR_PREDICCION from './actions/MODIFICAR_PREDICCION';
 import MODIFICAR_USUARIO from './actions/MODIFICAR_USUARIO';
 import CREAR_GRUPO from './actions/CREAR_GRUPO';
 import CREAR_EQUIPO from './actions/CREAR_EQUIPO';
+import CREAR_USUARIO from './actions/CREAR_USUARIO';
 import MODIFICAR_EQUIPO from './actions/MODIFICAR_EQUIPO';
 import MODIFICAR_PARTIDO from './actions/MODIFICAR_PARTIDO';
 import CREAR_PARTIDO_GRUPO from './actions/CREAR_PARTIDO_GRUPO';
@@ -20,6 +21,7 @@ export default {
   DISPATCH_GET_ALL_USERS,
   CREAR_GRUPO,
   CREAR_EQUIPO,
+  CREAR_USUARIO,
 
   MODIFICAR_PREDICCION,
   MODIFICAR_USUARIO,
@@ -43,23 +45,20 @@ export default {
     let response = true;
 
     if (!state.isLogged) {
+      let refreshToken = localStorage.getItem('prodeRefreshToken');
+      if (refreshToken) {
+        try {
+          commit('SET_IS_LOADING_LOGIN', true);
 
-      // FIXME revertir usuario admin
-      await dispatch('DISPATCH_LOGIN', { username: 'ADMIN', password: 'diego' })
-      // let refreshToken = localStorage.getItem('prodeRefreshToken');
-      // if (refreshToken) {
-      //   try {
-      //     commit('SET_IS_LOADING_LOGIN', true);
-
-      //     await dispatch('DISPATCH_REFRESH_TOKEN');
-      //   } catch (error) {
-      //     dispatch('ABRIR_ERROR', error.response.data.message);
-      //   } finally {
-      //     commit('SET_IS_LOADING_LOGIN', false);
-      //   }
-      // } else {
-      //   response = false;
-      // }
+          await dispatch('DISPATCH_REFRESH_TOKEN');
+        } catch (error) {
+          dispatch('ABRIR_ERROR', error.response.data.message);
+        } finally {
+          commit('SET_IS_LOADING_LOGIN', false);
+        }
+      } else {
+        response = false;
+      }
     }
 
     return response;
