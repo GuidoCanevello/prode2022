@@ -30,39 +30,41 @@
       <!-- NAVEGACION -->
       <v-list dense nav>
         <template v-for="item in items">
-          <v-list-item
-            v-if="!item.hasGroup"
-            :key="item.title"
-            link
-            :to="item.route"
-          >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-group v-else :key="item.title" :prepend-icon="item.icon">
-            <template v-slot:activator>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </template>
-
+          <template v-if="checkPermissions(item)">
             <v-list-item
-              v-for="subitem in item.subitems"
-              :key="subitem.title"
+              v-if="!item.hasGroup"
+              :key="item.title"
               link
-              :to="item.route + subitem.route"
+              :to="item.route"
             >
-              <v-list-item-content>
-                <v-list-item-title>{{ subitem.title }}</v-list-item-title>
-              </v-list-item-content>
               <v-list-item-icon>
-                <v-icon>{{ subitem.icon }}</v-icon>
+                <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
             </v-list-item>
-          </v-list-group>
+
+            <v-list-group v-else :key="item.title" :prepend-icon="item.icon">
+              <template v-slot:activator>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </template>
+
+              <v-list-item
+                v-for="subitem in item.subitems"
+                :key="subitem.title"
+                link
+                :to="item.route + subitem.route"
+              >
+                <v-list-item-content>
+                  <v-list-item-title>{{ subitem.title }}</v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-icon>
+                  <v-icon>{{ subitem.icon }}</v-icon>
+                </v-list-item-icon>
+              </v-list-item>
+            </v-list-group>
+          </template>
         </template>
       </v-list>
 
@@ -86,7 +88,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import UserBox from "./UserBox.vue";
 
 export default {
@@ -133,11 +135,11 @@ export default {
           icon: "mdi-book-open-page-variant-outline",
           route: "/reglamento",
         },
-        // REVIEW sacar backend
         {
           title: "Backend",
           icon: "",
           route: "/backend",
+          isAdmin: true,
         },
       ],
 
@@ -146,13 +148,23 @@ export default {
   },
   methods: {
     ...mapActions(["DISPATCH_LOGOUT"]),
+
     handleLogout() {
       this.logoutLoading = true;
       this.DISPATCH_LOGOUT().then(() => {
         this.logoutLoading = false;
       });
     },
+
+    checkPermissions(item) {
+      return (
+        !item.isAdmin ||
+        (item.isAdmin && this.USUARIO_NOMBRE_CUENTA === "ADMIN")
+      );
+    },
   },
+
+  computed: mapGetters(["USUARIO_NOMBRE_CUENTA"]),
 };
 </script>
 
