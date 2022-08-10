@@ -3,7 +3,7 @@
     <!-- TITULO -->
     <v-list-item :to="'/'">
       <v-list-item-content>
-        <v-list-item-title class="text-h6"> Prode </v-list-item-title>
+        <v-list-item-title class="text-h6"> Prode De Pruebaaaaaaaaaa</v-list-item-title>
         <v-list-item-subtitle> Qatar 2022 </v-list-item-subtitle>
       </v-list-item-content>
       <v-list-item-icon>
