@@ -19,7 +19,7 @@ export default function (state) {
         }
 
         const grupoIndex = dataGrupos.findIndex(g => g.nombre === equipo.grupo);
-        dataGrupos[grupoIndex].equipos.push(newEquipo);
+        if (grupoIndex != -1) dataGrupos[grupoIndex].equipos.push(newEquipo);
     });
 
     dataPartidos.forEach(partido => {
@@ -54,7 +54,7 @@ export default function (state) {
         }
 
         const grupoIndex = dataGrupos.findIndex(g => g.nombre === partido.grupo);
-        dataGrupos[grupoIndex].partidos.push(newPartido);
+        if (grupoIndex != -1) dataGrupos[grupoIndex].partidos.push(newPartido);
     });
 
     return dataGrupos;
