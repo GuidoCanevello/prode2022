@@ -8,7 +8,7 @@
       <carta-partidos
         :nombre="grupo.nombre"
         v-bind:partidos="grupo.partidos"
-        @actualizar-prediccion="handleActualizar"
+        @prediccion-actualizada="$emit('prediccion-actualizada')"
       />
     </v-col>
   </v-row>
@@ -23,16 +23,6 @@ export default {
   name: "FilaGrupo",
   props: ["grupo"],
   data: () => ({}),
-  methods: {
-    handleActualizar(idPartido, golesEquipo1, golesEquipo2) {
-      this.$emit(
-        "actualizar-prediccion",
-        idPartido,
-        golesEquipo1,
-        golesEquipo2
-      );
-    },
-  },
 };
 </script>
 

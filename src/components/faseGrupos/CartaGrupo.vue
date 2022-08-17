@@ -4,7 +4,7 @@
       <v-container class="title-grupo"> Grupo {{ nombre }} </v-container>
     </v-card-title>
 
-    <v-spacer></v-spacer>
+    <v-spacer />
 
     <v-card-text>
       <v-data-table
@@ -12,20 +12,31 @@
         :items="equipos"
         item-key="id"
         hide-default-footer
-      />
+      >
+        <template v-slot:[`item.bandera`]="{ item }">
+          <bandera :code="item.code" />
+        </template>
+      </v-data-table>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import Bandera from "../Bandera.vue";
+
 export default {
   name: "CartaGrupo",
+  components: { Bandera },
   props: ["nombre", "equipos"],
   data: () => ({
     headers: [
       {
-        text: "Nombre",
         align: "start",
+        sortable: false,
+        value: "bandera",
+      },
+      {
+        text: "Nombre",
         sortable: false,
         value: "nombre",
       },

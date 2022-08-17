@@ -27,6 +27,20 @@
         />
       </v-col>
     </v-row>
+    
+    <v-snackbar v-model="showSnackbar" :timeout="timeoutSnackbar">
+      Predicciones Actualizadas Correctamente
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="showSnackbar = false"
+        >
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -48,25 +62,35 @@ export default {
     isVerPredActivo: false,
 
     currentPartido: {},
+    
+    showSnackbar: false,
+    timeoutSnackbar: 1500,
   }),
 
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
+
   methods: {
-    ...mapActions([]),
+    ...mapActions(["MODIFICAR_PREDICCION"]),
 
     handleRealizarPrediccion(itemId) {
       this.isRealizarPredActivo = true;
-      this.currentPartido = this.dataListado.find((p) => p.idPartido === itemId);
+      this.currentPartido = this.DATA_LISTADO.find(
+        (p) => p.partidoId === itemId
+      );
     },
 
     handleVerPrediccion(itemId) {
       this.isVerPredActivo = true;
-      this.currentPartido = this.dataListado.find((p) => p.idPartido === itemId);
+      this.currentPartido = this.DATA_LISTADO.find(
+        (p) => p.partidoId === itemId
+      );
     },
 
-    handleConfirmarPrediccion(idPartido, golesEquipo1, golesEquipo2) {
+    async handleConfirmarPrediccion(partidoId, golesEquipo1, golesEquipo2) {
       this.isRealizarPredActivo = false;
       this.currentPartido = {};
-      this.realizarPrediccion(idPartido, golesEquipo1, golesEquipo2);
+      await this.MODIFICAR_PREDICCION({ partidoId, golesEquipo1, golesEquipo2 });
+      this.showSnackbar = true;
     },
 
     handleCancelarPrediccion() {
@@ -78,34 +102,6 @@ export default {
       this.isVerPredActivo = false;
       this.currentPartido = {};
     },
-
-    realizarPrediccion(idPartido, golesEquipo1, golesEquipo2) {
-      this.isLoading = true;
-      const partidoIndex = this.dataListado.findIndex(
-        (p) => p.idPartido === idPartido
-      );
-      const partido = this.dataListado[partidoIndex];
-      partido.tienePrediccion = true;
-      partido.prediccion = {
-        golesEquipo1,
-        golesEquipo2,
-      };
-    },
   },
-
-  computed: mapGetters(["isLoading", "dataListado"]),
-
-  // created() {
-  //   this.isLoading = true;
-
-  //   setTimeout(() => {
-  //     getDataListado()
-  //       .then((res) => {
-  //         this.partidos = res;
-  //         this.isLoading = false;
-  //       })
-  //       .catch((e) => console.log(e));
-  //   }, 200);
-  // },
 };
 </script>

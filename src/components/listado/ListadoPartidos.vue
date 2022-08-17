@@ -1,14 +1,14 @@
 <template>
   <v-card>
-    <v-container grid-list-xs>
+    <v-container>
       <v-data-table
         :headers="headers"
-        :items="dataListado"
+        :items="DATA_LISTADO"
         item-key="id"
-        :items-per-page="10"
+        :items-per-page="15"
         :search="busqueda"
         :custom-filter="filtrarEquipo"
-        :loading="isLoading"
+        :loading="IS_LOADING_FUTBOL_DATA"
         loading-text="Cargando Partidos..."
         dense
         class="table-partidos"
@@ -22,23 +22,11 @@
           ></v-text-field>
         </template>
 
-        <template v-slot:[`item.actions`]="{ item }">
-          <!-- REALIZAR PREDICCION -->
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon
-                small
-                class="mr-2"
-                @click="handlePredecir(item)"
-                v-bind="attrs"
-                v-on="on"
-              >
-                mdi-head-snowflake
-              </v-icon>
-            </template>
-            <span>Realizar Predicción</span>
-          </v-tooltip>
+        <template v-slot:[`item.fecha`]="{ item }">
+          <span>{{ formatFecha(item.fecha) }}</span>
+        </template>
 
+        <template v-slot:[`item.actions`]="{ item }">
           <!-- VER PREDICCION -->
           <v-tooltip v-if="item.tienePrediccion" bottom>
             <template v-slot:activator="{ on, attrs }">
@@ -54,6 +42,22 @@
             </template>
             <span>Ver Predicción</span>
           </v-tooltip>
+
+          <!-- REALIZAR PREDICCION -->
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                small
+                class="mr-2"
+                @click="handlePredecir(item)"
+                v-bind="attrs"
+                v-on="on"
+              >
+                mdi-head-snowflake
+              </v-icon>
+            </template>
+            <span>Actualizar Predicción</span>
+          </v-tooltip>
         </template>
       </v-data-table>
     </v-container>
@@ -62,6 +66,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import obtenerNombreDia from '@/utils/obtenerNombreDia';
+import addCero from '@/utils/addCero';
 
 export default {
   name: "ListadoPartidos",
@@ -93,7 +99,19 @@ export default {
     ],
   }),
 
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
+
   methods: {
+    formatFecha(fecha) {
+      const nombreDia = obtenerNombreDia(fecha.getDay()),
+        dia = addCero(fecha.getDate()),
+        mes = addCero(fecha.getMonth() + 1),
+        hora = addCero(fecha.getHours()),
+        minutos = addCero(fecha.getMinutes());
+
+      return `${nombreDia} ${dia}/${mes} - ${hora}:${minutos}`;
+    },
+
     fondoItem(item) {
       return item.tienePrediccion ? "fila-con-prediccion" : "";
     },
@@ -105,16 +123,13 @@ export default {
       );
     },
     handlePredecir(item) {
-      // TODO reemplazar por uso de vuex actions
-      this.$emit("realizar-prediccion", item.idPartido);
+      this.$emit("realizar-prediccion", item.partidoId);
     },
 
     handleView(item) {
-      this.$emit("ver-prediccion", item.idPartido);
+      this.$emit("ver-prediccion", item.partidoId);
     },
   },
-
-  computed: mapGetters(["isLoading", "dataListado"]),
 };
 </script>
 

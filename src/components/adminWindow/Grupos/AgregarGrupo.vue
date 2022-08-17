@@ -86,26 +86,22 @@ export default {
         {
           texto: "Equipo 1",
           errorNombre: false,
-          // nombre: null,
-          nombre: "1",
+          nombre: null,
         },
         {
           texto: "Equipo 2",
           errorNombre: false,
-          // nombre: null,
-          nombre: "22",
+          nombre: null,
         },
         {
           texto: "Equipo 3",
           errorNombre: false,
-          // nombre: null,
-          nombre: "333",
+          nombre: null,
         },
         {
           texto: "Equipo 4",
           errorNombre: false,
-          // nombre: null,
-          nombre: "4444",
+          nombre: null,
         },
       ],
     },
@@ -126,7 +122,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["crearGrupo"]),
+    ...mapActions(["CREAR_GRUPO"]),
     async handleGuardar() {
       this.isLoading = true;
 
@@ -148,11 +144,9 @@ export default {
         let nombresEquipos = [];
         this.groupData.equipos.forEach((e) => nombresEquipos.push(e.nombre));
 
-        await this.crearGrupo({
+        await this.CREAR_GRUPO({
           nombre: this.groupData.nombre,
           equipos: nombresEquipos,
-        }).catch((e) => {
-          console.log(e);
         });
       }
 

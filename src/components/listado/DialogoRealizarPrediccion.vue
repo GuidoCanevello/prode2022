@@ -85,7 +85,7 @@ export default {
     handleConfirmar() {
       this.$emit(
         "confirmar",
-        this.partido.idPartido,
+        this.partido.partidoId,
         this.golesEquipo1,
         this.golesEquipo2
       );
@@ -99,10 +99,10 @@ export default {
     if (this.partido.tienePrediccion) {
       this.golesEquipo1 = isNaN(this.partido.prediccion.golesEquipo1)
         ? null
-        : this.partido.prediccion.golesEquipo1;
+        : parseInt(this.partido.prediccion.golesEquipo1);
       this.golesEquipo2 = isNaN(this.partido.prediccion.golesEquipo2)
         ? null
-        : this.partido.prediccion.golesEquipo2;
+        : parseInt(this.partido.prediccion.golesEquipo2);
     }
   },
 };

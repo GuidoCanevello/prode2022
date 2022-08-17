@@ -28,8 +28,8 @@
 
 <script>
 import AbmGrupos from "./Grupos/abmGrupos.vue";
-import AbmPartidos from "./abmPartidos.vue";
-import AbmUsuarios from "./abmUsuarios.vue";
+import AbmPartidos from "./Partidos/abmPartidos.vue";
+import AbmUsuarios from "./Usuarios/abmUsuarios.vue";
 import AbmEquipos from "./Equipos/abmEquipos.vue";
 
 export default {
