@@ -59,6 +59,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  base: "/prode2022",
   mode: 'history',
   routes
 })
