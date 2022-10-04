@@ -1,25 +1,73 @@
 <template>
   <v-container>
-    <v-card>
-      <v-container grid-list-xs>
-        <v-carousel>
-          <v-carousel-item
-            v-for="(item, i) in items"
-            :key="i"
-            :src="item.src"
-            reverse-transition="fade-transition"
-            transition="fade-transition"
-          />
-        </v-carousel>
-      </v-container>
-    </v-card>
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-container>
+            <h1>Prediccion Deportiva - Qatar 2022</h1>
+          </v-container>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row class="mt-0">
+      <v-col sm="7">
+        <v-row>
+          <v-container>
+            <v-card>
+              <v-container grid-list-xs> Partido Proximo </v-container>
+            </v-card>
+          </v-container>
+        </v-row>
+
+        <v-row class="mt-0">
+          <v-container>
+            <v-card>
+              <v-container grid-list-xs>
+                <listado-partidos />
+              </v-container>
+            </v-card>
+          </v-container>
+        </v-row>
+      </v-col>
+
+      <v-col sm="5">
+        <v-row>
+          <v-container>
+            <v-card>
+              <v-container grid-list-xs>
+                <v-carousel>
+                  <v-carousel-item
+                    v-for="(item, i) in items"
+                    :key="i"
+                    :src="item.src"
+                    reverse-transition="fade-transition"
+                    transition="fade-transition"
+                  />
+                </v-carousel>
+              </v-container>
+            </v-card>
+          </v-container>
+        </v-row>
+
+        <v-row class="mt-0">
+          <v-container>
+            <v-card>
+              <v-container grid-list-xs> Ranking </v-container>
+            </v-card>
+          </v-container>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import ListadoPartidos from "../components/ListadoPartidos.vue";
+
 export default {
   name: "Home",
-  components: {},
+  components: { ListadoPartidos },
   data() {
     return {
       items: [

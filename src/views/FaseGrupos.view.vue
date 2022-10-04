@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import FilaGrupo from "@/components/faseGrupos/FilaGrupo.vue";
-import LoadingBar from "@/components/LoadingBar.vue";
+import FilaGrupo from "../components/faseGrupos/FilaGrupo.vue";
+import LoadingBar from "../components/utilitarios/LoadingBar.vue";
 import { mapGetters } from "vuex";
 
 export default {

@@ -69,7 +69,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Bandera from "../Bandera.vue";
+import Bandera from "../utilitarios/Bandera.vue";
 
 export default {
   name: "CartaPartidos",
