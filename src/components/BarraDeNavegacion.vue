@@ -98,27 +98,19 @@ export default {
     return {
       items: [
         {
-          title: "Predicciones",
-          icon: "mdi-head-snowflake-outline",
-          route: "/predicciones",
-          hasGroup: true,
-          subitems: [
-            {
-              title: "Ver Lista de Partidos",
-              icon: "mdi-view-list",
-              route: "/listado",
-            },
-            {
-              title: "Ver Fase de Grupos",
-              icon: "mdi-account-group-outline",
-              route: "/fase-grupos",
-            },
-            {
-              title: "Ver Fase Final",
-              icon: "mdi-tournament",
-              route: "/fase-final",
-            },
-          ],
+          title: "Inicio",
+          icon: "mdi-soccer-field",
+          route: "/",
+        },
+        {
+          title: "Fase de Grupos",
+          icon: "mdi-account-group-outline",
+          route: "/fase-grupos",
+        },
+        {
+          title: "Fase de Torneo",
+          icon: "mdi-tournament",
+          route: "/fase-torneo",
         },
         {
           title: "Calendario",

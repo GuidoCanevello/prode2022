@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <v-row class="mt-0">
+  <v-container fluid>
+    <v-row>
       <v-col>
         <v-card>
-          <v-container grid-list-xs> Fase Final </v-container>
+          <v-container>
+            <h1>Fase de Torneo</h1>
+          </v-container>
         </v-card>
       </v-col>
     </v-row>
@@ -13,11 +15,11 @@
         <sitio-bajo-construccion />
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
-import SitioBajoConstruccion from '../../components/SitioBajoConstruccion.vue';
+import SitioBajoConstruccion from '@/components/SitioBajoConstruccion.vue';
 export default {
   name: "FaseFinal",
   components: { SitioBajoConstruccion },
