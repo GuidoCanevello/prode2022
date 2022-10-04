@@ -20,7 +20,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import CartaRanking from '../components/CartaRanking.vue';
+import CartaRanking from '../components/funcional/CartaRanking.vue';
 
 export default {
   name: 'Ranking',

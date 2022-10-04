@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import ListadoPartidos from "../components/ListadoPartidos.vue";
+import ListadoPartidos from "../components/funcional/ListadoPartidos.vue";
 
 export default {
   name: "Home",
