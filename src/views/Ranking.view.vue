@@ -11,30 +11,25 @@
     </v-row>
 
     <v-row class="mt-0">
-      <v-col>
+      <v-spacer />
+      
+      <v-col sm="10">
         <carta-ranking />
       </v-col>
+
+      <v-spacer />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import CartaRanking from '../components/funcional/CartaRanking.vue';
+import CartaRanking from "../components/funcional/CartaRanking.vue";
 
 export default {
-  name: 'Ranking',
-  
+  name: "Ranking",
+
   components: {
-    CartaRanking
-  },  
-
-  methods: {
-    ...mapActions(["DISPATCH_GET_ALL_USERS"]),
+    CartaRanking,
   },
-
-  async created() {
-    await this.DISPATCH_GET_ALL_USERS();
-  },
-}
+};
 </script>

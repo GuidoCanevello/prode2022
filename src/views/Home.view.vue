@@ -15,23 +15,34 @@
         <v-row>
           <v-container>
             <v-card>
-              <v-container grid-list-xs> Partido Proximo </v-container>
+              <v-card-title primary-title>
+                <v-row>
+                  <v-col> ¿No sabes por donde empezar? </v-col>
+                  <v-col style="text-align: right">
+                    <v-btn color="success" @click="handleVerReglamento">
+                      Ver Reglamento
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-card-title>
             </v-card>
           </v-container>
         </v-row>
 
         <v-row class="mt-0">
           <v-container>
-            <v-card>
-              <v-container grid-list-xs>
-                <listado-partidos />
-              </v-container>
-            </v-card>
+            <partido-proximo />
+          </v-container>
+        </v-row>
+
+        <v-row class="mt-0">
+          <v-container>
+            <listado-partidos />
           </v-container>
         </v-row>
       </v-col>
 
-      <v-col sm="5">
+      <v-col class="pl-0" sm="5">
         <v-row>
           <v-container>
             <v-card>
@@ -52,9 +63,7 @@
 
         <v-row class="mt-0">
           <v-container>
-            <v-card>
-              <v-container grid-list-xs> Ranking </v-container>
-            </v-card>
+            <mini-carta-ranking />
           </v-container>
         </v-row>
       </v-col>
@@ -63,11 +72,13 @@
 </template>
 
 <script>
+import MiniCartaRanking from "../components/funcional/MiniCartaRanking.vue";
 import ListadoPartidos from "../components/funcional/ListadoPartidos.vue";
+import PartidoProximo from "../components/funcional/PartidoProximo.vue";
 
 export default {
   name: "Home",
-  components: { ListadoPartidos },
+  components: { ListadoPartidos, PartidoProximo, MiniCartaRanking },
   data() {
     return {
       items: [
@@ -82,6 +93,12 @@ export default {
         },
       ],
     };
+  },
+
+  methods: {
+    handleVerReglamento() {
+      this.$router.push("/reglamento");
+    },
   },
 };
 </script>

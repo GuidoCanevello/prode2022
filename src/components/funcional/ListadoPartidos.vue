@@ -1,6 +1,8 @@
 <template>
   <v-card>
-    <v-container>
+    <v-card-title primary-title> Listado de Partidos </v-card-title>
+
+    <v-card-text>
       <v-data-table
         :headers="headers"
         :items="DATA_LISTADO"
@@ -13,6 +15,7 @@
         dense
         class="table-partidos"
         :item-class="fondoItem"
+        sort-by="fecha"
       >
         <template v-slot:top>
           <v-text-field
@@ -26,14 +29,14 @@
           <span>{{ formatFecha(item.fecha) }}</span>
         </template>
       </v-data-table>
-    </v-container>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import obtenerNombreDia from '@/utils/obtenerNombreDia';
-import addCero from '@/utils/addCero';
+import obtenerNombreDia from "@/utils/obtenerNombreDia";
+import addCero from "@/utils/addCero";
 
 export default {
   name: "ListadoPartidos",
@@ -74,13 +77,14 @@ export default {
     fondoItem(item) {
       return item.tienePrediccion ? "fila-con-prediccion" : "";
     },
+
     filtrarEquipo(value, busqueda, item) {
       let equipos = value ? value.toString().toLocaleUpperCase() : "";
       let busquedaAux = busqueda ? busqueda.toLocaleUpperCase() : "";
       return (
         equipos != "" && busqueda != "" && equipos.indexOf(busquedaAux) !== -1
       );
-    }
+    },
   },
 };
 </script>
