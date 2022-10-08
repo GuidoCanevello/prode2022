@@ -1,6 +1,7 @@
 import DATA_FASE_GRUPOS from './getters/DATA_FASE_GRUPOS';
 import DATA_RANKING from './getters/DATA_RANKING';
 import DATA_LISTADO from './getters/DATA_LISTADO';
+import DATA_PROX_PARTIDO from './getters/DATA_PROX_PARTIDO';
 
 export default {
     USUARIO_NOMBRE_CUENTA: (state) => state.usuarioNombreCuenta,
@@ -14,6 +15,7 @@ export default {
     DATA_FASE_GRUPOS,
     DATA_RANKING,
     DATA_LISTADO,
+    DATA_PROX_PARTIDO,
 
     IS_LOADING_FUTBOL_DATA: (state) => state.isLoadingFutbolData,
     IS_LOADING_USERS_DATA: (state) => state.isLoadingUserData,

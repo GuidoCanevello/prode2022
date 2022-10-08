@@ -47,7 +47,7 @@
 <script>
 import DialogoRealizarPrediccion from "../../components/listado/DialogoRealizarPrediccion.vue";
 import DialogoVerPrediccion from "../../components/listado/DialogoVerPrediccion.vue";
-import ListadoPartidos from "../../components/listado/ListadoPartidos.vue";
+import ListadoPartidos from "../../components/funcional/ListadoPartidos.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {

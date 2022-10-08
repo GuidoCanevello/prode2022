@@ -10,7 +10,7 @@
           <img
             height="300"
             lazy-src="@/assets/lego-construction-worker.jpg"
-            src="../assets/lego-construction-worker.jpg"
+            src="../../assets/lego-construction-worker.jpg"
           />
         </v-col>
       </v-row>

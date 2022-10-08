@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Bandera from "../Bandera.vue";
+import Bandera from "../utilitarios/Bandera.vue";
 
 export default {
   name: "CartaGrupo",

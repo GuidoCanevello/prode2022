@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import BarraDeNavegacion from "./components/BarraDeNavegacion.vue";
-import DialogoError from "./components/DialogoError.vue";
+import BarraDeNavegacion from "./components/funcional/BarraDeNavegacion.vue";
+import DialogoError from "./components/utilitarios/DialogoError.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {

@@ -1,5 +1,15 @@
 <template>
-  <div>
+  <v-container fluid>
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-container>
+            <h1>Fase de Grupos</h1>
+          </v-container>
+        </v-card>
+      </v-col>
+    </v-row>
+
     <template v-if="IS_LOADING_FUTBOL_DATA">
       <v-row>
         <v-col>
@@ -24,12 +34,12 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script>
-import FilaGrupo from "../../components/faseGrupos/FilaGrupo.vue";
-import LoadingBar from "../../components/LoadingBar.vue";
+import FilaGrupo from "../components/faseGrupos/FilaGrupo.vue";
+import LoadingBar from "../components/utilitarios/LoadingBar.vue";
 import { mapGetters } from "vuex";
 
 export default {

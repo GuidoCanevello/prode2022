@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import SitioBajoConstruccion from "../components/SitioBajoConstruccion.vue";
+import SitioBajoConstruccion from "../components/utilitarios/SitioBajoConstruccion.vue";
 
 export default {
   name: "Calendario",

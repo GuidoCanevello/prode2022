@@ -1,25 +1,84 @@
 <template>
   <v-container>
-    <v-card>
-      <v-container grid-list-xs>
-        <v-carousel>
-          <v-carousel-item
-            v-for="(item, i) in items"
-            :key="i"
-            :src="item.src"
-            reverse-transition="fade-transition"
-            transition="fade-transition"
-          />
-        </v-carousel>
-      </v-container>
-    </v-card>
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-container>
+            <h1>Prediccion Deportiva - Qatar 2022</h1>
+          </v-container>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row class="mt-0">
+      <v-col sm="7">
+        <v-row>
+          <v-container>
+            <v-card>
+              <v-card-title primary-title>
+                <v-row>
+                  <v-col> ¿No sabes por donde empezar? </v-col>
+                  <v-col style="text-align: right">
+                    <v-btn color="success" @click="handleVerReglamento">
+                      Ver Reglamento
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-card-title>
+            </v-card>
+          </v-container>
+        </v-row>
+
+        <v-row class="mt-0">
+          <v-container>
+            <partido-proximo />
+          </v-container>
+        </v-row>
+
+        <v-row class="mt-0">
+          <v-container>
+            <listado-partidos />
+          </v-container>
+        </v-row>
+      </v-col>
+
+      <v-col class="pl-0" sm="5">
+        <v-row>
+          <v-container>
+            <v-card>
+              <v-container grid-list-xs>
+                <v-carousel>
+                  <v-carousel-item
+                    v-for="(item, i) in items"
+                    :key="i"
+                    :src="item.src"
+                    reverse-transition="fade-transition"
+                    transition="fade-transition"
+                  />
+                </v-carousel>
+              </v-container>
+            </v-card>
+          </v-container>
+        </v-row>
+
+        <v-row class="mt-0">
+          <v-container>
+            <mini-carta-ranking />
+          </v-container>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import MiniCartaRanking from "../components/funcional/MiniCartaRanking.vue";
+import ListadoPartidos from "../components/funcional/ListadoPartidos.vue";
+import PartidoProximo from "../components/funcional/PartidoProximo.vue";
+
 export default {
   name: "Home",
-  components: {},
+  components: { ListadoPartidos, PartidoProximo, MiniCartaRanking },
   data() {
     return {
       items: [
@@ -34,6 +93,12 @@ export default {
         },
       ],
     };
+  },
+
+  methods: {
+    handleVerReglamento() {
+      this.$router.push("/reglamento");
+    },
   },
 };
 </script>
