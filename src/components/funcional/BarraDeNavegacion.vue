@@ -1,5 +1,10 @@
 <template>
-  <v-navigation-drawer permanent app>
+  <v-navigation-drawer
+    v-model="showNavigation"
+    :temporary="!isScreenBeyondLarge"
+    :permanent="isScreenBeyondLarge"
+    app
+  >
     <v-container class="main-container d-flex flex-column">
       <!-- TITULO -->
       <v-container class="pa-0">
@@ -136,6 +141,8 @@ export default {
       ],
 
       logoutLoading: false,
+
+      showNavigationValue: false,
     };
   },
   methods: {
@@ -154,9 +161,27 @@ export default {
         (item.isAdmin && this.USUARIO_NOMBRE_CUENTA === "ADMIN")
       );
     },
+
+    triggerShowNavigation() {
+      this.showNavigationValue = true;
+    }
   },
 
-  computed: mapGetters(["USUARIO_NOMBRE_CUENTA"]),
+  computed: {
+    ...mapGetters(["USUARIO_NOMBRE_CUENTA"]),
+    isScreenBeyondLarge() {
+      return this.$vuetify.breakpoint.name === "lg" || this.$vuetify.breakpoint.name === "xl";
+    },
+    showNavigation: {
+      get() {
+        return this.isScreenBeyondLarge ? true : this.showNavigationValue;
+      },
+
+      set(value) {
+        this.showNavigationValue = value;
+      }
+    },
+  },
 };
 </script>
 
