@@ -4,7 +4,7 @@
       <v-col>
         <v-card>
           <v-container>
-            <h1>Prediccion Deportiva - Qatar 2022</h1>
+            <h1>Pronostico Deportivo - Qatar 2022</h1>
           </v-container>
         </v-card>
       </v-col>

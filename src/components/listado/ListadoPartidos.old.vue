@@ -40,7 +40,7 @@
                 mdi-card-search
               </v-icon>
             </template>
-            <span>Ver Predicción</span>
+            <span>Ver Pronostico</span>
           </v-tooltip>
 
           <!-- REALIZAR PREDICCION -->
@@ -56,7 +56,7 @@
                 mdi-head-snowflake
               </v-icon>
             </template>
-            <span>Actualizar Predicción</span>
+            <span>Actualizar Pronostico</span>
           </v-tooltip>
         </template>
       </v-data-table>
@@ -82,7 +82,7 @@ export default {
         value: "descripcionPartido",
       },
       {
-        text: "Predicción",
+        text: "Pronostico",
         sortable: false,
         filterable: false,
         value: "descripcionPrediccion",

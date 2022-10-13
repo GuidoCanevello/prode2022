@@ -85,7 +85,7 @@
           @click="handleLogout"
           :loading="logoutLoading"
         >
-          Cerrar Sesión
+          Cerrar Sesion
         </v-btn>
       </v-container>
     </v-container>

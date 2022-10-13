@@ -25,7 +25,7 @@ export default function (state) {
             fecha,
             tienePrediccion: false,
             descripcionPartido: `${objEquipo1.nombre} vs. ${objEquipo2.nombre}`,
-            descripcionPrediccion: "Sin Predicción",
+            descripcionPrediccion: "Sin Pronostico",
         }
 
         const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido._id);

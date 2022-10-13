@@ -29,7 +29,7 @@
     </v-row>
     
     <v-snackbar v-model="showSnackbar" :timeout="timeoutSnackbar">
-      Predicciones Actualizadas Correctamente
+      Pronosticos Actualizados Correctamente
       <template v-slot:action="{ attrs }">
         <v-btn
           color="blue"

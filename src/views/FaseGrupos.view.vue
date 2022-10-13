@@ -27,7 +27,7 @@
     </template>
 
     <v-snackbar v-model="showSnackbar" :timeout="timeoutSnackbar">
-      Predicciones Actualizadas Correctamente
+      Pronosticos Actualizados Correctamente
       <template v-slot:action="{ attrs }">
         <v-btn color="blue" text v-bind="attrs" @click="showSnackbar = false">
           Cerrar

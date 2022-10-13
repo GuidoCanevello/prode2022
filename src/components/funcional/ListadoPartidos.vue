@@ -51,7 +51,7 @@ export default {
         value: "descripcionPartido",
       },
       {
-        text: "Predicción",
+        text: "Pronostico",
         sortable: false,
         filterable: false,
         value: "descripcionPrediccion",
