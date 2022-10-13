@@ -14,18 +14,7 @@
       <v-col sm="7">
         <v-row>
           <v-container>
-            <v-card>
-              <v-card-title primary-title>
-                <v-row>
-                  <v-col> ¿No sabes por donde empezar? </v-col>
-                  <v-col style="text-align: right">
-                    <v-btn color="success" @click="handleVerReglamento">
-                      Ver Reglamento
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-card-title>
-            </v-card>
+            <carta-donde-empezar />
           </v-container>
         </v-row>
 
@@ -75,10 +64,16 @@
 import MiniCartaRanking from "../components/funcional/MiniCartaRanking.vue";
 import ListadoPartidos from "../components/funcional/ListadoPartidos.vue";
 import PartidoProximo from "../components/funcional/PartidoProximo.vue";
+import CartaDondeEmpezar from "../components/funcional/CartaDondeEmpezar.vue";
 
 export default {
   name: "Home",
-  components: { ListadoPartidos, PartidoProximo, MiniCartaRanking },
+  components: {
+    ListadoPartidos,
+    PartidoProximo,
+    MiniCartaRanking,
+    CartaDondeEmpezar,
+  },
   data() {
     return {
       items: [
@@ -93,12 +88,6 @@ export default {
         },
       ],
     };
-  },
-
-  methods: {
-    handleVerReglamento() {
-      this.$router.push("/reglamento");
-    },
   },
 };
 </script>
