@@ -56,7 +56,7 @@ export default {
         filterable: false,
         value: "descripcionPrediccion",
       },
-      { text: "Grupo", value: "grupo", filterable: false },
+      { text: "Grupo", value: "grupo", filterable: false,  align: ' d-none d-md-table-cell' },
       { text: "Fecha y Hora", value: "fecha", align: "end", filterable: false },
     ],
   }),

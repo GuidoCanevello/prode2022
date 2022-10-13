@@ -1,9 +1,9 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row>
       <v-col>
         <v-card>
-          <v-container>
+          <v-container fluid>
             <h1>Pronostico Deportivo - Qatar 2022</h1>
           </v-container>
         </v-card>
@@ -11,7 +11,7 @@
     </v-row>
 
     <v-row class="mt-0">
-      <v-col sm="7">
+      <v-col md="7">
         <v-row>
           <v-container>
             <carta-donde-empezar />
@@ -29,9 +29,15 @@
             <listado-partidos />
           </v-container>
         </v-row>
+
+        <v-row v-if="!isScreenBeyondMedium" class="mt-0">
+          <v-container>
+            <mini-carta-ranking />
+          </v-container>
+        </v-row>
       </v-col>
 
-      <v-col class="pl-0" sm="5">
+      <v-col v-if="isScreenBeyondMedium" class="pl-0" md="5" cols="auto">
         <v-row>
           <v-container>
             <v-card>
@@ -68,12 +74,14 @@ import CartaDondeEmpezar from "../components/funcional/CartaDondeEmpezar.vue";
 
 export default {
   name: "Home",
+
   components: {
     ListadoPartidos,
     PartidoProximo,
     MiniCartaRanking,
     CartaDondeEmpezar,
   },
+
   data() {
     return {
       items: [
@@ -88,6 +96,16 @@ export default {
         },
       ],
     };
+  },
+
+  computed: {
+    isScreenBeyondMedium() {
+      return (
+        this.$vuetify.breakpoint.name === "md" ||
+        this.$vuetify.breakpoint.name === "lg" ||
+        this.$vuetify.breakpoint.name === "xl"
+      );
+    },
   },
 };
 </script>
