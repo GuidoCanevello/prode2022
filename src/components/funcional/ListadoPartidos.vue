@@ -1,6 +1,33 @@
 <template>
   <v-card>
-    <v-card-title primary-title> Listado de Partidos </v-card-title>
+    <v-card-title primary-title>
+      <v-row>
+        <v-col cols="auto"> Listado de Partidos </v-col>
+        <template v-if="IS_SCREEN_BEYOND_MEDIUM">
+          <v-spacer />
+          <v-col cols="auto" style="text-align: end">
+            <v-btn
+              class="pr-1 pl-0"
+              text
+              color="success"
+              @click="handleIrAFaseGrupos"
+            >
+              Fase de Grupos
+            </v-btn>
+          </v-col>
+          <v-col cols="auto" style="text-align: end">
+            <v-btn
+              class="pl-1"
+              text
+              color="success"
+              @click="handleIrAFaseFinal"
+            >
+              Fase Final
+            </v-btn>
+          </v-col>
+        </template>
+      </v-row>
+    </v-card-title>
 
     <v-card-text>
       <v-data-table
@@ -30,6 +57,15 @@
         </template>
       </v-data-table>
     </v-card-text>
+
+    <v-card-subtitle v-if="!IS_SCREEN_BEYOND_MEDIUM">
+      <v-btn text color="success" @click="handleIrAFaseGrupos">
+        Fase de Grupos
+      </v-btn>
+      <v-btn text color="success" @click="handleIrAFaseFinal">
+        Fase Final
+      </v-btn>
+    </v-card-subtitle>
   </v-card>
 </template>
 
@@ -56,12 +92,22 @@ export default {
         filterable: false,
         value: "descripcionPrediccion",
       },
-      { text: "Grupo", value: "grupo", filterable: false,  align: ' d-none d-md-table-cell' },
+      {
+        text: "Grupo",
+        value: "grupo",
+        filterable: false,
+        align: " d-none d-md-table-cell",
+      },
       { text: "Fecha y Hora", value: "fecha", align: "end", filterable: false },
     ],
   }),
 
-  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO", "IS_SCREEN_BEYOND_MEDIUM"]),
+  computed: mapGetters([
+    "IS_LOADING_FUTBOL_DATA",
+    "DATA_LISTADO",
+    "IS_SCREEN_BEYOND_MEDIUM",
+    "IS_SCREEN_BEYOND_LARGE",
+  ]),
 
   methods: {
     formatFecha(fecha) {
@@ -84,6 +130,14 @@ export default {
       return (
         equipos != "" && busqueda != "" && equipos.indexOf(busquedaAux) !== -1
       );
+    },
+
+    handleIrAFaseGrupos() {
+      this.$router.push("/fase-grupos");
+    },
+
+    handleIrAFaseFinal() {
+      this.$router.push("/fase-final");
     },
   },
 };

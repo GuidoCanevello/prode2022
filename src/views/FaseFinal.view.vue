@@ -4,7 +4,7 @@
       <v-col>
         <v-card>
           <v-container>
-            <h1>Fase de Torneo</h1>
+            <h1>Fase Final</h1>
           </v-container>
         </v-card>
       </v-col>

@@ -114,9 +114,9 @@ export default {
           route: "/fase-grupos",
         },
         {
-          title: "Fase de Torneo",
+          title: "Fase Final",
           icon: "mdi-tournament",
-          route: "/fase-torneo",
+          route: "/fase-final",
         },
         {
           title: "Calendario",

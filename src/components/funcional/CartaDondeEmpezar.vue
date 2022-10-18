@@ -4,7 +4,7 @@
       <v-row>
         <v-col lg="auto" cols="12"> ¿No sabes por donde empezar? </v-col>
         <v-col style="text-align: right">
-          <v-btn color="success" @click="handleVerReglamento">
+          <v-btn color="success" @click="handleVerReglamento" text>
             Ver Reglamento
           </v-btn>
         </v-col>
