@@ -11,6 +11,7 @@
     :sort-by="conBuscador ? 'posicion' : null"
     class="table-ranking"
     :item-class="fondoItem"
+    mobile-breakpoint="0"
   >
     <template v-if="conBuscador" v-slot:top>
       <v-text-field
@@ -49,7 +50,7 @@ export default {
     headers() {
       return [
         {
-          align: "start",
+          align: "start d-none d-md-table-cell",
           value: "posicion",
           filterable: false,
           sortable: this.conBuscador,

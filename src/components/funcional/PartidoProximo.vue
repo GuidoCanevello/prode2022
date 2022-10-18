@@ -11,14 +11,25 @@
 
       <template v-else>
         <v-row>
-          <v-spacer v-if="isScreenBeyondLarge" />
+          <v-spacer v-if="IS_SCREEN_BEYOND_LARGE" />
 
           <v-col lg="11">
             <v-row>
               <v-col>
-                <v-card outlined class="px-2 py-2">
+                <v-card
+                  outlined
+                  :class="
+                    IS_SCREEN_BEYOND_MEDIUM
+                      ? 'team-card-medium'
+                      : 'team-card-small'
+                  "
+                >
                   <v-row>
-                    <v-col style="text-align: right" cols="auto">
+                    <v-col
+                      style="text-align: right"
+                      cols="auto"
+                      align-self="center"
+                    >
                       <bandera :code="DATA_PROX_PARTIDO.code1" />
                     </v-col>
                     <v-col style="text-align: left">
@@ -37,12 +48,23 @@
                 <h3>vs.</h3>
               </v-col>
               <v-col>
-                <v-card outlined class="px-2 py-2">
+                <v-card
+                  outlined
+                  :class="
+                    IS_SCREEN_BEYOND_MEDIUM
+                      ? 'team-card-medium'
+                      : 'team-card-small'
+                  "
+                >
                   <v-row>
                     <v-col style="text-align: right">
                       <h2>{{ DATA_PROX_PARTIDO.equipo2 }}</h2>
                     </v-col>
-                    <v-col style="text-align: left" cols="auto">
+                    <v-col
+                      style="text-align: left"
+                      cols="auto"
+                      align-self="center"
+                    >
                       <bandera :code="DATA_PROX_PARTIDO.code2" />
                     </v-col>
                   </v-row>
@@ -50,8 +72,8 @@
               </v-col>
             </v-row>
           </v-col>
-          
-          <v-spacer v-if="isScreenBeyondLarge" />
+
+          <v-spacer v-if="IS_SCREEN_BEYOND_LARGE" />
         </v-row>
 
         <v-row>
@@ -96,7 +118,11 @@ export default {
   data: () => ({}),
 
   computed: {
-    ...mapGetters(["DATA_PROX_PARTIDO"]),
+    ...mapGetters([
+      "DATA_PROX_PARTIDO",
+      "IS_SCREEN_BEYOND_MEDIUM",
+      "IS_SCREEN_BEYOND_LARGE",
+    ]),
 
     fechaFormateada() {
       if (this.DATA_PROX_PARTIDO) {
@@ -122,13 +148,16 @@ export default {
         return "";
       }
     },
-
-    isScreenBeyondLarge() {
-      return (
-        this.$vuetify.breakpoint.name === "lg" ||
-        this.$vuetify.breakpoint.name === "xl"
-      );
-    },
   },
 };
 </script>
+
+<style scoped>
+.team-card-small {
+  padding: 4px;
+}
+
+.team-card-medium {
+  padding: 8px;
+}
+</style>

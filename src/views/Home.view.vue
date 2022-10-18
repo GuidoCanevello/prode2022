@@ -30,14 +30,14 @@
           </v-container>
         </v-row>
 
-        <v-row v-if="!isScreenBeyondMedium" class="mt-0">
+        <v-row v-if="!IS_SCREEN_BEYOND_MEDIUM" class="mt-0">
           <v-container>
             <mini-carta-ranking />
           </v-container>
         </v-row>
       </v-col>
 
-      <v-col v-if="isScreenBeyondMedium" class="pl-0" md="5" cols="auto">
+      <v-col v-if="IS_SCREEN_BEYOND_MEDIUM" class="pl-0" md="5" cols="auto">
         <v-row>
           <v-container>
             <v-card>
@@ -71,6 +71,7 @@ import MiniCartaRanking from "../components/funcional/MiniCartaRanking.vue";
 import ListadoPartidos from "../components/funcional/ListadoPartidos.vue";
 import PartidoProximo from "../components/funcional/PartidoProximo.vue";
 import CartaDondeEmpezar from "../components/funcional/CartaDondeEmpezar.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
@@ -98,14 +99,6 @@ export default {
     };
   },
 
-  computed: {
-    isScreenBeyondMedium() {
-      return (
-        this.$vuetify.breakpoint.name === "md" ||
-        this.$vuetify.breakpoint.name === "lg" ||
-        this.$vuetify.breakpoint.name === "xl"
-      );
-    },
-  },
+  computed: mapGetters(["IS_SCREEN_BEYOND_MEDIUM"]),
 };
 </script>

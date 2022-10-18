@@ -89,6 +89,6 @@ export default {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: ghostwhite;
+  background-color: #94baf7;
 }
 </style>

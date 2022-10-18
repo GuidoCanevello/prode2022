@@ -1,8 +1,9 @@
 <template>
   <v-navigation-drawer
+    v-if="isCreated"
     v-model="showNavigation"
-    :temporary="!isScreenBeyondLarge"
-    :permanent="isScreenBeyondLarge"
+    :temporary="!IS_SCREEN_BEYOND_LARGE"
+    :permanent="IS_SCREEN_BEYOND_LARGE"
     app
   >
     <v-container class="main-container d-flex flex-column">
@@ -143,6 +144,8 @@ export default {
       logoutLoading: false,
 
       showNavigationValue: false,
+
+      isCreated: false,
     };
   },
   methods: {
@@ -164,23 +167,25 @@ export default {
 
     triggerShowNavigation() {
       this.showNavigationValue = true;
-    }
+    },
   },
 
   computed: {
-    ...mapGetters(["USUARIO_NOMBRE_CUENTA"]),
-    isScreenBeyondLarge() {
-      return this.$vuetify.breakpoint.name === "lg" || this.$vuetify.breakpoint.name === "xl";
-    },
+    ...mapGetters(["USUARIO_NOMBRE_CUENTA", "IS_SCREEN_BEYOND_LARGE"]),
+
     showNavigation: {
       get() {
-        return this.isScreenBeyondLarge ? true : this.showNavigationValue;
+        return this.IS_SCREEN_BEYOND_MEDIUM ? true : this.showNavigationValue;
       },
 
       set(value) {
         this.showNavigationValue = value;
-      }
+      },
     },
+  },
+
+  mounted() {
+    this.isCreated = true;
   },
 };
 </script>

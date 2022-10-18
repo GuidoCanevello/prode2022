@@ -7,7 +7,7 @@
         :headers="headers"
         :items="DATA_LISTADO"
         item-key="id"
-        :items-per-page="15"
+        :items-per-page="IS_SCREEN_BEYOND_MEDIUM ? 15 : 5"
         :search="busqueda"
         :custom-filter="filtrarEquipo"
         :loading="IS_LOADING_FUTBOL_DATA"
@@ -61,7 +61,7 @@ export default {
     ],
   }),
 
-  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO", "IS_SCREEN_BEYOND_MEDIUM"]),
 
   methods: {
     formatFecha(fecha) {

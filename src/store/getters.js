@@ -1,3 +1,4 @@
+import vueInstance from '../main';
 import DATA_FASE_GRUPOS from './getters/DATA_FASE_GRUPOS';
 import DATA_RANKING from './getters/DATA_RANKING';
 import DATA_LISTADO from './getters/DATA_LISTADO';
@@ -25,4 +26,18 @@ export default {
     MSJ_ERROR: (state) => state.msjError,
     IS_LOGGED: (state) => state.isLogged,
     HAS_INITIAL_DATA: (state) => state.hasInitialData,
+
+    IS_SCREEN_BEYOND_MEDIUM: () => {
+        try {
+            return vueInstance.$vuetify.breakpoint.name === "md" ||
+                vueInstance.$vuetify.breakpoint.name === "lg" ||
+                vueInstance.$vuetify.breakpoint.name === "xl"
+        } catch (error) {
+            console.log("error", error)
+        }
+    },
+    IS_SCREEN_BEYOND_LARGE: () => (
+        vueInstance.$vuetify.breakpoint.name === "lg" ||
+        vueInstance.$vuetify.breakpoint.name === "xl"
+    ),
 }
