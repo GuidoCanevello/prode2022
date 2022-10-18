@@ -27,15 +27,17 @@ export default {
     IS_LOGGED: (state) => state.isLogged,
     HAS_INITIAL_DATA: (state) => state.hasInitialData,
 
-    IS_SCREEN_BEYOND_MEDIUM: () => {
-        try {
-            return vueInstance.$vuetify.breakpoint.name === "md" ||
-                vueInstance.$vuetify.breakpoint.name === "lg" ||
-                vueInstance.$vuetify.breakpoint.name === "xl"
-        } catch (error) {
-            console.log("error", error)
-        }
-    },
+    IS_SCREEN_BEYOND_SMALL: () => (
+        vueInstance.$vuetify.breakpoint.name === "sm" ||
+        vueInstance.$vuetify.breakpoint.name === "md" ||
+        vueInstance.$vuetify.breakpoint.name === "lg" ||
+        vueInstance.$vuetify.breakpoint.name === "xl"
+    ),
+    IS_SCREEN_BEYOND_MEDIUM: () => (
+        vueInstance.$vuetify.breakpoint.name === "md" ||
+        vueInstance.$vuetify.breakpoint.name === "lg" ||
+        vueInstance.$vuetify.breakpoint.name === "xl"
+    ),
     IS_SCREEN_BEYOND_LARGE: () => (
         vueInstance.$vuetify.breakpoint.name === "lg" ||
         vueInstance.$vuetify.breakpoint.name === "xl"
