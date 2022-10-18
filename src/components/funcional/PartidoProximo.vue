@@ -26,6 +26,7 @@
                 >
                   <v-row>
                     <v-col
+                      :class="IS_SCREEN_BEYOND_SMALL ? '' : 'pr-0'"
                       style="text-align: right"
                       cols="auto"
                       align-self="center"
@@ -61,6 +62,7 @@
                       <h2>{{ DATA_PROX_PARTIDO.equipo2 }}</h2>
                     </v-col>
                     <v-col
+                      :class="IS_SCREEN_BEYOND_SMALL ? '' : 'pl-0'"
                       style="text-align: left"
                       cols="auto"
                       align-self="center"
@@ -120,6 +122,7 @@ export default {
   computed: {
     ...mapGetters([
       "DATA_PROX_PARTIDO",
+      "IS_SCREEN_BEYOND_SMALL",
       "IS_SCREEN_BEYOND_MEDIUM",
       "IS_SCREEN_BEYOND_LARGE",
     ]),
