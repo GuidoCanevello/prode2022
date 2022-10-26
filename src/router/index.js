@@ -21,8 +21,8 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/FaseGrupos.view'),
   },
   {
-    path: '/fase-torneo',
-    name: 'Fase de Torneo',
+    path: '/fase-final',
+    name: 'Fase Final',
     props: true,
     component: () => import(/* webpackChunkName: "about" */ '../views/FaseFinal.view'),
   },

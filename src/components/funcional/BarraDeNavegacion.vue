@@ -1,5 +1,11 @@
 <template>
-  <v-navigation-drawer permanent app>
+  <v-navigation-drawer
+    v-if="isCreated"
+    v-model="showNavigation"
+    :temporary="!IS_SCREEN_BEYOND_LARGE"
+    :permanent="IS_SCREEN_BEYOND_LARGE"
+    app
+  >
     <v-container class="main-container d-flex flex-column">
       <!-- TITULO -->
       <v-container class="pa-0">
@@ -80,7 +86,7 @@
           @click="handleLogout"
           :loading="logoutLoading"
         >
-          Cerrar Sesión
+          Cerrar Sesion
         </v-btn>
       </v-container>
     </v-container>
@@ -108,9 +114,9 @@ export default {
           route: "/fase-grupos",
         },
         {
-          title: "Fase de Torneo",
+          title: "Fase Final",
           icon: "mdi-tournament",
-          route: "/fase-torneo",
+          route: "/fase-final",
         },
         {
           title: "Calendario",
@@ -136,6 +142,10 @@ export default {
       ],
 
       logoutLoading: false,
+
+      showNavigationValue: false,
+
+      isCreated: false,
     };
   },
   methods: {
@@ -154,9 +164,29 @@ export default {
         (item.isAdmin && this.USUARIO_NOMBRE_CUENTA === "ADMIN")
       );
     },
+
+    triggerShowNavigation() {
+      this.showNavigationValue = true;
+    },
   },
 
-  computed: mapGetters(["USUARIO_NOMBRE_CUENTA"]),
+  computed: {
+    ...mapGetters(["USUARIO_NOMBRE_CUENTA", "IS_SCREEN_BEYOND_LARGE"]),
+
+    showNavigation: {
+      get() {
+        return this.IS_SCREEN_BEYOND_MEDIUM ? true : this.showNavigationValue;
+      },
+
+      set(value) {
+        this.showNavigationValue = value;
+      },
+    },
+  },
+
+  mounted() {
+    this.isCreated = true;
+  },
 };
 </script>
 

@@ -1,31 +1,20 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row>
       <v-col>
         <v-card>
-          <v-container>
-            <h1>Prediccion Deportiva - Qatar 2022</h1>
+          <v-container fluid>
+            <h1>Pronostico Deportivo - Qatar 2022</h1>
           </v-container>
         </v-card>
       </v-col>
     </v-row>
 
     <v-row class="mt-0">
-      <v-col sm="7">
+      <v-col md="7">
         <v-row>
           <v-container>
-            <v-card>
-              <v-card-title primary-title>
-                <v-row>
-                  <v-col> ¿No sabes por donde empezar? </v-col>
-                  <v-col style="text-align: right">
-                    <v-btn color="success" @click="handleVerReglamento">
-                      Ver Reglamento
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-card-title>
-            </v-card>
+            <carta-donde-empezar />
           </v-container>
         </v-row>
 
@@ -40,9 +29,15 @@
             <listado-partidos />
           </v-container>
         </v-row>
+
+        <v-row v-if="!IS_SCREEN_BEYOND_MEDIUM" class="mt-0">
+          <v-container>
+            <mini-carta-ranking />
+          </v-container>
+        </v-row>
       </v-col>
 
-      <v-col class="pl-0" sm="5">
+      <v-col v-if="IS_SCREEN_BEYOND_MEDIUM" class="pl-0" md="5" cols="auto">
         <v-row>
           <v-container>
             <v-card>
@@ -75,10 +70,19 @@
 import MiniCartaRanking from "../components/funcional/MiniCartaRanking.vue";
 import ListadoPartidos from "../components/funcional/ListadoPartidos.vue";
 import PartidoProximo from "../components/funcional/PartidoProximo.vue";
+import CartaDondeEmpezar from "../components/funcional/CartaDondeEmpezar.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
-  components: { ListadoPartidos, PartidoProximo, MiniCartaRanking },
+
+  components: {
+    ListadoPartidos,
+    PartidoProximo,
+    MiniCartaRanking,
+    CartaDondeEmpezar,
+  },
+
   data() {
     return {
       items: [
@@ -95,10 +99,6 @@ export default {
     };
   },
 
-  methods: {
-    handleVerReglamento() {
-      this.$router.push("/reglamento");
-    },
-  },
+  computed: mapGetters(["IS_SCREEN_BEYOND_MEDIUM"]),
 };
 </script>

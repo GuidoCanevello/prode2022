@@ -2,9 +2,9 @@
   <v-card>
     <v-card-title primary-title>
       <v-row>
-        <v-col sm="8"> Ranking </v-col>
-        <v-col sm="4" style="text-align: end">
-          <v-btn color="success" @click="handleIrARanking">Ir al Ranking</v-btn>
+        <v-col> Ranking </v-col>
+        <v-col cols="auto" style="text-align: end">
+          <v-btn color="success" @click="handleIrARanking" text>Ir al Ranking</v-btn>
         </v-col>
       </v-row>
     </v-card-title>

@@ -7,47 +7,18 @@
     <v-spacer />
 
     <v-card-text>
-      <v-data-table
-        :headers="headers"
-        :items="equipos"
-        item-key="id"
-        hide-default-footer
-      >
-        <template v-slot:[`item.bandera`]="{ item }">
-          <bandera :code="item.code" />
-        </template>
-      </v-data-table>
+      <tabla-grupo :equipos="equipos" />
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import Bandera from "../utilitarios/Bandera.vue";
+import TablaGrupo from "./TablaGrupo.vue";
 
 export default {
   name: "CartaGrupo",
-  components: { Bandera },
+  components: { TablaGrupo },
   props: ["nombre", "equipos"],
-  data: () => ({
-    headers: [
-      {
-        align: "start",
-        sortable: false,
-        value: "bandera",
-      },
-      {
-        text: "Nombre",
-        sortable: false,
-        value: "nombre",
-      },
-      {
-        text: "Puntos",
-        sortable: false,
-        align: "end",
-        value: "puntos",
-      },
-    ],
-  }),
 };
 </script>
 

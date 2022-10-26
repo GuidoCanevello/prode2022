@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title primary-title> Predicción Realizada </v-card-title>
+    <v-card-title primary-title> Pronostico Realizado </v-card-title>
 
     <v-card-subtitle>
       <v-row>
@@ -74,7 +74,7 @@
       <template v-if="golesEquipo1Aux === '-'">
         <v-row> 
             <v-col>
-                *No se estableció un resultado
+                *No se establecio un resultado
             </v-col>
         </v-row>
       </template>

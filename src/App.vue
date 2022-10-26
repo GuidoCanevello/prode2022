@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <template v-if="!['login'].includes($root._route.path.substring(1))">
-      <barra-de-navegacion />
+      <barra-de-navegacion ref="barraDeNavegacion" />
     </template>
 
     <template v-if="SHOW_ERROR">
@@ -15,6 +15,21 @@
       class="main-app"
     >
       <router-view />
+
+      <template v-if="!['login'].includes($root._route.path.substring(1))">
+        <v-btn
+          class="btn-trigger-navbar"
+          v-show="showNavbarButton"
+          @click="$refs.barraDeNavegacion.triggerShowNavigation()"
+          elevation="2"
+          fab
+          rounded
+          icon
+          absolute
+        >
+          <v-icon> mdi-menu </v-icon>
+        </v-btn>
+      </template>
     </v-main>
   </v-app>
 </template>
@@ -27,7 +42,15 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   components: { BarraDeNavegacion, DialogoError },
   name: "App",
-  computed: mapGetters(["IS_LOGGED", "IS_LOADING_LOGIN", "SHOW_ERROR"]),
+  computed: {
+    ...mapGetters(["IS_LOGGED", "IS_LOADING_LOGIN", "SHOW_ERROR"]),
+    showNavbarButton() {
+      return !(
+        this.$vuetify.breakpoint.name === "lg" ||
+        this.$vuetify.breakpoint.name === "xl"
+      );
+    },
+  },
   methods: {
     ...mapActions(["CHECK_LOGIN_STATUS", "DISPATCH_GET_INITIAL_DATA"]),
   },
@@ -61,5 +84,12 @@ export default {
 <style scoped>
 .main-app {
   background-color: cornflowerblue;
+}
+
+.btn-trigger-navbar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #94baf7;
 }
 </style>

@@ -19,16 +19,16 @@
       </v-col>
 
       <v-col sm="5" style="text-align: center">
-        <v-container>
+        <v-container @click="handleEdit">
           <v-badge bordered overlap style="cursor: pointer">
             <template v-if="HAS_INITIAL_DATA" v-slot:badge>
-              <v-icon class="custom-icon">mdi-pencil</v-icon>
+              <v-icon class="custom-icon" >mdi-pencil</v-icon>
             </template>
-            <v-avatar v-if="USUARIO_IMAGEN_SRC" @click="handleEdit">
+            <v-avatar v-if="USUARIO_IMAGEN_SRC">
               <img :src="USUARIO_IMAGEN_SRC" alt="perfil" />
             </v-avatar>
 
-            <v-avatar v-else color="blue lighten-1" @click="handleEdit">
+            <v-avatar v-else color="blue lighten-1">
               {{ USUARIO_NOMBRE_JUGADOR.substring(0, 1) }}
             </v-avatar>
           </v-badge>

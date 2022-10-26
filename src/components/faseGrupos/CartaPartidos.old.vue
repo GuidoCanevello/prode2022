@@ -29,21 +29,14 @@
         :item-class="fondoItem"
         sort-by="fecha"
       >
-        <template v-slot:[`item.equipo1`]="{ item }">
-          <td style="width: 160px">
-            <v-row>
-              <v-col class="pr-0" cols="auto">
-                <bandera :code="item.code1" />
-              </v-col>
-              <v-col>
-                {{ item.equipo1 }}
-              </v-col>
-            </v-row>
+        <template v-slot:[`item.bandera1`]="{ item }">
+          <td style="width: 16px">
+            <bandera :code="item.code1" />
           </td>
         </template>
 
         <template v-slot:[`item.golesPrediccionEquipo1`]="{ item }">
-          <td class="px-0" style="width: 120px">
+          <td style="width: 120px">
             <v-text-field
               outlined
               dense
@@ -54,7 +47,7 @@
         </template>
 
         <template v-slot:[`item.golesPrediccionEquipo2`]="{ item }">
-          <td class="px-0" style="width: 120px">
+          <td style="width: 120px">
             <v-text-field
               outlined
               dense
@@ -65,16 +58,9 @@
           </td>
         </template>
 
-        <template v-slot:[`item.equipo2`]="{ item }">
-          <td style="width: 160px">
-            <v-row>
-              <v-col style="text-align: end">
-                {{ item.equipo2 }}
-              </v-col>
-              <v-col class="pl-0" cols="auto" style="text-align: end">
-                <bandera :code="item.code2" />
-              </v-col>
-            </v-row>
+        <template v-slot:[`item.bandera2`]="{ item }">
+          <td style="width: 16px">
+            <bandera :code="item.code2" />
           </td>
         </template>
       </v-data-table>
@@ -98,10 +84,17 @@ export default {
 
     headers: [
       {
+        align: "start",
+        sortable: false,
+        value: "bandera1",
+        cellClass: "cell-equipo",
+      },
+      {
         text: "Equipo 1",
         align: "start",
         value: "equipo1",
-        sortable: false,
+        cellClass: "cell-equipo",
+        width: "15%",
       },
       {
         align: "center",
@@ -125,6 +118,14 @@ export default {
         sortable: false,
         align: "end",
         value: "equipo2",
+        cellClass: "cell-equipo",
+        width: "15%",
+      },
+      {
+        sortable: false,
+        align: "end",
+        value: "bandera2",
+        cellClass: "cell-equipo",
       },
     ],
   }),
@@ -204,7 +205,7 @@ export default {
         code1: partido.code1,
         equipo2: partido.equipo2,
         code2: partido.code2,
-        guion: partido.golesEquipo1 ? `${partido.golesEquipo1} - ${partido.golesEquipo2}` : 'N - N',
+        guion: "-",
         golesPrediccionEquipo1: partido.tienePrediccion
           ? partido.prediccion.golesEquipo1
           : undefined,
@@ -232,5 +233,9 @@ export default {
 
 .input-goles-2 input {
   text-align: end;
+}
+
+.cell-equipo {
+  /* width: 30%; */
 }
 </style>
