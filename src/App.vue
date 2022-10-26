@@ -25,6 +25,7 @@
           fab
           rounded
           icon
+          absolute
         >
           <v-icon> mdi-menu </v-icon>
         </v-btn>

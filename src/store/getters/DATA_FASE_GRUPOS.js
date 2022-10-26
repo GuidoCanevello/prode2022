@@ -41,6 +41,8 @@ export default function (state) {
             equipo2: objEquipo2.nombre,
             code2: objEquipo2.code,
             tienePrediccion: false,
+            golesEquipo1: partido.golesEquipo1,
+            golesEquipo2: partido.golesEquipo2,
             fecha,
         }
 

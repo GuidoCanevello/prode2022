@@ -34,8 +34,7 @@
                       <bandera :code="DATA_PROX_PARTIDO.code1" />
                     </v-col>
                     <v-col style="text-align: left">
-                      <!-- <h2>{{ DATA_PROX_PARTIDO.equipo1 }}</h2> -->
-                      <h2>Estados Unidos</h2>
+                      <h2>{{ DATA_PROX_PARTIDO.equipo1 }}</h2>
                     </v-col>
                   </v-row>
                 </v-card>

@@ -64,7 +64,7 @@ export default {
     currentPartido: {},
     
     showSnackbar: false,
-    timeoutSnackbar: 1500,
+    timeoutSnackbar: 5000,
   }),
 
   computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),

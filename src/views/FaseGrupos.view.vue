@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <v-card>
-          <v-container>
+          <v-container fluid>
             <h1>Fase de Grupos</h1>
           </v-container>
         </v-card>
@@ -48,7 +48,7 @@ export default {
 
   data: () => ({
     showSnackbar: false,
-    timeoutSnackbar: 1500,
+    timeoutSnackbar: 5000,
   }),
 
   computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_FASE_GRUPOS"]),
