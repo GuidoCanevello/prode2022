@@ -12,18 +12,17 @@
 
     <v-row class="mt-0">
       <v-col>
-        <sitio-bajo-construccion />
+        <reglamento-markdown />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import SitioBajoConstruccion from '../components/utilitarios/SitioBajoConstruccion.vue'
+import ReglamentoMarkdown from "../components/funcional/ReglamentoMarkdown.vue";
+
 export default {
-  name: 'Reglamento',
-  components: {
-    SitioBajoConstruccion
-  }
-}
-</script>
+  name: "Reglamento",
+  components: { ReglamentoMarkdown },
+};
+</script>    
