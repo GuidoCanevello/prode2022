@@ -19,6 +19,10 @@
     <v-spacer />
 
     <v-card-text>
+      <v-alert type="error" :value="showAlert">
+        Solo se permiten Numeros
+      </v-alert>
+
       <v-data-table
         :headers="headers"
         :items="dataPartidos"
@@ -95,6 +99,7 @@ export default {
     dataPartidos: [],
 
     loadingUpdatePredicciones: false,
+    showAlert: false,
 
     headers: [
       {
@@ -137,11 +142,11 @@ export default {
     },
 
     async saveChanges() {
+      this.showAlert = false;
+
       let isActualizado = false;
-      let hayError = false;
-      hayError = this.dataPartidos.some(
+      let hayError = this.dataPartidos.some(
         (p) =>
-          !p.tienePrediccion &&
           !this.verificarGoles(
             p.golesPrediccionEquipo1,
             p.golesPrediccionEquipo2
@@ -150,7 +155,6 @@ export default {
 
       if (!hayError) {
         this.loadingUpdatePredicciones = true;
-
         for (const p of this.dataPartidos) {
           if (
             !p.tienePrediccion &&
@@ -179,10 +183,10 @@ export default {
             isActualizado = true;
           }
         }
-
         if (isActualizado) this.$emit("prediccion-actualizada");
-
         this.loadingUpdatePredicciones = false;
+      } else {
+        this.showAlert = true;
       }
     },
 
@@ -204,7 +208,9 @@ export default {
         code1: partido.code1,
         equipo2: partido.equipo2,
         code2: partido.code2,
-        guion: partido.golesEquipo1 ? `${partido.golesEquipo1} - ${partido.golesEquipo2}` : 'N - N',
+        guion: partido.golesEquipo1
+          ? `${partido.golesEquipo1} - ${partido.golesEquipo2}`
+          : "N - N",
         golesPrediccionEquipo1: partido.tienePrediccion
           ? partido.prediccion.golesEquipo1
           : undefined,

@@ -96,7 +96,7 @@
               v-if="$vuetify.breakpoint.name === 'xs'"
               v-slot:item="{ item }"
             >
-              <tr>
+              <tr :class="fondoItem(item)">
                 <td class="pr-0 py-3" style="width: 200px">
                   <v-row>
                     <v-col class="pr-0" cols="auto">
@@ -176,16 +176,30 @@
     </v-card-text>
 
     <v-card-actions>
-      <v-spacer />
-      <v-btn
-        color="success"
-        right
-        :loading="loadingUpdatePredicciones"
-        :disabled="loadingUpdatePredicciones"
-        @click="saveChanges"
-      >
-        Guardar Cambios
-      </v-btn>
+      <v-container class="pa-0">
+        <v-row>
+          <v-col class="py-0" cols="12">
+            <v-alert type="error" :value="showAlert">
+              Solo se permiten Numeros
+            </v-alert>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-spacer />
+          <v-col class="pt-0" cols="auto">
+            <v-btn
+              color="success"
+              right
+              :loading="loadingUpdatePredicciones"
+              :disabled="loadingUpdatePredicciones"
+              @click="saveChanges"
+            >
+              Guardar Cambios
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card-actions>
   </v-card>
 </template>
@@ -204,6 +218,7 @@ export default {
     dataPartidos: [],
 
     loadingUpdatePredicciones: false,
+    showAlert: false,
 
     headers: [
       {
@@ -251,11 +266,11 @@ export default {
     },
 
     async saveChanges() {
+      this.showAlert = false;
+
       let isActualizado = false;
-      let hayError = false;
-      hayError = this.dataPartidos.some(
+      let hayError = this.dataPartidos.some(
         (p) =>
-          !p.tienePrediccion &&
           !this.verificarGoles(
             p.golesPrediccionEquipo1,
             p.golesPrediccionEquipo2
@@ -264,7 +279,6 @@ export default {
 
       if (!hayError) {
         this.loadingUpdatePredicciones = true;
-
         for (const p of this.dataPartidos) {
           if (
             !p.tienePrediccion &&
@@ -293,16 +307,18 @@ export default {
             isActualizado = true;
           }
         }
-
         if (isActualizado) this.$emit("prediccion-actualizada");
-
         this.loadingUpdatePredicciones = false;
+      } else {
+        this.showAlert = true;
       }
     },
 
     verificarGoles(gol1, gol2) {
       if (gol1 === undefined || gol2 === undefined) return true;
-      else return !isNaN(gol1) && !isNaN(gol2);
+      else if (this.$vuetify.breakpoint.name === "sm")
+        return !isNaN(gol1) && !isNaN(gol2);
+      else return !isNaN(parseInt(gol1)) && !isNaN(parseInt(gol2));
     },
   },
 
@@ -344,9 +360,5 @@ export default {
 
 .table-partidos .fila-con-prediccion:hover {
   background-color: #b3e5fc !important;
-}
-
-.input-goles-2 input {
-  text-align: end;
 }
 </style>
