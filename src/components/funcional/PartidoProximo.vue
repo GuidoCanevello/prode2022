@@ -24,19 +24,21 @@
                       : 'team-card-small'
                   "
                 >
-                  <v-row>
-                    <v-col
-                      :class="IS_SCREEN_BEYOND_SMALL ? '' : 'pr-0'"
-                      style="text-align: right"
-                      cols="auto"
-                      align-self="center"
-                    >
-                      <bandera :code="DATA_PROX_PARTIDO.code1" />
-                    </v-col>
-                    <v-col style="text-align: left">
-                      <h2>{{ DATA_PROX_PARTIDO.equipo1 }}</h2>
-                    </v-col>
-                  </v-row>
+                  <v-container class="pa-0" fill-height fluid>
+                    <v-row align="center">
+                      <v-col
+                        :class="IS_SCREEN_BEYOND_SMALL ? '' : 'pr-0'"
+                        style="text-align: right"
+                        cols="auto"
+                        align-self="center"
+                      >
+                        <bandera :code="DATA_PROX_PARTIDO.code1" />
+                      </v-col>
+                      <v-col style="text-align: left">
+                        <h2>{{ DATA_PROX_PARTIDO.equipo1 }}</h2>
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-card>
               </v-col>
               <v-col
@@ -56,19 +58,21 @@
                       : 'team-card-small'
                   "
                 >
-                  <v-row>
-                    <v-col style="text-align: right">
-                      <h2>{{ DATA_PROX_PARTIDO.equipo2 }}</h2>
-                    </v-col>
-                    <v-col
-                      :class="IS_SCREEN_BEYOND_SMALL ? '' : 'pl-0'"
-                      style="text-align: left"
-                      cols="auto"
-                      align-self="center"
-                    >
-                      <bandera :code="DATA_PROX_PARTIDO.code2" />
-                    </v-col>
-                  </v-row>
+                  <v-container class="pa-0" fill-height fluid>
+                    <v-row align="center">
+                      <v-col style="text-align: right">
+                        <h2>{{ DATA_PROX_PARTIDO.equipo2 }}</h2>
+                      </v-col>
+                      <v-col
+                        :class="IS_SCREEN_BEYOND_SMALL ? '' : 'pl-0'"
+                        style="text-align: left"
+                        cols="auto"
+                        align-self="center"
+                      >
+                        <bandera :code="DATA_PROX_PARTIDO.code2" />
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-card>
               </v-col>
             </v-row>
@@ -157,9 +161,11 @@ export default {
 <style scoped>
 .team-card-small {
   padding: 4px;
+  height: 100%;
 }
 
 .team-card-medium {
   padding: 8px;
+  height: 100%;
 }
 </style>
