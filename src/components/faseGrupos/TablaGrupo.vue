@@ -7,13 +7,15 @@
     mobile-breakpoint="0"
   >
     <template v-slot:[`item.bandera`]="{ item }">
-      <bandera :code="item.code" />
+      <td class="text-start" style="width: 30px">
+        <bandera :code="item.code" />
+      </td>
     </template>
   </v-data-table>
 </template>
 
 <script>
-import Bandera from '../utilitarios/Bandera.vue';
+import Bandera from "../utilitarios/Bandera.vue";
 export default {
   components: { Bandera },
   name: "TablaGrupo",
