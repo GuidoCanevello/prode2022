@@ -13,8 +13,9 @@ function addSorted(list, element) {
 
 export default function (state) {
     let dataRanking = [];
+    let ignoredUsers = ["ADMIN", "GuidoTest"]; // Nombre de Cuenta de los Usuarios
 
-    const usuarios = state.usuarios;
+    const usuarios = state.usuarios.filter(user => !ignoredUsers.includes(user.nombreCuenta));
 
     usuarios.forEach(user => {
         addSorted(dataRanking, {
@@ -26,10 +27,9 @@ export default function (state) {
     });
 
     let pos = 0;
-    // REVIEW ver si puntaje no puede ser mayor a esto
-    let previousScore = 10000; 
+    let previousScore = 100000;
     dataRanking.forEach(e => {
-        if(e.puntos < previousScore) {
+        if (e.puntos < previousScore) {
             pos++;
             previousScore = e.puntos;
         }

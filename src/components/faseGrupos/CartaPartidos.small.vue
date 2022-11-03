@@ -53,10 +53,13 @@
             >
               <td class="px-0" style="width: 60px">
                 <v-text-field
-                  outlined
+                  :outlined="validarFecha(item.fecha)"
+                  :filled="!validarFecha(item.fecha)"
                   dense
                   hide-details="auto"
+                  :disabled="!validarFecha(item.fecha)"
                   v-model="item.golesPrediccionEquipo1"
+                  :placeholder="validarFecha(item.fecha) ? 'Ej: 0' : 'X'"
                 />
               </td>
             </template>
@@ -67,11 +70,14 @@
             >
               <td class="px-0" style="width: 60px">
                 <v-text-field
-                  outlined
+                  :outlined="validarFecha(item.fecha)"
+                  :filled="!validarFecha(item.fecha)"
                   dense
                   hide-details="auto"
                   class="input-goles-2"
+                  :disabled="!validarFecha(item.fecha)"
                   v-model="item.golesPrediccionEquipo2"
+                  :placeholder="validarFecha(item.fecha) ? 'Ej: 0' : 'X'"
                 />
               </td>
             </template>
@@ -112,10 +118,13 @@
                   <v-row>
                     <v-col class="pl-1 pr-0" cols="auto" style="width: 100px">
                       <v-text-field
-                        outlined
+                        :outlined="validarFecha(item.fecha)"
+                        :filled="!validarFecha(item.fecha)"
                         dense
                         hide-details="auto"
+                        :disabled="!validarFecha(item.fecha)"
                         v-model="item.golesPrediccionEquipo1"
+                        :placeholder="validarFecha(item.fecha) ? 'Ej: 0' : 'X'"
                         type="number"
                       />
                     </v-col>
@@ -159,11 +168,15 @@
                       style="text-align: end; width: 100px"
                     >
                       <v-text-field
-                        outlined
+                        :outlined="validarFecha(item.fecha)"
+                        :filled="!validarFecha(item.fecha)"
                         dense
                         hide-details="auto"
-                        v-model="item.golesPrediccionEquipo2"
                         class="input-goles-2"
+                        :disabled="!validarFecha(item.fecha)"
+                        v-model="item.golesPrediccionEquipo2"
+                        :placeholder="validarFecha(item.fecha) ? 'Ej: 0' : 'X'"
+                        type="number"
                       />
                     </v-col>
                   </v-row>
@@ -320,6 +333,12 @@ export default {
         return !isNaN(gol1) && !isNaN(gol2);
       else return !isNaN(parseInt(gol1)) && !isNaN(parseInt(gol2));
     },
+
+    validarFecha(fecha) {
+      // True si la fecha es mayor estricto que la fecha a validar
+      let fechaAValidar = new Date();
+      return fecha > fechaAValidar;
+    }
   },
 
   computed: mapGetters(["PREDICCIONES", "IS_SCREEN_BEYOND_SMALL"]),

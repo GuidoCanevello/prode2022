@@ -49,10 +49,13 @@
         <template v-slot:[`item.golesPrediccionEquipo1`]="{ item }">
           <td class="px-0" style="width: 120px">
             <v-text-field
-              outlined
+              :outlined="validarFecha(item.fecha)"
+              :filled="!validarFecha(item.fecha)"
               dense
               hide-details="auto"
+              :disabled="!validarFecha(item.fecha)"
               v-model="item.golesPrediccionEquipo1"
+              :placeholder="validarFecha(item.fecha) ? 'Ej: 0' : 'X'"
             />
           </td>
         </template>
@@ -60,11 +63,14 @@
         <template v-slot:[`item.golesPrediccionEquipo2`]="{ item }">
           <td class="px-0" style="width: 120px">
             <v-text-field
-              outlined
+              :outlined="validarFecha(item.fecha)"
+              :filled="!validarFecha(item.fecha)"
               dense
               hide-details="auto"
               class="input-goles-2"
+              :disabled="!validarFecha(item.fecha)"
               v-model="item.golesPrediccionEquipo2"
+              :placeholder="validarFecha(item.fecha) ? 'Ej: 0' : 'X'"
             />
           </td>
         </template>
@@ -194,6 +200,12 @@ export default {
       if (gol1 === undefined || gol2 === undefined) return true;
       else return !isNaN(gol1) && !isNaN(gol2);
     },
+
+    validarFecha(fecha) {
+      // True si la fecha es mayor estricto que la fecha a validar
+      let fechaAValidar = new Date();
+      return fecha > fechaAValidar;
+    }
   },
 
   computed: mapGetters(["PREDICCIONES"]),
