@@ -15,26 +15,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Login.view')
   },
   {
-    path: '/predicciones',
-    name: 'Predicciones',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Predicciones.view'),
-    children: [
-      {
-        path: 'listado',
-        props: true,
-        component: () => import(/* webpackChunkName: "about" */ '../views/predicciones/Listado.view'),
-      },
-      {
-        path: 'fase-grupos',
-        props: true,
-        component: () => import(/* webpackChunkName: "about" */ '../views/predicciones/FaseGrupos.view'),
-      },
-      {
-        path: 'fase-final',
-        props: true,
-        component: () => import(/* webpackChunkName: "about" */ '../views/predicciones/FaseFinal.view'),
-      }
-    ]
+    path: '/fase-grupos',
+    name: 'Fase de Grupos',
+    props: true,
+    component: () => import(/* webpackChunkName: "about" */ '../views/FaseGrupos.view'),
+  },
+  {
+    path: '/fase-final',
+    name: 'Fase Final',
+    props: true,
+    component: () => import(/* webpackChunkName: "about" */ '../views/FaseFinal.view'),
   },
   {
     path: '/calendario',

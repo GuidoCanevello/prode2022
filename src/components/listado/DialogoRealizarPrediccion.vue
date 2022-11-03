@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title primary-title> Realizar Predicción </v-card-title>
+    <v-card-title primary-title> Realizar Pronostico </v-card-title>
 
     <v-card-text>
       <v-row class="row-prediccion">

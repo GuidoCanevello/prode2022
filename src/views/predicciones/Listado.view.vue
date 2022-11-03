@@ -29,7 +29,7 @@
     </v-row>
     
     <v-snackbar v-model="showSnackbar" :timeout="timeoutSnackbar">
-      Predicciones Actualizadas Correctamente
+      Pronosticos Actualizados Correctamente
       <template v-slot:action="{ attrs }">
         <v-btn
           color="blue"
@@ -47,7 +47,7 @@
 <script>
 import DialogoRealizarPrediccion from "../../components/listado/DialogoRealizarPrediccion.vue";
 import DialogoVerPrediccion from "../../components/listado/DialogoVerPrediccion.vue";
-import ListadoPartidos from "../../components/listado/ListadoPartidos.vue";
+import ListadoPartidos from "../../components/funcional/ListadoPartidos.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -64,7 +64,7 @@ export default {
     currentPartido: {},
     
     showSnackbar: false,
-    timeoutSnackbar: 1500,
+    timeoutSnackbar: 5000,
   }),
 
   computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),

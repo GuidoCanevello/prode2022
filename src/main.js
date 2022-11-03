@@ -7,7 +7,7 @@ import './axios';
 
 Vue.config.productionTip = false
 
-new Vue({
+export default new Vue({
   router,
   vuetify,
   store,

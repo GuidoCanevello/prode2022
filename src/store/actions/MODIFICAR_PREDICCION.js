@@ -15,8 +15,6 @@ export default async function ({ state, commit, dispatch }, { partidoId, golesEq
             newPrediccion = await dispatch('DISPATCH_AXIOS_REQUEST', {
                 axiosRequest: async () => await axios.put(`usuarios/${state.usuarioId}/prediccion/${newPrediccion._id}`,
                     {
-                        _id: newPrediccion._id,
-                        partidoId,
                         golesEquipo1,
                         golesEquipo2,
                     }

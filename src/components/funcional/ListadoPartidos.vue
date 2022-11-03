@@ -1,11 +1,40 @@
 <template>
   <v-card>
-    <v-container>
+    <v-card-title primary-title>
+      <v-row>
+        <v-col cols="auto"> Listado de Partidos </v-col>
+        <template v-if="IS_SCREEN_BEYOND_MEDIUM">
+          <v-spacer />
+          <v-col cols="auto" style="text-align: end">
+            <v-btn
+              class="pr-1 pl-0"
+              text
+              color="success"
+              @click="handleIrAFaseGrupos"
+            >
+              Fase de Grupos
+            </v-btn>
+          </v-col>
+          <v-col cols="auto" style="text-align: end">
+            <v-btn
+              class="pl-1"
+              text
+              color="success"
+              @click="handleIrAFaseFinal"
+            >
+              Fase Final
+            </v-btn>
+          </v-col>
+        </template>
+      </v-row>
+    </v-card-title>
+
+    <v-card-text>
       <v-data-table
         :headers="headers"
         :items="DATA_LISTADO"
         item-key="id"
-        :items-per-page="15"
+        :items-per-page="IS_SCREEN_BEYOND_MEDIUM ? 15 : 5"
         :search="busqueda"
         :custom-filter="filtrarEquipo"
         :loading="IS_LOADING_FUTBOL_DATA"
@@ -13,6 +42,7 @@
         dense
         class="table-partidos"
         :item-class="fondoItem"
+        sort-by="fecha"
       >
         <template v-slot:top>
           <v-text-field
@@ -25,49 +55,24 @@
         <template v-slot:[`item.fecha`]="{ item }">
           <span>{{ formatFecha(item.fecha) }}</span>
         </template>
-
-        <template v-slot:[`item.actions`]="{ item }">
-          <!-- VER PREDICCION -->
-          <v-tooltip v-if="item.tienePrediccion" bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon
-                small
-                class="mr-2"
-                @click="handleView(item)"
-                v-bind="attrs"
-                v-on="on"
-              >
-                mdi-card-search
-              </v-icon>
-            </template>
-            <span>Ver Predicción</span>
-          </v-tooltip>
-
-          <!-- REALIZAR PREDICCION -->
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon
-                small
-                class="mr-2"
-                @click="handlePredecir(item)"
-                v-bind="attrs"
-                v-on="on"
-              >
-                mdi-head-snowflake
-              </v-icon>
-            </template>
-            <span>Actualizar Predicción</span>
-          </v-tooltip>
-        </template>
       </v-data-table>
-    </v-container>
+    </v-card-text>
+
+    <v-card-subtitle v-if="!IS_SCREEN_BEYOND_MEDIUM">
+      <v-btn text color="success" @click="handleIrAFaseGrupos">
+        Fase de Grupos
+      </v-btn>
+      <v-btn text color="success" @click="handleIrAFaseFinal">
+        Fase Final
+      </v-btn>
+    </v-card-subtitle>
   </v-card>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import obtenerNombreDia from '@/utils/obtenerNombreDia';
-import addCero from '@/utils/addCero';
+import obtenerNombreDia from "@/utils/obtenerNombreDia";
+import addCero from "@/utils/addCero";
 
 export default {
   name: "ListadoPartidos",
@@ -82,24 +87,27 @@ export default {
         value: "descripcionPartido",
       },
       {
-        text: "Predicción",
+        text: "Pronostico",
         sortable: false,
         filterable: false,
         value: "descripcionPrediccion",
       },
-      { text: "Grupo", value: "grupo", filterable: false },
-      { text: "Fecha y Hora", value: "fecha", align: "end", filterable: false },
       {
-        text: "Acciones",
-        sortable: false,
+        text: "Grupo",
+        value: "grupo",
         filterable: false,
-        align: "end",
-        value: "actions",
+        align: " d-none d-md-table-cell",
       },
+      { text: "Fecha y Hora", value: "fecha", align: "end", filterable: false },
     ],
   }),
 
-  computed: mapGetters(["IS_LOADING_FUTBOL_DATA", "DATA_LISTADO"]),
+  computed: mapGetters([
+    "IS_LOADING_FUTBOL_DATA",
+    "DATA_LISTADO",
+    "IS_SCREEN_BEYOND_MEDIUM",
+    "IS_SCREEN_BEYOND_LARGE",
+  ]),
 
   methods: {
     formatFecha(fecha) {
@@ -115,6 +123,7 @@ export default {
     fondoItem(item) {
       return item.tienePrediccion ? "fila-con-prediccion" : "";
     },
+
     filtrarEquipo(value, busqueda, item) {
       let equipos = value ? value.toString().toLocaleUpperCase() : "";
       let busquedaAux = busqueda ? busqueda.toLocaleUpperCase() : "";
@@ -122,12 +131,13 @@ export default {
         equipos != "" && busqueda != "" && equipos.indexOf(busquedaAux) !== -1
       );
     },
-    handlePredecir(item) {
-      this.$emit("realizar-prediccion", item.partidoId);
+
+    handleIrAFaseGrupos() {
+      this.$router.push("/fase-grupos");
     },
 
-    handleView(item) {
-      this.$emit("ver-prediccion", item.partidoId);
+    handleIrAFaseFinal() {
+      this.$router.push("/fase-final");
     },
   },
 };

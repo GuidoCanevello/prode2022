@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <v-card>
-          <v-container grid-list-xs>
+          <v-container fluid>
             <h1>Ranking</h1>
           </v-container>
         </v-card>
@@ -11,30 +11,28 @@
     </v-row>
 
     <v-row class="mt-0">
-      <v-col>
+      <v-spacer />
+
+      <v-col :cols="IS_SCREEN_BEYOND_SMALL ? 10 : 'auto'">
         <carta-ranking />
       </v-col>
+
+      <v-spacer />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import CartaRanking from '../components/CartaRanking.vue';
+import { mapGetters } from "vuex";
+import CartaRanking from "../components/funcional/CartaRanking.vue";
 
 export default {
-  name: 'Ranking',
-  
+  name: "Ranking",
+
   components: {
-    CartaRanking
-  },  
-
-  methods: {
-    ...mapActions(["DISPATCH_GET_ALL_USERS"]),
+    CartaRanking,
   },
 
-  async created() {
-    await this.DISPATCH_GET_ALL_USERS();
-  },
-}
+  computed: mapGetters(["IS_SCREEN_BEYOND_SMALL", "IS_SCREEN_BEYOND_LARGE"]),
+};
 </script>

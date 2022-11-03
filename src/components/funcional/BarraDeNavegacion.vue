@@ -1,5 +1,11 @@
 <template>
-  <v-navigation-drawer permanent app>
+  <v-navigation-drawer
+    v-if="isCreated"
+    v-model="showNavigation"
+    :temporary="!IS_SCREEN_BEYOND_LARGE"
+    :permanent="IS_SCREEN_BEYOND_LARGE"
+    app
+  >
     <v-container class="main-container d-flex flex-column">
       <!-- TITULO -->
       <v-container class="pa-0">
@@ -80,7 +86,7 @@
           @click="handleLogout"
           :loading="logoutLoading"
         >
-          Cerrar Sesión
+          Cerrar Sesion
         </v-btn>
       </v-container>
     </v-container>
@@ -98,27 +104,19 @@ export default {
     return {
       items: [
         {
-          title: "Predicciones",
-          icon: "mdi-head-snowflake-outline",
-          route: "/predicciones",
-          hasGroup: true,
-          subitems: [
-            {
-              title: "Ver Lista de Partidos",
-              icon: "mdi-view-list",
-              route: "/listado",
-            },
-            {
-              title: "Ver Fase de Grupos",
-              icon: "mdi-account-group-outline",
-              route: "/fase-grupos",
-            },
-            {
-              title: "Ver Fase Final",
-              icon: "mdi-tournament",
-              route: "/fase-final",
-            },
-          ],
+          title: "Inicio",
+          icon: "mdi-soccer-field",
+          route: "/",
+        },
+        {
+          title: "Fase de Grupos",
+          icon: "mdi-account-group-outline",
+          route: "/fase-grupos",
+        },
+        {
+          title: "Fase Final",
+          icon: "mdi-tournament",
+          route: "/fase-final",
         },
         {
           title: "Calendario",
@@ -144,6 +142,10 @@ export default {
       ],
 
       logoutLoading: false,
+
+      showNavigationValue: false,
+
+      isCreated: false,
     };
   },
   methods: {
@@ -162,9 +164,29 @@ export default {
         (item.isAdmin && this.USUARIO_NOMBRE_CUENTA === "ADMIN")
       );
     },
+
+    triggerShowNavigation() {
+      this.showNavigationValue = true;
+    },
   },
 
-  computed: mapGetters(["USUARIO_NOMBRE_CUENTA"]),
+  computed: {
+    ...mapGetters(["USUARIO_NOMBRE_CUENTA", "IS_SCREEN_BEYOND_LARGE"]),
+
+    showNavigation: {
+      get() {
+        return this.IS_SCREEN_BEYOND_MEDIUM ? true : this.showNavigationValue;
+      },
+
+      set(value) {
+        this.showNavigationValue = value;
+      },
+    },
+  },
+
+  mounted() {
+    this.isCreated = true;
+  },
 };
 </script>
 
