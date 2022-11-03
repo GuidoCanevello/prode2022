@@ -1,4 +1,3 @@
-// TODO agregar admin y guidoTest 2
 const NOMBRES_USUARIOS_ESPECIALES = []
 
 function addSorted(list, element) {
