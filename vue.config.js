@@ -3,5 +3,5 @@ module.exports = {
     'vuetify'
   ],
 
-  // publicPath: process.env.NODE_ENV === "production" ? "/prode2022/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/prode2022/" : "/",
 }
