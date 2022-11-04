@@ -118,11 +118,11 @@ export default {
           icon: "mdi-tournament",
           route: "/fase-final",
         },
-        {
-          title: "Calendario",
-          icon: "mdi-calendar",
-          route: "/calendario",
-        },
+        // {
+        //   title: "Calendario",
+        //   icon: "mdi-calendar",
+        //   route: "/calendario",
+        // },
         {
           title: "Ranking",
           icon: "mdi-trophy",
