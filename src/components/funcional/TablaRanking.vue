@@ -1,47 +1,59 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="DATA_RANKING"
-    item-key="id"
-    :items-per-page="itemsPorPagina"
-    :search="conBuscador ? busqueda : null"
-    :custom-filter="conBuscador ? filtrarUsuario : null"
-    :loading="IS_LOADING_USERS_DATA"
-    loading-text="Cargando Jugadores..."
-    :sort-by="conBuscador ? 'posicion' : null"
-    class="table-ranking"
-    :item-class="fondoItem"
-    mobile-breakpoint="0"
-  >
-    <template v-if="conBuscador" v-slot:top>
-      <v-text-field
-        v-model="busqueda"
-        label="Buscar por Nombre"
-        class="mx-4"
-      ></v-text-field>
-    </template>
+  <div>
+    <v-dialog v-model="dialogProfile" width="1000px" @click:outside="selectedUser = null">
+      <carta-perfil :nombreCuenta="selectedUser" />
+    </v-dialog>
 
-    <template v-slot:[`item.iconoJugador`]="{ item }">
-      <v-avatar v-if="item.iconoJugador != ''" size="32">
-        <img :src="item.iconoJugador" />
-      </v-avatar>
+    <v-data-table
+      :headers="headers"
+      :items="DATA_RANKING"
+      item-key="id"
+      :items-per-page="itemsPorPagina"
+      :search="conBuscador ? busqueda : null"
+      :custom-filter="conBuscador ? filtrarUsuario : null"
+      :loading="IS_LOADING_USERS_DATA"
+      loading-text="Cargando Jugadores..."
+      :sort-by="conBuscador ? 'posicion' : null"
+      class="table-ranking"
+      :item-class="fondoItem"
+      mobile-breakpoint="0"
+      @click:row="handleSelectRow"
+    >
+      <template v-if="conBuscador" v-slot:top>
+        <v-text-field
+          v-model="busqueda"
+          label="Buscar por Nombre"
+          class="mx-4"
+        ></v-text-field>
+      </template>
 
-      <v-avatar v-else color="blue lighten-1" size="32">
-        {{ item.nombreJugador.substring(0, 1) }}
-      </v-avatar>
-    </template>
-  </v-data-table>
+      <template v-slot:[`item.iconoJugador`]="{ item }">
+        <v-avatar v-if="item.iconoJugador != ''" size="32">
+          <img :src="item.iconoJugador" />
+        </v-avatar>
+
+        <v-avatar v-else color="blue lighten-1" size="32">
+          {{ item.nombreJugador.substring(0, 1) }}
+        </v-avatar>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import CartaPerfil from "../perfil/CartaPerfil.vue";
 
 export default {
+  components: { CartaPerfil },
   name: "Ranking",
 
   props: ["itemsPorPagina", "conBuscador"],
 
   data: () => ({
+    dialogProfile: false,
+    selectedUser: null,
+
     busqueda: "",
   }),
 
@@ -102,6 +114,11 @@ export default {
           return "";
       }
     },
+
+    handleSelectRow(item) {
+      this.dialogProfile = true;
+      this.selectedUser = item.nombreCuenta;
+    },
   },
 
   async created() {
@@ -116,6 +133,7 @@ export default {
 }
 
 .table-ranking .fila-primero:hover {
+  cursor: pointer;
   background-color: #ffee58 !important;
 }
 
@@ -124,6 +142,7 @@ export default {
 }
 
 .table-ranking .fila-segundo:hover {
+  cursor: pointer;
   background-color: #90a4ae !important;
 }
 
@@ -132,6 +151,7 @@ export default {
 }
 
 .table-ranking .fila-tercero:hover {
+  cursor: pointer;
   background-color: #ffb74d !important;
 }
 </style>

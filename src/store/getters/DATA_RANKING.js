@@ -21,6 +21,7 @@ export default function (state) {
             posicion: 0,
             iconoJugador: user.imagenSrc === undefined ? '' : user.imagenSrc,
             nombreJugador: user.nombreJugador,
+            nombreCuenta: user.nombreCuenta,
             puntos: user.puntos,
         });
     });
