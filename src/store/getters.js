@@ -42,4 +42,6 @@ export default {
         vueInstance.$vuetify.breakpoint.name === "lg" ||
         vueInstance.$vuetify.breakpoint.name === "xl"
     ),
+    USER_BY_NOMBRE_CUENTA: (state) => async (nombreCuenta) =>
+        state.usuarios.find(user => user.nombreCuenta === nombreCuenta),
 }

@@ -5,7 +5,7 @@
     <v-card-actions>
       <v-spacer />
       <v-col class="pt-0 pr-0" cols="auto">
-        <v-btn color="success" @click="handleVerReglamento" text>
+        <v-btn color="success" @click="handleVerReglamento" text outlined>
           Ver Reglamento
         </v-btn>
       </v-col>
