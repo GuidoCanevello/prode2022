@@ -7,20 +7,20 @@
           <v-spacer />
           <v-col cols="auto" style="text-align: end">
             <v-btn
-              class="pr-1 pl-0"
               text
               color="success"
               @click="handleIrAFaseGrupos"
+              outlined
             >
               Fase de Grupos
             </v-btn>
           </v-col>
-          <v-col cols="auto" style="text-align: end">
+          <v-col cols="auto" class="pl-0" style="text-align: end">
             <v-btn
-              class="pl-1"
               text
               color="success"
               @click="handleIrAFaseFinal"
+              outlined
             >
               Fase Final
             </v-btn>
@@ -59,12 +59,18 @@
     </v-card-text>
 
     <v-card-subtitle v-if="!IS_SCREEN_BEYOND_MEDIUM">
-      <v-btn text color="success" @click="handleIrAFaseGrupos">
-        Fase de Grupos
-      </v-btn>
-      <v-btn text color="success" @click="handleIrAFaseFinal">
-        Fase Final
-      </v-btn>
+      <v-row>
+        <v-col cols="auto">
+          <v-btn text color="success" @click="handleIrAFaseGrupos" outlined>
+            Fase de Grupos
+          </v-btn>
+        </v-col>
+        <v-col cols="auto">
+          <v-btn text color="success" @click="handleIrAFaseFinal" outlined>
+            Fase Final
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-card-subtitle>
   </v-card>
 </template>
