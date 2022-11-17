@@ -210,7 +210,7 @@ export default {
 
   computed: mapGetters(["PREDICCIONES"]),
 
-  beforeMount() {
+  mounted() {
     this.dataPartidos = [];
 
     this.partidos.forEach((partido) => {

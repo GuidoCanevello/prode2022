@@ -4,6 +4,7 @@
 
     <v-card-text :class="IS_SCREEN_BEYOND_SMALL ? '' : 'px-4'">
       <v-row>
+        <!-- TODO reemplazar x btn para ir a ventana de expansion -->
         <v-col>
           <v-expansion-panels hover>
             <v-expansion-panel>
@@ -343,7 +344,7 @@ export default {
 
   computed: mapGetters(["PREDICCIONES", "IS_SCREEN_BEYOND_SMALL"]),
 
-  beforeMount() {
+  mounted() {
     this.dataPartidos = [];
 
     this.partidos.forEach((partido) => {
