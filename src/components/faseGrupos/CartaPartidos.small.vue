@@ -1,23 +1,24 @@
 <template>
   <v-card outlined style="height: 100%" class="d-flex flex-column">
-    <v-card-title primary-title> Partidos de Grupo {{ nombre }} </v-card-title>
-
-    <v-card-text :class="IS_SCREEN_BEYOND_SMALL ? '' : 'px-4'">
+    <v-dialog v-model="dialogGrupo">
+      <carta-grupo-expandido
+        v-if="dialogGrupo"
+        :nombre="nombre"
+        :equipos="equipos"
+        v-bind:partidos="partidos"
+      />
+    </v-dialog>
+    
+    <v-card-title primary-title>
       <v-row>
-        <v-col>
-          <v-expansion-panels hover>
-            <v-expansion-panel>
-              <v-expansion-panel-header>
-                Tabla de Puntos
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <tabla-grupo :equipos="equipos" />
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+        <v-col> Grupo {{ nombre }} </v-col>
+        <v-col style="text-align: end">
+          <v-btn color="info" @click="dialogGrupo = true"> Expandir </v-btn>
         </v-col>
       </v-row>
+    </v-card-title>
 
+    <v-card-text :class="IS_SCREEN_BEYOND_SMALL ? '' : 'px-4'">
       <v-row>
         <v-col class="px-2">
           <v-data-table
@@ -220,11 +221,12 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Bandera from "../utilitarios/Bandera.vue";
+import CartaGrupoExpandido from './CartaGrupoExpandido.vue';
 import TablaGrupo from "./TablaGrupo.vue";
 
 export default {
   name: "CartaPartidosSmall",
-  components: { Bandera, TablaGrupo },
+  components: { Bandera, TablaGrupo, CartaGrupoExpandido },
   props: ["nombre", "equipos", "partidos"],
 
   data: () => ({
@@ -232,6 +234,7 @@ export default {
 
     loadingUpdatePredicciones: false,
     showAlert: false,
+    dialogGrupo: false,
 
     headers: [
       {
@@ -338,12 +341,12 @@ export default {
       // True si la fecha es mayor estricto que la fecha a validar
       let fechaAValidar = new Date();
       return fecha > fechaAValidar;
-    }
+    },
   },
 
   computed: mapGetters(["PREDICCIONES", "IS_SCREEN_BEYOND_SMALL"]),
 
-  beforeMount() {
+  mounted() {
     this.dataPartidos = [];
 
     this.partidos.forEach((partido) => {
