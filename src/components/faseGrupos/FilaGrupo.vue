@@ -1,7 +1,7 @@
 <template>
   <v-row v-if="IS_SCREEN_BEYOND_MEDIUM">
     <v-col sm="4">
-      <carta-grupo :nombre="grupo.nombre" :equipos="grupo.equipos" />
+      <carta-grupo :nombre="grupo.nombre" :equipos="grupo.equipos" v-bind:partidos="grupo.partidos" />
     </v-col>
 
     <v-col class="pl-0">
