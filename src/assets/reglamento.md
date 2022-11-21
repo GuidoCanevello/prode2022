@@ -1,5 +1,5 @@
 ## Puntuacion
-### Para Fase de Grupos - [Ir al Sitio](/fase-grupos)
+### Para Fase de Grupos - [Ir al Sitio](/prode2022/#/fase-grupos)
 
 - 3 pts por acertar el resultado completo.
   - Por ejemplo
@@ -14,7 +14,7 @@
 - 0 pts por no acertar ni goles ni resultado.
 
 
-### Para Fase Final - [Ir al Sitio](/fase-final)
+### Para Fase Final - [Ir al Sitio](/prode2022/#/fase-final)
 
 - 2 pts por acertar al ganador del partido (sin importar los goles o penales).
   
@@ -26,7 +26,7 @@
 ## Como usar la Página
 
 
-### Para Fase de Grupos - [Ir al Sitio](/fase-grupos)
+### Para Fase de Grupos - [Ir al Sitio](/prode2022/#/fase-grupos)
 
 Anotar Pronóstico en los campos de cada partido (el campo del medio indica el resultado final una vez terminado el partido). 
 
