@@ -118,8 +118,20 @@ export default {
           nombre: "Pelota Mundial",
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/john.jpg",
-          nombre: "John",
+          src: "https://pbs.twimg.com/media/E5bJaYnX0AUZ89v?format=jpg&name=medium",
+          nombre: "Messi de Frente",
+        },
+        {
+          src: "https://sumapolitica.com.ar/wp-content/uploads/2020/11/123.jpg",
+          nombre: "Maradona de Espalda",
+        },
+        {
+          src: "https://tntsports.com.ar/__export/1584110648398/sites/tntsports/img/2020/03/13/gabriel-batistuta-seleccion-argentina-mundial-98.jpg_554688468.jpg",
+          nombre: "Batistuta",
+        },
+        {
+          src: "https://s.hs-data.com/picmon/61/jKc_60dZm_l.jpg",
+          nombre: "Riquelme",
         },
       ],
     };
