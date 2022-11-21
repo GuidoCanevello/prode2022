@@ -11,6 +11,8 @@
           :loading="isLoading"
           no-data-text="Sin Pronosticos Realizados"
           sort-by="fecha"
+          class="table-partidos"
+          :item-class="fondoItem"
         >
           <template v-slot:[`item.code1`]="{ item }">
             <td class="text-end" style="width: 30px">
@@ -33,6 +35,8 @@
           :loading="isLoading"
           no-data-text="Sin Pronosticos Realizados"
           sort-by="fecha"
+          class="table-partidos"
+          :item-class="fondoItem"
         >
           <template v-slot:[`item.code1`]="{ item }">
             <td class="text-end" style="width: 30px">
@@ -54,6 +58,8 @@
 <script>
 import { mapGetters } from "vuex";
 import Bandera from "../utilitarios/Bandera.vue";
+import toResultado from "../../utils/toResultado";
+
 export default {
   components: { Bandera },
   name: "PerfilFaseGrupos",
@@ -125,6 +131,28 @@ export default {
   computed: mapGetters(["EQUIPOS", "PARTIDOS", "IS_SCREEN_BEYOND_SMALL"]),
 
   methods: {
+    fondoItem(item) {
+      if (
+        new Date(item.fecha) < new Date() &&
+        item.golesEquipo1 != undefined &&
+        item.golesEquipo2 != undefined
+      ) {
+        if (
+          item.golesEquipo1 == item.golesPrediccionEquipo1 &&
+          item.golesEquipo2 == item.golesPrediccionEquipo2
+        )
+          return "fila-con-prediccion-correcta";
+        else if (
+          toResultado(
+            item.golesPrediccionEquipo1,
+            item.golesPrediccionEquipo2
+          ) == toResultado(item.golesEquipo1, item.golesEquipo2)
+        )
+          return "fila-con-prediccion-acertada";
+        else return "fila-con-prediccion-erronea";
+      } else return "";
+    },
+
     getTableData(nombreGrupo) {
       const partidosGrupo = this.PARTIDOS.filter(
         (p) =>
@@ -142,6 +170,10 @@ export default {
             code1: equipo1.code,
             equipo1: equipo1.nombre,
             goles: `${prediccion.golesEquipo1} - ${prediccion.golesEquipo2}`,
+            golesEquipo1: p.golesEquipo1,
+            golesEquipo2: p.golesEquipo2,
+            golesPrediccionEquipo1: prediccion.golesEquipo1,
+            golesPrediccionEquipo2: prediccion.golesEquipo2,
             equipo2: equipo2.nombre,
             code2: equipo2.code,
             fecha: p.fecha,
@@ -152,3 +184,29 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.fila-con-prediccion-correcta {
+  background-color: #a5d6a7;
+}
+
+.fila-con-prediccion-acertada {
+  background-color: #80cbc4;
+}
+
+.fila-con-prediccion-erronea {
+  background-color: #ef9a9a;
+}
+
+.table-partidos .fila-con-prediccion-correcta:hover {
+  background-color: #66bb6a !important;
+}
+
+.table-partidos .fila-con-prediccion-acertada:hover {
+  background-color: #26a69a !important;
+}
+
+.table-partidos .fila-con-prediccion-erronea:hover {
+  background-color: #ef5350 !important;
+}
+</style>

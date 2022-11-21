@@ -95,6 +95,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Bandera from "../utilitarios/Bandera.vue";
+import toResultado from "../../utils/toResultado";
 
 export default {
   name: "CartaPartidos",
@@ -144,7 +145,25 @@ export default {
     ...mapActions(["MODIFICAR_PREDICCION"]),
 
     fondoItem(item) {
-      return item.tienePrediccion ? "fila-con-prediccion" : "";
+      if (item.tienePrediccion) {
+        if (new Date(item.fecha) < new Date() && item.golesEquipo1 != undefined && item.golesEquipo2 != undefined) {
+          if (
+            item.golesEquipo1 == item.golesPrediccionEquipo1 &&
+            item.golesEquipo2 == item.golesPrediccionEquipo2
+          )
+            return "fila-con-prediccion-correcta";
+          else if (
+            toResultado(item.golesPrediccionEquipo1, item.golesPrediccionEquipo2) ==
+            toResultado(item.golesEquipo1, item.golesEquipo2)
+          )
+            return "fila-con-prediccion-acertada";
+          else return "fila-con-prediccion-erronea";
+        } else {
+          return "fila-con-prediccion";
+        }
+      } else {
+        return "";
+      }
     },
 
     async saveChanges() {
@@ -205,7 +224,7 @@ export default {
       // True si la fecha es mayor estricto que la fecha a validar
       let fechaAValidar = new Date();
       return fecha > fechaAValidar;
-    }
+    },
   },
 
   computed: mapGetters(["PREDICCIONES"]),
@@ -220,9 +239,12 @@ export default {
         code1: partido.code1,
         equipo2: partido.equipo2,
         code2: partido.code2,
-        guion: partido.golesEquipo1
-          ? `${partido.golesEquipo1} - ${partido.golesEquipo2}`
-          : "N - N",
+        guion:
+          partido.golesEquipo1 != undefined && partido.golesEquipo2 != undefined
+            ? `${partido.golesEquipo1} - ${partido.golesEquipo2}`
+            : "N - N",
+        golesEquipo1: partido.golesEquipo1,
+        golesEquipo2: partido.golesEquipo2,
         golesPrediccionEquipo1: partido.tienePrediccion
           ? partido.prediccion.golesEquipo1
           : undefined,
@@ -244,8 +266,32 @@ export default {
   background-color: #e1f5fe;
 }
 
+.fila-con-prediccion-correcta {
+  background-color: #a5d6a7;
+}
+
+.fila-con-prediccion-acertada {
+  background-color: #80cbc4;
+}
+
+.fila-con-prediccion-erronea {
+  background-color: #ef9a9a;
+}
+
 .table-partidos .fila-con-prediccion:hover {
   background-color: #b3e5fc !important;
+}
+
+.table-partidos .fila-con-prediccion-correcta:hover {
+  background-color: #66bb6a !important;
+}
+
+.table-partidos .fila-con-prediccion-acertada:hover {
+  background-color: #26a69a !important;
+}
+
+.table-partidos .fila-con-prediccion-erronea:hover {
+  background-color: #ef5350 !important;
 }
 
 .input-goles-2 input {

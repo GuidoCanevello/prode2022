@@ -223,13 +223,13 @@ export default {
           } else if (
             partido.prediccion.golesEquipo2 > partido.prediccion.golesEquipo1
           ) {
-            equipo1.puntos += 1;
-            equipo2.puntos += 1;
+            equipo2.puntos += 3;
 
             equipo2.ganados += 1;
             equipo1.perdidos += 1;
           } else {
-            equipo2.puntos += 3;
+            equipo1.puntos += 1;
+            equipo2.puntos += 1;
 
             equipo1.empatados += 1;
             equipo2.empatados += 1;
