@@ -13,6 +13,8 @@
             hide-default-footer
             class="table-pronosticos"
             :item-class="() => 'fila-prediccion'"
+            sort-by="puntos"
+            :sort-desc="true"
           >
             <template v-slot:[`item.bandera`]="{ item }">
               <td
@@ -34,6 +36,8 @@
             :items="dataReales"
             item-key="id"
             hide-default-footer
+            sort-by="puntos"
+            :sort-desc="true"
           >
             <template v-slot:[`item.bandera`]="{ item }">
               <td
@@ -177,7 +181,7 @@ export default {
           id: equipo.id,
           code: equipo.code,
           nombre: equipo.nombre,
-          puntos: equipo.puntos,
+          puntos: 0,
           ganados: 0,
           perdidos: 0,
           empatados: 0,
@@ -212,17 +216,26 @@ export default {
           if (
             partido.prediccion.golesEquipo1 > partido.prediccion.golesEquipo2
           ) {
+            equipo1.puntos += 3;
+
             equipo1.ganados += 1;
             equipo2.perdidos += 1;
           } else if (
             partido.prediccion.golesEquipo2 > partido.prediccion.golesEquipo1
           ) {
+            equipo2.puntos += 3;
+
             equipo2.ganados += 1;
             equipo1.perdidos += 1;
           } else {
+            equipo1.puntos += 1;
+            equipo2.puntos += 1;
+
             equipo1.empatados += 1;
             equipo2.empatados += 1;
           }
+
+
         }
       });
     },

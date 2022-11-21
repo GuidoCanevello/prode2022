@@ -21,6 +21,11 @@
         <v-tab-item>
           <abm-equipos />
         </v-tab-item>
+
+        <v-tab> Modificar Resultados Grupos </v-tab>
+        <v-tab-item>
+          <modificar-resultado-grupos />
+        </v-tab-item>
       </v-tabs>
     </v-container>
   </v-card>
@@ -31,10 +36,11 @@ import AbmGrupos from "./Grupos/abmGrupos.vue";
 import AbmPartidos from "./Partidos/abmPartidos.vue";
 import AbmUsuarios from "./Usuarios/abmUsuarios.vue";
 import AbmEquipos from "./Equipos/abmEquipos.vue";
+import ModificarResultadoGrupos from './ModificarResultadoGrupos.vue';
 
 export default {
   name: "MainWindow",
-  components: { AbmPartidos, AbmUsuarios, AbmGrupos, AbmEquipos },
+  components: { AbmPartidos, AbmUsuarios, AbmGrupos, AbmEquipos, ModificarResultadoGrupos },
   data: () => ({}),
 };
 </script>

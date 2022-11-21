@@ -118,8 +118,28 @@ export default {
           nombre: "Pelota Mundial",
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/john.jpg",
-          nombre: "John",
+          src: "https://pbs.twimg.com/media/E5bJaYnX0AUZ89v?format=jpg&name=medium",
+          nombre: "Messi de Frente",
+        },
+        {
+          src: "https://sumapolitica.com.ar/wp-content/uploads/2020/11/123.jpg",
+          nombre: "Maradona de Espalda",
+        },
+        {
+          src: "https://tntsports.com.ar/__export/1584110648398/sites/tntsports/img/2020/03/13/gabriel-batistuta-seleccion-argentina-mundial-98.jpg_554688468.jpg",
+          nombre: "Batistuta",
+        },
+        {
+          src: "https://s.hs-data.com/picmon/61/jKc_60dZm_l.jpg",
+          nombre: "Riquelme",
+        },
+        {
+          src: "https://scontent.faep9-3.fna.fbcdn.net/v/t39.30808-6/217553133_10159854068220763_925148547274782417_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeF2a8vyx7XmzZKwO0Tt9hnAUQ4kqpcpkElRDiSqlymQSatDWVl0bj4i4BKHhvKmNVg&_nc_ohc=Vg3DvAx8pQoAX8VI-Xw&_nc_ht=scontent.faep9-3.fna&oh=00_AfByPkiVMWggIG7qnOPrFqe78n7k_Uq3Qu_Ax45pln41Jw&oe=637CBEE0",
+          nombre: "Messi y Maradona",
+        },
+        {
+          src: "https://scontent.faep9-2.fna.fbcdn.net/v/t1.6435-9/96012965_3856760657698473_8479364700528705536_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeERg6bdJ6kpifvoFIEIoRB8MRrM5kiTEH4xGszmSJMQfqxOLA2lwO_RHMKqI5wikTg&_nc_ohc=ZnJiAxWon9oAX-ZgR29&_nc_ht=scontent.faep9-2.fna&oh=00_AfBuwTG2cWZYsbXFWM3d2V8YUFnRp32AIZVpEohpBNCG0Q&oe=639F2747",
+          nombre: "Messi y Maradona 2",
         },
       ],
     };

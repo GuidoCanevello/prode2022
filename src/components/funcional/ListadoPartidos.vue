@@ -79,6 +79,7 @@
 import { mapGetters } from "vuex";
 import obtenerNombreDia from "@/utils/obtenerNombreDia";
 import addCero from "@/utils/addCero";
+import toResultado from "../../utils/toResultado";
 
 export default {
   name: "ListadoPartidos",
@@ -127,7 +128,25 @@ export default {
     },
 
     fondoItem(item) {
-      return item.tienePrediccion ? "fila-con-prediccion" : "";
+      if (item.tienePrediccion) {
+        if (new Date(item.fecha) < new Date() && item.golesEquipo1 != undefined && item.golesEquipo2 != undefined) {
+          if (
+            item.golesEquipo1 == item.prediccion.golesEquipo1 &&
+            item.golesEquipo2 == item.prediccion.golesEquipo2
+          )
+            return "fila-con-prediccion-correcta";
+          else if (
+            toResultado(item.prediccion.golesEquipo1, item.prediccion.golesEquipo2) ==
+            toResultado(item.golesEquipo1, item.golesEquipo2)
+          )
+            return "fila-con-prediccion-acertada";
+          else return "fila-con-prediccion-erronea";
+        } else {
+          return "fila-con-prediccion";
+        }
+      } else {
+        return "";
+      }
     },
 
     filtrarEquipo(value, busqueda, item) {
@@ -154,7 +173,31 @@ export default {
   background-color: #e1f5fe;
 }
 
+.fila-con-prediccion-correcta {
+  background-color: #a5d6a7;
+}
+
+.fila-con-prediccion-acertada {
+  background-color: #80cbc4;
+}
+
+.fila-con-prediccion-erronea {
+  background-color: #ef9a9a;
+}
+
 .table-partidos .fila-con-prediccion:hover {
   background-color: #b3e5fc !important;
+}
+
+.table-partidos .fila-con-prediccion-correcta:hover {
+  background-color: #66bb6a !important;
+}
+
+.table-partidos .fila-con-prediccion-acertada:hover {
+  background-color: #26a69a !important;
+}
+
+.table-partidos .fila-con-prediccion-erronea:hover {
+  background-color: #ef5350 !important;
 }
 </style>

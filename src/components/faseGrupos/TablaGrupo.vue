@@ -5,6 +5,8 @@
     item-key="id"
     hide-default-footer
     mobile-breakpoint="0"
+    sort-by="puntos"
+    :sort-desc="true"
   >
     <template v-slot:[`item.bandera`]="{ item }">
       <td class="text-start" style="width: 30px">

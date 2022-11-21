@@ -7,8 +7,8 @@ export default function (state) {
 
     let ultimoPartido;
     dataPartidos.forEach(partido => {
-        let fechaActual = new Date(partido.fecha)
-        if (!ultimoPartido || (ultimoPartido.fecha && new Date(ultimoPartido.fecha) > fechaActual)) {
+        let fechaPartido = new Date(partido.fecha);
+        if (new Date() < fechaPartido && (ultimoPartido === undefined || (ultimoPartido.fecha && new Date(ultimoPartido.fecha) > fechaPartido))) {
             ultimoPartido = partido;
         }
     })

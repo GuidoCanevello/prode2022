@@ -24,6 +24,8 @@ export default function (state) {
             grupo: partido.grupo,
             fecha,
             tienePrediccion: false,
+            golesEquipo1: partido.golesEquipo1,
+            golesEquipo2: partido.golesEquipo2,
             descripcionPartido: `${objEquipo1.nombre} vs. ${objEquipo2.nombre}`,
             descripcionPrediccion: "Sin Pronostico",
         }

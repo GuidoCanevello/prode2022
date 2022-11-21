@@ -26,6 +26,13 @@ export default {
             state.partidos.splice(index, 1, updPartido);
         }
     },
+    UPDATE_PARTIDO_RESULTADO: (state, updPartido) => {
+        const index = state.partidos.findIndex(partido => partido._id === updPartido._id);
+        if (index !== -1) {
+            state.partidos[index].golesEquipo1 = updPartido.golesEquipo1;
+            state.partidos[index].golesEquipo2 = updPartido.golesEquipo2;
+        }
+    },
     UPDATE_PREDICCION: (state, updPrediccion) => {
         const index = state.predicciones.findIndex(prediccion => prediccion._id === updPrediccion._id);
         if (index !== -1) {
