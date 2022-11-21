@@ -7,12 +7,12 @@ import CREAR_EQUIPO from './actions/CREAR_EQUIPO';
 import CREAR_USUARIO from './actions/CREAR_USUARIO';
 import MODIFICAR_EQUIPO from './actions/MODIFICAR_EQUIPO';
 import MODIFICAR_PARTIDO from './actions/MODIFICAR_PARTIDO';
+import ACTUALIZAR_RESULTADO from './actions/ACTUALIZAR_RESULTADO';
 import CREAR_PARTIDO_GRUPO from './actions/CREAR_PARTIDO_GRUPO';
 import DISPATCH_LOGIN from './actions/DISPATCH_LOGIN';
 import DISPATCH_LOGOUT from './actions/DISPATCH_LOGOUT';
 import DISPATCH_AXIOS_REQUEST from './actions/DISPATCH_AXIOS_REQUEST';
 import DISPATCH_REFRESH_TOKEN from './actions/DISPATCH_REFRESH_TOKEN';
-import axios from 'axios';
 
 export default {
   RESET_STATE: ({ commit }) => commit('RESET_STATE'),
@@ -27,6 +27,7 @@ export default {
   MODIFICAR_USUARIO,
   MODIFICAR_EQUIPO,
   MODIFICAR_PARTIDO,
+  ACTUALIZAR_RESULTADO,
 
   CREAR_PARTIDO_GRUPO,
 
