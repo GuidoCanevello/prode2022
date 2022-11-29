@@ -5,6 +5,9 @@ export default () => {
         usuarioNombreJugador: "",
         usuarioImagenSrc: "",
         usuarioPuntos: 0,
+        prediccionMejorJugador: null,
+        prediccionMejorArquero: null,
+        prediccionMejorGoleador: null,
 
         predicciones: [],
         equipos: [],

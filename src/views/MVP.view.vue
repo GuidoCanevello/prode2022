@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import CartaMejorJugador from '../components/funcional/CartaMejorJugador.vue';
+import CartaMejorJugador from "../components/funcional/CartaMejorJugador.vue";
 
 export default {
   name: "MVP",

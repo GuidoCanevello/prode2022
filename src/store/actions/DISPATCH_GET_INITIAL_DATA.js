@@ -27,6 +27,9 @@ export default async function ({ state, commit, dispatch }) {
         commit('SET_USUARIO_NOMBRE_JUGADOR', usuario.nombreJugador);
         commit('SET_USUARIO_IMAGEN_SRC', usuario.imagenSrc);
         commit('SET_USUARIO_PUNTOS', usuario.puntos);
+        commit('SET_PREDICCION_MEJOR_JUGADOR', usuario.prediccionMejorJugador);
+        commit('SET_PREDICCION_MEJOR_ARQUERO', usuario.prediccionMejorArquero);
+        commit('SET_PREDICCION_MEJOR_GOLEADOR', usuario.prediccionMejorGoleador);
 
         commit('SET_PREDICCIONES', usuario.predicciones);
 
