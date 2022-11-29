@@ -42,6 +42,8 @@ export default {
         }
     },
 
+    SET_JUGADORES: (state, jugadores) => (state.jugadores = jugadores),
+
     SET_USUARIOS: (state, usuarios) => (state.usuarios = usuarios),
 
     SET_IS_LOADING_FUTBOL_DATA: (state, value) => (state.isLoadingFutbolData = value),

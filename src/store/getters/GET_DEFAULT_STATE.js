@@ -10,6 +10,7 @@ export default () => {
         equipos: [],
         partidos: [],
         usuarios: [],
+        jugadores: [],
 
         isLoadingFutbolData: false,
         isLoadingUserData: false,

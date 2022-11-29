@@ -18,6 +18,9 @@ export default async function ({ state, commit, dispatch }) {
         //* Equipos
         const equipos = await dispatch('DISPATCH_AXIOS_REQUEST', { axiosRequest: async () => await axios.get('equipos') });
 
+        //* Jugadores
+        const jugadores = await dispatch('DISPATCH_AXIOS_REQUEST', { axiosRequest: async () => await axios.get('jugadores') });
+
         //* Guardar Data
         commit('SET_USUARIO_ID', usuario._id);
         commit('SET_USUARIO_NOMBRE_CUENTA', usuario.nombreCuenta);
@@ -29,6 +32,7 @@ export default async function ({ state, commit, dispatch }) {
 
         commit('SET_PARTIDOS', partidos);
         commit('SET_EQUIPOS', equipos);
+        commit('SET_JUGADORES', jugadores);
         commit('SET_HAS_INITIAL_DATA', true);
     } catch (error) {
         dispatch('ABRIR_ERROR', error.response.data.message);
