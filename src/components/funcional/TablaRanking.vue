@@ -154,4 +154,8 @@ export default {
   cursor: pointer;
   background-color: #ffb74d !important;
 }
+
+.table-ranking:hover {
+  cursor: pointer;
+}
 </style>
