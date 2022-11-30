@@ -119,7 +119,6 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import obtenerNombreDia from "@/utils/obtenerNombreDia";
 import addCero from "@/utils/addCero";
 
 export default {

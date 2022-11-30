@@ -27,6 +27,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/FaseFinal.view'),
   },
   {
+    path: '/mejores-jugadores',
+    name: 'Mejores Jugadores',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MVP.view'),
+  },
+  {
     path: '/calendario',
     name: 'Calendario',
     component: () => import(/* webpackChunkName: "about" */ '../views/Calendario.view')

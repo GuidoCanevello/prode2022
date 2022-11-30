@@ -9,9 +9,13 @@ export default {
     USUARIO_NOMBRE_JUGADOR: (state) => state.usuarioNombreJugador,
     USUARIO_IMAGEN_SRC: (state) => state.usuarioImagenSrc,
     USUARIO_PUNTOS: (state) => state.usuarioPuntos,
+    PREDICCION_MEJOR_JUGADOR: (state) => state.prediccionMejorJugador,
+    PREDICCION_MEJOR_ARQUERO: (state) => state.prediccionMejorArquero,
+    PREDICCION_MEJOR_GOLEADOR: (state) => state.prediccionMejorGoleador,
 
     EQUIPOS: (state) => state.equipos,
     PARTIDOS: (state) => state.partidos,
+    JUGADORES: (state) => state.jugadores,
     PREDICCIONES: (state) => state.predicciones,
     DATA_FASE_GRUPOS,
     DATA_RANKING,

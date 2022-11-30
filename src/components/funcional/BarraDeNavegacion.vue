@@ -118,6 +118,11 @@ export default {
           icon: "mdi-tournament",
           route: "/fase-final",
         },
+        {
+          title: "Mejores Jugadores",
+          icon: "mdi-soccer",
+          route: "/mejores-jugadores",
+        },
         // {
         //   title: "Calendario",
         //   icon: "mdi-calendar",

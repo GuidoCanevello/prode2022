@@ -6,6 +6,9 @@ export default {
     SET_USUARIO_NOMBRE_JUGADOR: (state, nombre) => (state.usuarioNombreJugador = nombre),
     SET_USUARIO_IMAGEN_SRC: (state, src) => (state.usuarioImagenSrc = src),
     SET_USUARIO_PUNTOS: (state, puntos) => (state.usuarioPuntos = puntos),
+    SET_PREDICCION_MEJOR_JUGADOR: (state, prediccion) => (state.prediccionMejorJugador = prediccion),
+    SET_PREDICCION_MEJOR_ARQUERO: (state, prediccion) => (state.prediccionMejorArquero = prediccion),
+    SET_PREDICCION_MEJOR_GOLEADOR: (state, prediccion) => (state.prediccionMejorGoleador = prediccion),
 
     SET_PREDICCIONES: (state, predicciones) => (state.predicciones = predicciones),
 
@@ -41,6 +44,8 @@ export default {
             state.predicciones.push(updPrediccion);
         }
     },
+
+    SET_JUGADORES: (state, jugadores) => (state.jugadores = jugadores),
 
     SET_USUARIOS: (state, usuarios) => (state.usuarios = usuarios),
 

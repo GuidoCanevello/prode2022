@@ -24,7 +24,16 @@
           <v-tabs>
             <v-tab>Fase de Grupos </v-tab>
             <v-tab-item>
-                <perfil-fase-grupos :predicciones="predicciones"/>
+              <perfil-fase-grupos :predicciones="predicciones" />
+            </v-tab-item>
+
+            <v-tab>Mejores Jugadores </v-tab>
+            <v-tab-item>
+              <perfil-mejores-jugadores
+                :mejorJugadorId="mejorJugadorId"
+                :mejorArqueroId="mejorArqueroId"
+                :mejorGoleadorId="mejorGoleadorId"
+              />
             </v-tab-item>
           </v-tabs>
         </v-col>
@@ -35,10 +44,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import PerfilFaseGrupos from './PerfilFaseGrupos.vue';
+import PerfilFaseGrupos from "./PerfilFaseGrupos.vue";
+import PerfilMejoresJugadores from "./PerfilMejoresJugadores.vue";
 
 export default {
-  components: { PerfilFaseGrupos },
+  components: { PerfilFaseGrupos, PerfilMejoresJugadores },
   name: "CartaPerfil",
   props: ["nombreCuenta"],
   data() {
@@ -48,6 +58,9 @@ export default {
       nombreJugador: null,
       puntos: 0,
       predicciones: [],
+      mejorJugadorId: null,
+      mejorArqueroId: null,
+      mejorGoleadorId: null,
     };
   },
   computed: mapGetters(["USER_BY_NOMBRE_CUENTA"]),
@@ -68,6 +81,9 @@ export default {
         this.nombreJugador = user.nombreJugador;
         this.puntos = user.puntos;
         this.predicciones = user.predicciones;
+        this.mejorJugadorId = user.prediccionMejorJugador;
+        this.mejorArqueroId = user.prediccionMejorArquero;
+        this.mejorGoleadorId = user.prediccionMejorGoleador;
       }
     },
   },
