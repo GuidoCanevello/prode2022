@@ -10,6 +10,7 @@
       <v-row>
         <v-col cols="12" md="4">
           <v-select
+            :disabled="!estaHabilitado"
             v-model="selectedPaisMJ"
             :items="nombresPaisesMJ"
             outlined
@@ -20,6 +21,7 @@
         </v-col>
         <v-col md="8">
           <v-select
+            :disabled="!estaHabilitado"
             v-model="selectedJugadorMJ"
             :items="nombresJugadoresMJ"
             outlined
@@ -40,6 +42,7 @@
       <v-row>
         <v-col cols="12" md="4">
           <v-select
+            :disabled="!estaHabilitado"
             v-model="selectedPaisMA"
             :items="nombresPaisesMA"
             outlined
@@ -50,6 +53,7 @@
         </v-col>
         <v-col md="8">
           <v-select
+            :disabled="!estaHabilitado"
             v-model="selectedJugadorMA"
             :items="nombresJugadoresMA"
             outlined
@@ -70,6 +74,7 @@
       <v-row>
         <v-col cols="12" md="4">
           <v-select
+            :disabled="!estaHabilitado"
             v-model="selectedPaisMG"
             :items="nombresPaisesMG"
             outlined
@@ -80,6 +85,7 @@
         </v-col>
         <v-col md="8">
           <v-select
+            :disabled="!estaHabilitado"
             v-model="selectedJugadorMG"
             :items="nombresJugadoresMG"
             outlined
@@ -112,6 +118,7 @@ export default {
 
   data: () => ({
     isLoading: false,
+    estaHabilitado: true,
 
     selectedJugadorMJ: null,
     selectedJugadorMA: null,
@@ -161,7 +168,7 @@ export default {
             false
           );
         }
-        
+
         this.nombresPaisesMA = this.EQUIPOS.map((e) => e.nombre).sort(
           (a, b) => a > b
         );
