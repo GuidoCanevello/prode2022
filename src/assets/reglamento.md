@@ -18,6 +18,12 @@
 
 - 2 pts por acertar al ganador del partido (sin importar los goles o penales).
   
+### Para Mejores Jugadores - [Ir al Sitio](/prode2022/#/mejores-jugadores)
+
+- 6 pts por acertar al Mejor Jugador.
+- 6 pts por acertar al Mejor Arquero.
+- 6 pts por acertar al Mejor Goleador.
+
 <br/>
 
 ---  
@@ -33,6 +39,12 @@ Anotar Pronóstico en los campos de cada partido (el campo del medio indica el r
 *Ayuda: Se puede usar la tecla *Tab* para avanzar rapidamente entre los pronosticos.
 
 Una vez anotados todos los pronósticos de un Grupo, presionar el boton de *Guardar Cambios* para actualizar los valores.
+
+### Para Mejores Jugadores - [Ir al Sitio](/prode2022/#/mejores-jugadores)
+
+Seleccionar la Seleccion donde se encuentra el Jugador y luego seleccionar al Jugador. Una vez que los 3 pronosticos se encuentren realizados, presionar el boton de *Guardar Cambios* para actualizar los valores.
+
+Es posible actualizar los Jugadores luego de realizar un pronostico.
 
 <br/>
 
