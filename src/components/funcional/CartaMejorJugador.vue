@@ -1,6 +1,6 @@
 <template>
-  <v-card :loading="IS_LOADING_FUTBOL_DATA">
-    <v-container v-if="!IS_LOADING_FUTBOL_DATA" fluid>
+  <v-card>
+    <v-container fluid>
       <v-row>
         <v-col>
           <h2>Mejor Jugador</h2>
@@ -30,7 +30,7 @@
       </v-row>
     </v-container>
 
-    <v-container v-if="!IS_LOADING_FUTBOL_DATA" fluid>
+    <v-container fluid>
       <v-row>
         <v-col>
           <h2>Mejor Arquero</h2>
@@ -60,7 +60,7 @@
       </v-row>
     </v-container>
 
-    <v-container v-if="!IS_LOADING_FUTBOL_DATA" fluid>
+    <v-container fluid>
       <v-row>
         <v-col>
           <h2>Mejor Goleador</h2>
@@ -132,7 +132,6 @@ export default {
   }),
 
   computed: mapGetters([
-    "IS_LOADING_FUTBOL_DATA",
     "EQUIPOS",
     "JUGADORES",
     "PREDICCION_MEJOR_JUGADOR",
@@ -148,6 +147,7 @@ export default {
         this.nombresPaisesMJ = this.EQUIPOS.map((e) => e.nombre).sort(
           (a, b) => a > b
         );
+
         if (this.PREDICCION_MEJOR_JUGADOR) {
           this.selectedJugadorMJ = this.JUGADORES.find(
             (j) => j._id == this.PREDICCION_MEJOR_JUGADOR
@@ -161,10 +161,11 @@ export default {
             false
           );
         }
-
+        
         this.nombresPaisesMA = this.EQUIPOS.map((e) => e.nombre).sort(
           (a, b) => a > b
         );
+
         if (this.PREDICCION_MEJOR_ARQUERO) {
           this.selectedJugadorMA = this.JUGADORES.find(
             (j) => j._id == this.PREDICCION_MEJOR_ARQUERO
@@ -182,6 +183,7 @@ export default {
         this.nombresPaisesMG = this.EQUIPOS.map((e) => e.nombre).sort(
           (a, b) => a > b
         );
+
         if (this.PREDICCION_MEJOR_GOLEADOR) {
           this.selectedJugadorMG = this.JUGADORES.find(
             (j) => j._id == this.PREDICCION_MEJOR_GOLEADOR
@@ -200,6 +202,12 @@ export default {
 
     async handleGuardarCambios() {
       this.isLoading = true;
+
+      console.log(
+        this.selectedJugadorMJ._id,
+        this.selectedJugadorMA._id,
+        this.selectedJugadorMG._id
+      );
 
       await this.ACTUALIZAR_PREDICCION_JUGADORES({
         prediccionMejorJugador: this.selectedJugadorMJ._id,
@@ -233,7 +241,9 @@ export default {
         .map((j) => {
           return {
             value: j,
-            text: (this.$vuetify.breakpoint.name != 'xs' ?  `${j.numero} - ` : "") + `${j.nombre} - ${traducirPosicion(j.posicion)}`,
+            text:
+              (this.$vuetify.breakpoint.name != "xs" ? `${j.numero} - ` : "") +
+              `${j.nombre} - ${traducirPosicion(j.posicion)}`,
           };
         });
       return arregloJugadores;
@@ -241,10 +251,6 @@ export default {
   },
 
   mounted() {
-    this.setInitialData();
-  },
-
-  updated() {
     this.setInitialData();
   },
 };

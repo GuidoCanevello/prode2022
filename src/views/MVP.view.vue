@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col>
-        <v-card>
+        <v-card :loading="IS_LOADING_FUTBOL_DATA">
           <v-container fluid>
             <h1>Voto de MVP</h1>
           </v-container>
@@ -11,7 +11,7 @@
     </v-row>
 
     <v-row class="mt-0">
-      <v-col>
+      <v-col v-if="!IS_LOADING_FUTBOL_DATA">
         <carta-mejor-jugador />
       </v-col>
     </v-row>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import CartaMejorJugador from "../components/funcional/CartaMejorJugador.vue";
 
 export default {
@@ -26,5 +27,7 @@ export default {
   components: { CartaMejorJugador },
 
   data: () => ({}),
+
+  computed: mapGetters(["IS_LOADING_FUTBOL_DATA"]),
 };
 </script>
