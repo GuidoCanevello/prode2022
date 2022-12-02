@@ -1,13 +1,13 @@
 <template>
   <v-col class="col-partidos" align-self="center">
-    <template v-for="i in cantidadPartidos">
-      <v-container v-bind:key="'cuartos' + i">
-        <carta-partido-indiv />
+    <template v-for="partido in partidos">
+      <v-container v-bind:key="'cuartos' + partido.partidoId">
+        <carta-partido-indiv :partido="partido"/>
       </v-container>
 
       <v-container
-        v-if="i < cantidadPartidos.length"
-        v-bind:key="'cuartos' + i + cantidadPartidos.length"
+        v-if="partido.identificadorEliminatorias < 'D'"
+        v-bind:key="'cuartosExtra' + partido.partidoId"
       >
         <carta-invisible />
       </v-container>
@@ -16,15 +16,14 @@
 </template>
 
 <script>
-import CartaInvisible from '../../CartaInvisible.vue';
+import CartaInvisible from "../../CartaInvisible.vue";
 import CartaPartidoIndiv from "../../CartaPartidoIndiv.vue";
 export default {
   components: { CartaPartidoIndiv, CartaInvisible },
   name: "Cuartos",
+  props: ["partidos"],
   data() {
-    return {
-      cantidadPartidos: [1, 2, 3, 4],
-    };
+    return {    };
   },
 };
 </script>

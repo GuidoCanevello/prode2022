@@ -3,7 +3,7 @@
     <v-container
       class="pi-0"
       v-for="partido in partidos"
-      v-bind:key="'octavos' + partido._id"
+      v-bind:key="'octavos' + partido.partidoId"
     >
       <carta-partido-indiv :partido="partido" />
     </v-container>

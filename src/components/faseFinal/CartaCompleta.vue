@@ -28,34 +28,55 @@
       </v-col>
     </v-row>
     <v-row>
-      <octavos :partidos="DATA_FASE_FINAL.filter(p => p.tipoEliminatoria == 'Octavos')"/>
+      <octavos
+        :partidos="
+          DATA_FASE_FINAL.filter((p) => p.tipoEliminatoria == 'Octavos')
+        "
+      />
 
-      <!-- <cuartos />
+      <cuartos
+        :partidos="
+          DATA_FASE_FINAL.filter((p) => p.tipoEliminatoria == 'Cuartos')
+        "
+      />
 
-      <semifinales />
+      <semifinales
+        :partidos="
+          DATA_FASE_FINAL.filter((p) => p.tipoEliminatoria == 'Semifinales')
+        "
+      />
 
-      <final /> -->
+      <final
+        :partidos="
+          DATA_FASE_FINAL.filter((p) => p.tipoEliminatoria == 'Final' || p.tipoEliminatoria == 'Tercero')
+        "
+      />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 import CartaInvisible from "./CartaInvisible.vue";
 import CartaPartidoIndiv from "./CartaPartidoIndiv.vue";
 import Cuartos from "./estructura/medium/Cuartos.vue";
-import Final from './estructura/medium/Final.vue';
+import Final from "./estructura/medium/Final.vue";
 import Octavos from "./estructura/medium/Octavos.vue";
-import Semifinales from './estructura/medium/Semifinales.vue';
+import Semifinales from "./estructura/medium/Semifinales.vue";
 
 export default {
   name: "CartaCompleta",
-  components: { CartaPartidoIndiv, CartaInvisible, Octavos, Cuartos, Semifinales, Final },
-  
+  components: {
+    CartaPartidoIndiv,
+    CartaInvisible,
+    Octavos,
+    Cuartos,
+    Semifinales,
+    Final,
+  },
+
   data() {
-    return {
-      partidosSemis: [1, 2],
-    };
+    return {};
   },
 
   computed: mapGetters(["DATA_FASE_FINAL"]),

@@ -1,7 +1,7 @@
 <template>
   <v-card outlined rounded="pill">
     <v-dialog v-model="showDialog" width="1000px">
-      <dialogo-partido />
+      <dialogo-partido :partido="partido" />
     </v-dialog>
 
     <v-card-text
@@ -10,9 +10,11 @@
       @click="showDialog = true"
     >
       <h3>{{ partido.nombreEquipo1 }}</h3>
-      <p class="ma-0">(Gales)</p>
+      <p v-if="partido.tipoEliminatoria != 'Octavos'" class="ma-0">(Sin Prediccion)</p>
+      <p v-else class="ma-0">-</p>
       <p class="ma-0">vs</p>
-      <p class="ma-0">(Sin Prediccion)</p>
+      <p v-if="partido.tipoEliminatoria != 'Octavos'" class="ma-0">(Sin Prediccion)</p>
+      <p v-else class="ma-0">-</p>
       <h3>{{ partido.nombreEquipo2 }}</h3>
     </v-card-text>
   </v-card>
