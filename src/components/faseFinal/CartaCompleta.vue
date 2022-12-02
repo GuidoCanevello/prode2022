@@ -27,7 +27,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="DATA_FASE_FINAL.length > 0">
       <octavos
         :partidos="
           DATA_FASE_FINAL.filter((p) => p.tipoEliminatoria == 'Octavos')
