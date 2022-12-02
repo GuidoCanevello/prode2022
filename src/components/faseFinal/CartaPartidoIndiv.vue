@@ -31,12 +31,20 @@
       </v-row>
 
       <p v-if="partido.tipoEliminatoria != 'Octavos'" class="ma-0">
-        (Sin Prediccion)
+        ({{
+          partido.tienePrediccionEquipo1
+            ? partido.prediccionNombreEquipo1
+            : "Sin Prediccion"
+        }})
       </p>
       <p v-else class="ma-0">-</p>
       <p class="ma-0">vs</p>
       <p v-if="partido.tipoEliminatoria != 'Octavos'" class="ma-0">
-        (Sin Prediccion)
+        ({{
+          partido.tienePrediccionEquipo2
+            ? partido.prediccionNombreEquipo2
+            : "Sin Prediccion"
+        }})
       </p>
       <p v-else class="ma-0">-</p>
 
