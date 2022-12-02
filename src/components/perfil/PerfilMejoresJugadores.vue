@@ -5,7 +5,7 @@
         <h4>Mejor Jugador:</h4>
       </v-col>
 
-      <v-col> {{ formatPlayerText(mejorJugadorId) }} </v-col>
+      <v-col> {{ mejorJugadorId == undefined ? "" : formatPlayerText(mejorJugadorId) }} </v-col>
     </v-row>
 
     <v-row>
@@ -13,7 +13,7 @@
         <h4>Mejor Arquero:</h4>
       </v-col>
 
-      <v-col> {{ formatPlayerText(mejorArqueroId) }} </v-col>
+      <v-col> {{ mejorArqueroId == undefined ? "" : formatPlayerText(mejorArqueroId) }} </v-col>
     </v-row>
 
     <v-row>
@@ -21,7 +21,7 @@
         <h4>Mejor Goleador:</h4>
       </v-col>
 
-      <v-col> {{ formatPlayerText(mejorGoleadorId) }} </v-col>
+      <v-col> {{ mejorGoleadorId == undefined ? "" : formatPlayerText(mejorGoleadorId) }} </v-col>
     </v-row>
   </v-container>
 </template>
