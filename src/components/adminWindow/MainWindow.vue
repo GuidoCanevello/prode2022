@@ -26,6 +26,11 @@
         <v-tab-item>
           <modificar-resultado-grupos />
         </v-tab-item>
+
+        <v-tab> Modificar Datos Final </v-tab>
+        <v-tab-item>
+          <abm-partidos-final />
+        </v-tab-item>
       </v-tabs>
     </v-container>
   </v-card>
@@ -37,10 +42,11 @@ import AbmPartidos from "./Partidos/abmPartidos.vue";
 import AbmUsuarios from "./Usuarios/abmUsuarios.vue";
 import AbmEquipos from "./Equipos/abmEquipos.vue";
 import ModificarResultadoGrupos from './ModificarResultadoGrupos.vue';
+import AbmPartidosFinal from './Partidos/abmPartidosFinal.vue';
 
 export default {
   name: "MainWindow",
-  components: { AbmPartidos, AbmUsuarios, AbmGrupos, AbmEquipos, ModificarResultadoGrupos },
+  components: { AbmPartidos, AbmUsuarios, AbmGrupos, AbmEquipos, ModificarResultadoGrupos, AbmPartidosFinal },
   data: () => ({}),
 };
 </script>

@@ -1,5 +1,6 @@
 import vueInstance from '../main';
 import DATA_FASE_GRUPOS from './getters/DATA_FASE_GRUPOS';
+import DATA_FASE_FINAL from './getters/DATA_FASE_FINAL';
 import DATA_RANKING from './getters/DATA_RANKING';
 import DATA_LISTADO from './getters/DATA_LISTADO';
 import DATA_PROX_PARTIDO from './getters/DATA_PROX_PARTIDO';
@@ -18,6 +19,7 @@ export default {
     JUGADORES: (state) => state.jugadores,
     PREDICCIONES: (state) => state.predicciones,
     DATA_FASE_GRUPOS,
+    DATA_FASE_FINAL,
     DATA_RANKING,
     DATA_LISTADO,
     DATA_PROX_PARTIDO,
