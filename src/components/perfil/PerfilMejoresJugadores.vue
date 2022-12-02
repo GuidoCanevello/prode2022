@@ -18,7 +18,7 @@
 
     <v-row>
       <v-col cols="12" sm="auto">
-        <h4>Mejor Goleador:</h4>
+        <h4>Mayor Goleador:</h4>
       </v-col>
 
       <v-col> {{ mejorGoleadorId == undefined ? "" : formatPlayerText(mejorGoleadorId) }} </v-col>
