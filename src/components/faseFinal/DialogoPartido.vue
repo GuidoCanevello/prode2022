@@ -54,59 +54,61 @@
         </v-col>
       </v-row>
 
-      <v-row
-        v-if="
-          partido.tipoEliminatoria != 'Octavos'
-            ? partido.tienePrediccionEquipo1 && partido.tienePrediccionEquipo2
-            : true
-        "
-      >
-        <v-col align-self="center" style="text-align: center">
-          <h2>Votar</h2>
-        </v-col>
-      </v-row>
+      <template v-if="puedePredecir">
+        <v-row
+          v-if="
+            partido.tipoEliminatoria != 'Octavos'
+              ? partido.tienePrediccionEquipo1 && partido.tienePrediccionEquipo2
+              : true
+          "
+        >
+          <v-col align-self="center" style="text-align: center">
+            <h2>Votar</h2>
+          </v-col>
+        </v-row>
 
-      <v-row
-        v-if="
-          partido.tipoEliminatoria != 'Octavos'
-            ? partido.tienePrediccionEquipo1 && partido.tienePrediccionEquipo2
-            : true
-        "
-      >
-        <v-col md="6" cols="12">
-          <v-btn
-            color="success"
-            block
-            :disabled="isLoading"
-            :loading="isLoading"
-            @click="handlePrediccion(true)"
-          >
-            {{ IS_SCREEN_BEYOND_MEDIUM ? "Victoria para" : "" }}
-            {{
-              partido.tipoEliminatoria == "Octavos"
-                ? partido.nombreEquipo1
-                : partido.prediccionNombreEquipo1
-            }}
-          </v-btn>
-        </v-col>
+        <v-row
+          v-if="
+            partido.tipoEliminatoria != 'Octavos'
+              ? partido.tienePrediccionEquipo1 && partido.tienePrediccionEquipo2
+              : true
+          "
+        >
+          <v-col md="6" cols="12">
+            <v-btn
+              color="success"
+              block
+              :disabled="isLoading"
+              :loading="isLoading"
+              @click="handlePrediccion(true)"
+            >
+              {{ IS_SCREEN_BEYOND_MEDIUM ? "Victoria para" : "" }}
+              {{
+                partido.tipoEliminatoria == "Octavos"
+                  ? partido.nombreEquipo1
+                  : partido.prediccionNombreEquipo1
+              }}
+            </v-btn>
+          </v-col>
 
-        <v-col md="6" cols="12">
-          <v-btn
-            color="success"
-            block
-            :disabled="isLoading"
-            :loading="isLoading"
-            @click="handlePrediccion(false)"
-          >
-            {{ IS_SCREEN_BEYOND_MEDIUM ? "Victoria para" : "" }}
-            {{
-              partido.tipoEliminatoria == "Octavos"
-                ? partido.nombreEquipo2
-                : partido.prediccionNombreEquipo2
-            }}
-          </v-btn>
-        </v-col>
-      </v-row>
+          <v-col md="6" cols="12">
+            <v-btn
+              color="success"
+              block
+              :disabled="isLoading"
+              :loading="isLoading"
+              @click="handlePrediccion(false)"
+            >
+              {{ IS_SCREEN_BEYOND_MEDIUM ? "Victoria para" : "" }}
+              {{
+                partido.tipoEliminatoria == "Octavos"
+                  ? partido.nombreEquipo2
+                  : partido.prediccionNombreEquipo2
+              }}
+            </v-btn>
+          </v-col>
+        </v-row>
+      </template>
     </v-card-text>
   </v-card>
 </template>
@@ -150,6 +152,13 @@ export default {
     },
   },
 
-  computed: mapGetters(["IS_SCREEN_BEYOND_MEDIUM"]),
+  computed: {
+    ...mapGetters(["IS_SCREEN_BEYOND_MEDIUM"]),
+    puedePredecir() {
+      if(this.partido.partidoId == "63894c7179a7bb44bfd7df71") return false;
+      else if (this.partido.partidoId == "63894c7579a7bb44bfd7df73") return false;
+      return true;
+    },
+  },
 };
 </script>

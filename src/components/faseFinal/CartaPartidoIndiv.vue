@@ -96,11 +96,30 @@ export default {
   },
   computed: {
     claseCarta() {
-      // if (this.partido.golesEquipo1 != undefined) {
-      // TODO terminar
-      // } else
-      if (!this.partido.tienePrediccion) return "card-sin-prediccion";
-      else return "card-con-prediccion";
+      const hoy = new Date();
+
+      if (hoy < new Date(this.partido.fecha) || this.partido.golesEquipo1 == undefined) {
+        if (!this.partido.tienePrediccion) return "card-sin-prediccion";
+        else return "card-con-prediccion";
+      } else {
+        const tienePrediccion = this.partido.tienePrediccion,
+          prediccionGanaEquipo1 = this.partido.prediccion.ganaEquipo1,
+          realGanoEquipo1 =
+            this.partido.golesEquipo1 < this.partido.golesEquipo2 ||
+            this.partido.penalesEquipo1 < this.partido.penalesEquipo2,
+          prediccionGanaEquipo2 = this.partido.prediccion.ganaEquipo2,
+          realGanoEquipo2 =
+            this.partido.golesEquipo2 < this.partido.golesEquipo1 ||
+            this.partido.penalesEquipo2 < this.partido.penalesEquipo1;
+
+        if (
+          tienePrediccion &&
+          ((prediccionGanaEquipo1 && realGanoEquipo1) ||
+            (prediccionGanaEquipo2 && realGanoEquipo2))
+        )
+          return "card-correcta";
+        else return "card-errada";
+      }
     },
   },
 };
@@ -121,5 +140,21 @@ export default {
 
 .card-con-prediccion:hover {
   background-color: #81d4fa !important;
+}
+
+.card-correcta {
+  background-color: #81c784;
+}
+
+.card-correcta:hover {
+  background-color: #66bb6a !important;
+}
+
+.card-errada {
+  background-color: #ef9a9a;
+}
+
+.card-errada:hover {
+  background-color: #ef5350 !important;
 }
 </style>
