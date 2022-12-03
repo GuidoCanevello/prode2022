@@ -66,7 +66,7 @@ export default function (state) {
     });
 
     dataFinal
-        .filter(p => p.tipoEliminatoria == "Cuartos" || p.tipoEliminatoria == "Semifinales" || p.tipoEliminatoria == "Final")
+        .filter(p => p.tipoEliminatoria == "Cuartos")
         .forEach(partido => {
             const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido.partidoId);
             if (prediccion != undefined) {
@@ -92,6 +92,34 @@ export default function (state) {
             }
         });
 
+
+    dataFinal
+        .filter(p => p.tipoEliminatoria == "Semifinales" || p.tipoEliminatoria == "Final")
+        .forEach(partido => {
+            const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido.partidoId);
+            if (prediccion != undefined) {
+                partido.tienePrediccion = true;
+                partido.prediccion = {
+                    ganaEquipo1: prediccion.golesEquipo1 > prediccion.golesEquipo2
+                }
+            }
+
+            const objPartidoEquipo1 = dataFinal.find(p => p.partidoId == partido.partidoEquipo1);
+            const objPartidoEquipo2 = dataFinal.find(p => p.partidoId == partido.partidoEquipo2);
+
+            partido.tienePrediccionEquipo1 = objPartidoEquipo1.tienePrediccion
+            if (partido.tienePrediccionEquipo1) {
+                partido.prediccionNombreEquipo1 = objPartidoEquipo1.prediccion.ganaEquipo1 ? objPartidoEquipo1.prediccionNombreEquipo1 : objPartidoEquipo1.prediccionNombreEquipo2
+                partido.prediccionIdEquipo1 = objPartidoEquipo1.prediccion.ganaEquipo1 ? objPartidoEquipo1.prediccionIdEquipo1 : objPartidoEquipo1.prediccionIdEquipo2
+            }
+
+            partido.tienePrediccionEquipo2 = objPartidoEquipo2.tienePrediccion
+            if (partido.tienePrediccionEquipo2) {
+                partido.prediccionNombreEquipo2 = objPartidoEquipo2.prediccion.ganaEquipo1 ? objPartidoEquipo2.prediccionNombreEquipo1 : objPartidoEquipo2.prediccionNombreEquipo2
+                partido.prediccionIdEquipo2 = objPartidoEquipo2.prediccion.ganaEquipo1 ? objPartidoEquipo2.prediccionIdEquipo1 : objPartidoEquipo2.prediccionIdEquipo2
+            }
+        });
+
     dataFinal.filter(p => p.tipoEliminatoria == "Tercero").forEach(partido => {
         const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido.partidoId);
         if (prediccion != undefined) {
@@ -106,14 +134,14 @@ export default function (state) {
 
         partido.tienePrediccionEquipo1 = objPartidoEquipo1.tienePrediccion
         if (partido.tienePrediccionEquipo1) {
-            partido.prediccionNombreEquipo1 = objPartidoEquipo1.prediccion.ganaEquipo1 ? objPartidoEquipo1.nombreEquipo2 : objPartidoEquipo1.nombreEquipo1
-            partido.prediccionIdEquipo1 = objPartidoEquipo1.prediccion.ganaEquipo1 ? objPartidoEquipo1.idEquipo2 : objPartidoEquipo1.idEquipo1
+            partido.prediccionNombreEquipo1 = objPartidoEquipo1.prediccion.ganaEquipo1 ? objPartidoEquipo1.prediccionNombreEquipo2 : objPartidoEquipo1.prediccionNombreEquipo1
+            partido.prediccionIdEquipo1 = objPartidoEquipo1.prediccion.ganaEquipo1 ? objPartidoEquipo1.prediccionIdEquipo2 : objPartidoEquipo1.prediccionIdEquipo1
         }
 
         partido.tienePrediccionEquipo2 = objPartidoEquipo2.tienePrediccion
         if (partido.tienePrediccionEquipo2) {
-            partido.prediccionNombreEquipo2 = objPartidoEquipo2.prediccion.ganaEquipo1 ? objPartidoEquipo2.nombreEquipo2 : objPartidoEquipo2.nombreEquipo1
-            partido.prediccionIdEquipo2 = objPartidoEquipo2.prediccion.ganaEquipo1 ? objPartidoEquipo2.idEquipo2 : objPartidoEquipo2.idEquipo1
+            partido.prediccionNombreEquipo2 = objPartidoEquipo2.prediccion.ganaEquipo1 ? objPartidoEquipo2.prediccionNombreEquipo2 : objPartidoEquipo2.prediccionNombreEquipo1
+            partido.prediccionIdEquipo2 = objPartidoEquipo2.prediccion.ganaEquipo1 ? objPartidoEquipo2.prediccionIdEquipo2 : objPartidoEquipo2.prediccionIdEquipo1
         }
     });
 

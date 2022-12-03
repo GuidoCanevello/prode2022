@@ -209,7 +209,6 @@ export default {
       this.isLoading = true;
 
       for (const partido of this.partidosAux) {
-        console.log("nuevo Partido", partido)
         let fecha = new Date();
         fecha.setFullYear(partido.fecha.substring(0, 4));
         fecha.setMonth(partido.fecha.substring(5, 7) - 1);

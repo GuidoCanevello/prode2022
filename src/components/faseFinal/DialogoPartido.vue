@@ -2,7 +2,7 @@
   <v-card>
     <v-card-title>
       <v-row>
-        <v-col>
+        <v-col cols="12" md="6">
           Partido:
           {{
             partido.identificadorEliminatorias
@@ -11,13 +11,30 @@
           }}
         </v-col>
 
-        <v-col style="text-align: end">
-          {{ partido.nombreEquipo1 }} vs. {{ partido.nombreEquipo2 }}
+        <v-spacer />
+
+        <v-col style="text-align: center" cols="12" md="auto">
+          {{ partido.nombreEquipo1 }}
+        </v-col>
+
+        <v-col
+          style="text-align: center"
+          :class="IS_SCREEN_BEYOND_MEDIUM ? 'px-0' : 'pa-0'"
+          cols="12"
+          md="auto"
+        >
+          vs.
+        </v-col>
+
+        <v-col style="text-align: center" cols="12" md="auto">
+          {{ partido.nombreEquipo2 }}
         </v-col>
       </v-row>
     </v-card-title>
 
-    <v-card-subtitle> {{ formatFecha(partido.fecha) }} </v-card-subtitle>
+    <v-card-subtitle class="pt-4">
+      {{ formatFecha(partido.fecha) }}
+    </v-card-subtitle>
 
     <v-card-text>
       <v-row>
@@ -64,7 +81,12 @@
             :loading="isLoading"
             @click="handlePrediccion(true)"
           >
-            Victoria para {{ partido.nombreEquipo1 }}
+            {{ IS_SCREEN_BEYOND_MEDIUM ? "Victoria para" : "" }}
+            {{
+              partido.tipoEliminatoria == "Octavos"
+                ? partido.nombreEquipo1
+                : partido.prediccionNombreEquipo1
+            }}
           </v-btn>
         </v-col>
 
@@ -76,7 +98,12 @@
             :loading="isLoading"
             @click="handlePrediccion(false)"
           >
-            Victoria para {{ partido.nombreEquipo2 }}
+            {{ IS_SCREEN_BEYOND_MEDIUM ? "Victoria para" : "" }}
+            {{
+              partido.tipoEliminatoria == "Octavos"
+                ? partido.nombreEquipo2
+                : partido.prediccionNombreEquipo2
+            }}
           </v-btn>
         </v-col>
       </v-row>
@@ -87,7 +114,7 @@
 <script>
 import obtenerNombreDia from "@/utils/obtenerNombreDia";
 import addCero from "@/utils/addCero";
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "DialogoPartido",
@@ -99,7 +126,7 @@ export default {
   },
   methods: {
     ...mapActions(["MODIFICAR_PREDICCION"]),
-    
+
     formatFecha(fecha) {
       const nombreDia = obtenerNombreDia(fecha.getDay()),
         dia = addCero(fecha.getDate()),
@@ -122,5 +149,7 @@ export default {
       this.isLoading = false;
     },
   },
+
+  computed: mapGetters(["IS_SCREEN_BEYOND_MEDIUM"]),
 };
 </script>

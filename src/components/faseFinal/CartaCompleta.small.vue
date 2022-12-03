@@ -15,15 +15,39 @@
     </v-row>
 
     <v-row>
-      <octavos-small v-if="selectedTab == 0" />
-      <cuartos-small v-if="selectedTab == 1" />
-      <semifinales-small v-if="selectedTab == 2" />
-      <final-small v-if="selectedTab == 3" />
+      <octavos-small
+        v-if="selectedTab == 0"
+        :partidos="
+          DATA_FASE_FINAL.filter((p) => p.tipoEliminatoria == 'Octavos')
+        "
+      />
+      <cuartos-small
+        v-if="selectedTab == 1"
+        :partidos="
+          DATA_FASE_FINAL.filter((p) => p.tipoEliminatoria == 'Cuartos')
+        "
+      />
+      <semifinales-small
+        v-if="selectedTab == 2"
+        :partidos="
+          DATA_FASE_FINAL.filter((p) => p.tipoEliminatoria == 'Semifinales')
+        "
+      />
+      <final-small
+        v-if="selectedTab == 3"
+        :partidos="
+          DATA_FASE_FINAL.filter(
+            (p) =>
+              p.tipoEliminatoria == 'Final' || p.tipoEliminatoria == 'Tercero'
+          )
+        "
+      />
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import CartaInvisible from "./CartaInvisible.vue";
 import CartaPartidoIndiv from "./CartaPartidoIndiv.vue";
 import CuartosSmall from "./estructura/small/Cuartos.small.vue";
@@ -52,5 +76,7 @@ export default {
       ],
     };
   },
+
+  computed: mapGetters(["DATA_FASE_FINAL"]),
 };
 </script>

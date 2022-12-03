@@ -10,6 +10,17 @@
       @click="showDialog = true"
     >
       <v-row>
+        <v-col class="pt-0">
+          <h2>
+            {{
+              partido.identificadorEliminatorias
+                ? partido.identificadorEliminatorias
+                : partido.tipoEliminatoria
+            }}
+          </h2>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-spacer />
         <v-col class="pr-0" cols="auto">
           <bandera :code="partido.codeEquipo1" />
@@ -86,7 +97,7 @@ export default {
   computed: {
     claseCarta() {
       // if (this.partido.golesEquipo1 != undefined) {
-
+      // TODO terminar
       // } else
       if (!this.partido.tienePrediccion) return "card-sin-prediccion";
       else return "card-con-prediccion";

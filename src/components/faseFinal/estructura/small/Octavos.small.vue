@@ -1,7 +1,10 @@
 <template>
   <v-col class="col-partidos" align-self="center">
-    <v-container v-for="i in cantidadPartidos" v-bind:key="'octavos' + i">
-      <carta-partido-indiv />
+    <v-container
+      v-for="partido in partidos"
+      v-bind:key="'octavos' + partido.partidoId"
+    >
+      <carta-partido-indiv :partido="partido" />
     </v-container>
   </v-col>
 </template>
@@ -11,10 +14,9 @@ import CartaPartidoIndiv from "../../CartaPartidoIndiv.vue";
 export default {
   components: { CartaPartidoIndiv },
   name: "OctavosSmall",
+  props: ["partidos"],
   data() {
-    return {
-      cantidadPartidos: [1, 2, 3, 4, 5, 6, 7, 8],
-    };
+    return {};
   },
 };
 </script>

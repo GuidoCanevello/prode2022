@@ -1,7 +1,10 @@
 <template>
   <v-col class="col-partidos" align-self="center">
-    <v-container v-for="i in cantidadPartidos" v-bind:key="'semis' + i">
-      <carta-partido-indiv />
+    <v-container
+      v-for="partido in partidos"
+      v-bind:key="'semifinales' + partido.partidoId"
+    >
+      <carta-partido-indiv :partido="partido" />
     </v-container>
   </v-col>
 </template>
@@ -11,10 +14,9 @@ import CartaPartidoIndiv from "../../CartaPartidoIndiv.vue";
 export default {
   components: { CartaPartidoIndiv },
   name: "SemifinalesSmall",
+  props: ["partidos"],
   data() {
-    return {
-      cantidadPartidos: [1, 2],
-    };
+    return {};
   },
 };
 </script>
