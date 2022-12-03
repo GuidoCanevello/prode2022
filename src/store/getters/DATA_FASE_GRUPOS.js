@@ -2,7 +2,7 @@ export default function (state) {
     let dataGrupos = [];
 
     const dataEquipos = state.equipos;
-    const dataPartidos = state.partidos;
+    const dataPartidos = state.partidos.filter(p => !p.esEliminatoria);
     const dataPredicciones = state.predicciones;
 
     const nombresGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
