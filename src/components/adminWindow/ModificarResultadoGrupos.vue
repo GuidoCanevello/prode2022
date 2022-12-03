@@ -113,8 +113,8 @@ export default {
     this.PARTIDOS.forEach((p) => {
       const newPartido = {
         id: p._id,
-        equipo1: this.EQUIPOS.find((e) => e._id === p.equipo1).nombre,
-        equipo2: this.EQUIPOS.find((e) => e._id === p.equipo2).nombre,
+        equipo1: this.EQUIPOS.find((e) => e._id === p.equipo1) ? this.EQUIPOS.find((e) => e._id === p.equipo1).nombre : "",
+        equipo2: this.EQUIPOS.find((e) => e._id === p.equipo2) ? this.EQUIPOS.find((e) => e._id === p.equipo2).nombre : "",
         golesEquipo1: p.golesEquipo1,
         golesEquipo2: p.golesEquipo2,
         grupo: p.grupo,
