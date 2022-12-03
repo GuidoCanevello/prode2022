@@ -3,6 +3,7 @@
     <v-row>
       <v-col cols="12" md="6" v-for="nombreGrupo in grupos" :key="nombreGrupo">
         <h4>Grupo {{ nombreGrupo }}</h4>
+          
         <v-data-table
           v-if="IS_SCREEN_BEYOND_SMALL"
           :items="getTableData(nombreGrupo)"
@@ -54,7 +55,6 @@
     </v-row>
   </v-container>
 </template>
-
 <script>
 import { mapGetters } from "vuex";
 import Bandera from "../utilitarios/Bandera.vue";
@@ -67,6 +67,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      actualizoFondo: false,
       grupos: ["A", "B", "C", "D", "E", "F", "G", "H"],
 
       headers: [
@@ -131,7 +132,7 @@ export default {
   computed: mapGetters(["EQUIPOS", "PARTIDOS", "IS_SCREEN_BEYOND_SMALL"]),
 
   methods: {
-    fondoItem(item) {
+    fondoItem(item) {      
       if (
         new Date(item.fecha) < new Date() &&
         item.golesEquipo1 != undefined &&
@@ -141,15 +142,15 @@ export default {
           item.golesEquipo1 == item.golesPrediccionEquipo1 &&
           item.golesEquipo2 == item.golesPrediccionEquipo2
         )
-          return "fila-con-prediccion-correcta";
+          return "filas-con-prediccion-correcta";
         else if (
           toResultado(
             item.golesPrediccionEquipo1,
             item.golesPrediccionEquipo2
           ) == toResultado(item.golesEquipo1, item.golesEquipo2)
         )
-          return "fila-con-prediccion-acertada";
-        else return "fila-con-prediccion-erronea";
+          return "filas-con-prediccion-acertada";
+        else return "filas-con-prediccion-erronea";
       } else return "";
     },
 
@@ -185,28 +186,28 @@ export default {
 };
 </script>
 
-<style scoped>
-.fila-con-prediccion-correcta {
+<style>
+.filas-con-prediccion-correcta {
   background-color: #a5d6a7;
 }
 
-.fila-con-prediccion-acertada {
+.filas-con-prediccion-acertada {
   background-color: #80cbc4;
 }
 
-.fila-con-prediccion-erronea {
+.filas-con-prediccion-erronea {
   background-color: #ef9a9a;
 }
 
-.table-partidos .fila-con-prediccion-correcta:hover {
+.table-partidos .filas-con-prediccion-correcta:hover {
   background-color: #66bb6a !important;
 }
 
-.table-partidos .fila-con-prediccion-acertada:hover {
+.table-partidos .filas-con-prediccion-acertada:hover {
   background-color: #26a69a !important;
 }
 
-.table-partidos .fila-con-prediccion-erronea:hover {
+.table-partidos .filas-con-prediccion-erronea:hover {
   background-color: #ef5350 !important;
 }
 </style>
