@@ -81,7 +81,7 @@ function formatPartidoFinal(dataEquipos, partido, dataPredicciones, dataPartidos
         tienePrediccion: false,
         golesEquipo1: partido.golesEquipo1 + (partido.penalesEquipo1 != undefined ? ` (${partido.penalesEquipo1})` : ""),
         golesEquipo2: partido.golesEquipo2 + (partido.penalesEquipo1 != undefined ? ` (${partido.penalesEquipo2})` : ""),
-        descripcionPartido: `${equipo1} vs. ${equipo2}`,
+        descripcionPartido: `${partido.identificadorEliminatorias} - ${equipo1} vs. ${equipo2}`,
         descripcionPrediccion: "Sin Pronostico",
     };
 

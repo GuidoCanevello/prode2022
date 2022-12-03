@@ -67,7 +67,7 @@
     <v-container fluid>
       <v-row>
         <v-col>
-          <h2>Mayor Goleador</h2>
+          <h2>Goleador</h2>
         </v-col>
       </v-row>
 
