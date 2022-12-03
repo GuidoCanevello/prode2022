@@ -105,12 +105,12 @@ export default {
         const tienePrediccion = this.partido.tienePrediccion,
           prediccionGanaEquipo1 = this.partido.prediccion.ganaEquipo1,
           realGanoEquipo1 =
-            this.partido.golesEquipo1 < this.partido.golesEquipo2 ||
-            this.partido.penalesEquipo1 < this.partido.penalesEquipo2,
-          prediccionGanaEquipo2 = this.partido.prediccion.ganaEquipo2,
+            this.partido.golesEquipo1 > this.partido.golesEquipo2 ||
+            this.partido.penalesEquipo1 > this.partido.penalesEquipo2,
+          prediccionGanaEquipo2 = !this.partido.prediccion.ganaEquipo1,
           realGanoEquipo2 =
-            this.partido.golesEquipo2 < this.partido.golesEquipo1 ||
-            this.partido.penalesEquipo2 < this.partido.penalesEquipo1;
+            this.partido.golesEquipo2 > this.partido.golesEquipo1 ||
+            this.partido.penalesEquipo2 > this.partido.penalesEquipo1;
 
         if (
           tienePrediccion &&
