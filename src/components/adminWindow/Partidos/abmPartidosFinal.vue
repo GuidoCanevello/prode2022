@@ -186,26 +186,27 @@ export default {
     ...mapActions(["MODIFICAR_PARTIDO", "ACTUALIZAR_RESULTADO_FINAL"]),
 
     async handleUpdateResultados() {
-      console.log("Actualizar Resultado Final")
+      console.log("Actualizar Resultado Final");
       this.isLoading = true;
 
       for (const partido of this.partidosAux) {
-        await this.ACTUALIZAR_RESULTADO_FINAL({
-          id: partido.id,
-          data: {
-            golesEquipo1: partido.golesEquipo1,
-            penalesEquipo1: partido.penalesEquipo1,
-            golesEquipo2: partido.golesEquipo2,
-            penalesEquipo2: partido.penalesEquipo2
-          },
-        });
+        if (partido.golesEquipo1 != undefined)
+          await this.ACTUALIZAR_RESULTADO_FINAL({
+            id: partido.id,
+            data: {
+              golesEquipo1: partido.golesEquipo1,
+              penalesEquipo1: partido.penalesEquipo1,
+              golesEquipo2: partido.golesEquipo2,
+              penalesEquipo2: partido.penalesEquipo2,
+            },
+          });
       }
 
       this.isLoading = false;
     },
 
     async handleModificarData() {
-      console.log("Modificar Data")
+      console.log("Modificar Data");
       this.isLoading = true;
 
       for (const partido of this.partidosAux) {
@@ -219,8 +220,12 @@ export default {
         await this.MODIFICAR_PARTIDO({
           id: partido.id,
           data: {
-            equipo1: this.EQUIPOS.find(e => e.nombre == partido.equipo1) ? this.EQUIPOS.find(e => e.nombre == partido.equipo1)._id : "",
-            equipo2: this.EQUIPOS.find(e => e.nombre == partido.equipo2) ? this.EQUIPOS.find(e => e.nombre == partido.equipo2)._id : "",
+            equipo1: this.EQUIPOS.find((e) => e.nombre == partido.equipo1)
+              ? this.EQUIPOS.find((e) => e.nombre == partido.equipo1)._id
+              : "",
+            equipo2: this.EQUIPOS.find((e) => e.nombre == partido.equipo2)
+              ? this.EQUIPOS.find((e) => e.nombre == partido.equipo2)._id
+              : "",
             fecha,
           },
         });

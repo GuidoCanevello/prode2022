@@ -400,37 +400,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.fila-con-prediccion {
-  background-color: #e1f5fe;
-}
-
-.fila-con-prediccion-correcta {
-  background-color: #a5d6a7;
-}
-
-.fila-con-prediccion-acertada {
-  background-color: #80cbc4;
-}
-
-.fila-con-prediccion-erronea {
-  background-color: #ef9a9a;
-}
-
-.table-partidos .fila-con-prediccion:hover {
-  background-color: #b3e5fc !important;
-}
-
-.table-partidos .fila-con-prediccion-correcta:hover {
-  background-color: #66bb6a !important;
-}
-
-.table-partidos .fila-con-prediccion-acertada:hover {
-  background-color: #26a69a !important;
-}
-
-.table-partidos .fila-con-prediccion-erronea:hover {
-  background-color: #ef5350 !important;
-}
-</style>

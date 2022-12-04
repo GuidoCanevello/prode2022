@@ -210,12 +210,6 @@ export default {
     async handleGuardarCambios() {
       this.isLoading = true;
 
-      console.log(
-        this.selectedJugadorMJ._id,
-        this.selectedJugadorMA._id,
-        this.selectedJugadorMG._id
-      );
-
       await this.ACTUALIZAR_PREDICCION_JUGADORES({
         prediccionMejorJugador: this.selectedJugadorMJ._id,
         prediccionMejorArquero: this.selectedJugadorMA._id,

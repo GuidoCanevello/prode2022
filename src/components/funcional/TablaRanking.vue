@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="dialogProfile" width="1000px" @click:outside="selectedUser = null">
+    <v-dialog v-if="selectedUser != null" v-model="dialogProfile" width="1000px" @click:outside="selectedUser = null">
       <carta-perfil :nombreCuenta="selectedUser" />
     </v-dialog>
 
