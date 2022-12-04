@@ -118,7 +118,7 @@ export default {
 
   data: () => ({
     isLoading: false,
-    estaHabilitado: true,
+    estaHabilitado: false,
 
     selectedJugadorMJ: null,
     selectedJugadorMA: null,

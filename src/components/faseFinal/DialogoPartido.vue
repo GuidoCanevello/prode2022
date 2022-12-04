@@ -157,6 +157,7 @@ export default {
     puedePredecir() {
       if(this.partido.partidoId == "63894c7179a7bb44bfd7df71") return false;
       else if (this.partido.partidoId == "63894c7579a7bb44bfd7df73") return false;
+      else if (new Date(this.partido.fecha) < new Date()) return false;
       return true;
     },
   },
