@@ -7,6 +7,7 @@ export default function (allPartidos, allEquipos, allPredicciones) {
         let prediccion = allPredicciones.find(
           (p) => p.partidoId == partido._id
         );
+
         let newPartido = {
           id: partido._id,
           idEquipo1: partido.equipo1,
@@ -65,8 +66,9 @@ export default function (allPartidos, allEquipos, allPredicciones) {
             : prediccionEquipo2.idEquipo2
           : null;
 
-        let prediccionGanaEquipo1 = prediccion && prediccion.golesEquipo1 == 1, partidoGanoEquipo1 = partido.golesEquipo1 > partido.golesEquipo2 ||
-          partido.penalesEquipo1 > partido.penalesEquipo2;
+        let prediccionGanaEquipo1 = (prediccion && prediccion.golesEquipo1 == 1),
+          partidoGanoEquipo1 = partido.golesEquipo1 > partido.golesEquipo2 ||
+            partido.penalesEquipo1 > partido.penalesEquipo2;
 
         let newPartido = {
           id: partido._id,

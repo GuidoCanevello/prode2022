@@ -98,16 +98,23 @@ export default {
     claseCarta() {
       const hoy = new Date();
 
-      if (hoy < new Date(this.partido.fecha) || this.partido.golesEquipo1 == undefined) {
+      if (
+        hoy < new Date(this.partido.fecha) ||
+        this.partido.golesEquipo1 == undefined
+      ) {
         if (!this.partido.tienePrediccion) return "card-sin-prediccion";
         else return "card-con-prediccion";
       } else {
+        if (!this.partido.tienePrediccion) return "card-sin-prediccion-vencida";
+
         const tienePrediccion = this.partido.tienePrediccion,
-          prediccionGanaEquipo1 = this.partido.prediccion.ganaEquipo1,
+          prediccionGanaEquipo1 =
+            tienePrediccion && this.partido.prediccion.ganaEquipo1,
           realGanoEquipo1 =
             this.partido.golesEquipo1 > this.partido.golesEquipo2 ||
             this.partido.penalesEquipo1 > this.partido.penalesEquipo2,
-          prediccionGanaEquipo2 = !this.partido.prediccion.ganaEquipo1,
+          prediccionGanaEquipo2 =
+            tienePrediccion && !this.partido.prediccion.ganaEquipo1,
           realGanoEquipo2 =
             this.partido.golesEquipo2 > this.partido.golesEquipo1 ||
             this.partido.penalesEquipo2 > this.partido.penalesEquipo1;
@@ -140,6 +147,14 @@ export default {
 
 .card-con-prediccion:hover {
   background-color: #81d4fa !important;
+}
+
+.card-sin-prediccion-vencida {
+  background-color: #cfd8dc !important;
+}
+
+.card-sin-prediccion-vencida:hover {
+  background-color: #90a4ae !important;
 }
 
 .card-correcta {

@@ -57,8 +57,9 @@ export default {
       )
         return "";
       else if (
-        this.partido.prediccionGanaEquipo1 &&
-        this.partido.partidoGanoEquipo1
+        (this.partido.prediccionGanaEquipo1 &&
+          this.partido.partidoGanoEquipo1) ||
+        (!this.partido.prediccionGanaEquipo1 && !this.partido.partidoGanoEquipo1)
       )
         return "prediccion-correcta";
       else return "prediccion-errada";
