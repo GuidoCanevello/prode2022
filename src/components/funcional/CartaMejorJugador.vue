@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-container fluid>
+    <v-container fluid :class="claseMejorJugador">
       <v-row>
         <v-col>
           <h2>Mejor Jugador</h2>
@@ -32,7 +32,7 @@
       </v-row>
     </v-container>
 
-    <v-container fluid>
+    <v-container fluid :class="claseMejorArquero">
       <v-row>
         <v-col>
           <h2>Mejor Arquero</h2>
@@ -64,7 +64,7 @@
       </v-row>
     </v-container>
 
-    <v-container fluid>
+    <v-container fluid :class="claseMejorGoleador">
       <v-row>
         <v-col>
           <h2>Goleador</h2>
@@ -138,13 +138,42 @@ export default {
     nombresJugadoresMG: [],
   }),
 
-  computed: mapGetters([
-    "EQUIPOS",
-    "JUGADORES",
-    "PREDICCION_MEJOR_JUGADOR",
-    "PREDICCION_MEJOR_ARQUERO",
-    "PREDICCION_MEJOR_GOLEADOR",
-  ]),
+  computed: {
+    ...mapGetters([
+      "EQUIPOS",
+      "JUGADORES",
+      "PREDICCION_MEJOR_JUGADOR",
+      "PREDICCION_MEJOR_ARQUERO",
+      "PREDICCION_MEJOR_GOLEADOR",
+    ]),
+
+    claseMejorJugador() {
+      if (
+        this.JUGADORES.find((j) => j._id == this.PREDICCION_MEJOR_JUGADOR)
+          .esMejorJugador
+      )
+        return "col-prediccion-correcta";
+      else return "col-prediccion-erronea";
+    },
+
+    claseMejorArquero() {
+      if (
+        this.JUGADORES.find((j) => j._id == this.PREDICCION_MEJOR_ARQUERO)
+          .esMejorArquero
+      )
+        return "col-prediccion-correcta";
+      else return "col-prediccion-erronea";
+    },
+
+    claseMejorGoleador() {
+      if (
+        this.JUGADORES.find((j) => j._id == this.PREDICCION_MEJOR_GOLEADOR)
+          .esMejorGoleador
+      )
+        return "col-prediccion-correcta";
+      else return "col-prediccion-erronea";
+    },
+  },
 
   methods: {
     ...mapActions(["ACTUALIZAR_PREDICCION_JUGADORES"]),
@@ -256,3 +285,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.col-prediccion-correcta {
+  background-color: #a5d6a7;
+}
+
+.col-prediccion-erronea {
+  background-color: #ef9a9a;
+}
+</style>
